@@ -49,7 +49,8 @@ h2{color:var(--g);font-size:22px;font-weight:700;margin:18px 0 6px}
 .dhikr .rem{display:inline-block;margin-top:8px;padding:2px 12px;border:1px solid var(--g);border-radius:20px;color:var(--g);font-size:14px;font-family:Georgia,serif}
 .dhikr.done{opacity:.5}
 .dhikr.done .rem{border-color:var(--g3);color:var(--g3)}
-.mode-btn{position:fixed;top:12px;left:12px;z-index:10;min-height:40px;padding:4px 14px;border:1px solid #5b4b24;border-radius:20px;background:#14110acc;color:var(--g);cursor:pointer;font-size:14px}
+.mode-btn{position:fixed;top:12px;left:12px;z-index:9999;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid #5b4b24;border-radius:50%;background:#14110acc;color:var(--g);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.mode-btn svg{width:24px;height:24px;display:block}
 /* الوضع النهاري */
 body.light{--bg:#f6f0dd;--g2:#4d3f16;--g3:#7d682a;--g:#96791c}
 body.light .band{background:#fdf8e7}
@@ -67,7 +68,7 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
 </style>
 </head>
 <body>
-<button type="button" class="mode-btn" id="modeBtn">الْوَضْعُ النَّهَارِيُّ</button>
+<button type="button" class="mode-btn" id="modeBtn" aria-label="الْوَضْعُ النَّهَارِيُّ"></button>
 <main>
   <header class="band">
     <svg class="pat" aria-hidden="true"><defs><pattern id="p1" width="56" height="56" patternUnits="userSpaceOnUse"><g fill="none" stroke="#d4af37" stroke-opacity=".28" stroke-width="1"><rect x="14" y="14" width="28" height="28"/><rect x="14" y="14" width="28" height="28" transform="rotate(45 28 28)"/><circle cx="28" cy="28" r="9"/><circle cx="0" cy="0" r="9"/><circle cx="56" cy="0" r="9"/><circle cx="0" cy="56" r="9"/><circle cx="56" cy="56" r="9"/></g></pattern></defs><rect width="100%" height="100%" fill="url(#p1)"/></svg>
@@ -167,15 +168,34 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
 
   /* الوضع الليلي والنهاري */
   var TKEY='islami-tawba.theme';
+  var SUN='<svg viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.6" fill="#d4af37" fill-opacity=".22"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>';
+  var MOON='<svg viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.2 14.2A8.6 8.6 0 0 1 9.8 3.8a8.6 8.6 0 1 0 10.4 10.4Z" fill="#d4af37" fill-opacity=".22"/></svg>';
   function applyTheme(m){
     document.body.classList.toggle('light',m==='light');
-    $('modeBtn').textContent=m==='light'?'الْوَضْعُ اللَّيْلِيُّ':'الْوَضْعُ النَّهَارِيُّ';
+    var btn=$('modeBtn');
+    btn.innerHTML=m==='light'?MOON:SUN;
+    btn.setAttribute('aria-label',m==='light'?'الْوَضْعُ اللَّيْلِيُّ':'الْوَضْعُ النَّهَارِيُّ');
     document.querySelector('meta[name="theme-color"]').setAttribute('content',m==='light'?'#f6f0dd':'#0a0907');
   }
   var theme='dark';
   try{theme=localStorage.getItem(TKEY)||'dark';}catch(e){}
   applyTheme(theme);
   $('modeBtn').onclick=function(){theme=theme==='light'?'dark':'light';try{localStorage.setItem(TKEY,theme)}catch(e){}applyTheme(theme)};
+
+  /* يخلّي الزر ثابت حتى لو المتصفح مش بيثبّت position:fixed */
+  (function(){
+    var btn=$('modeBtn'),pinning=false;
+    function pin(){
+      var r=btn.getBoundingClientRect();
+      var dx=12-r.left,dy=12-r.top;
+      if(Math.abs(dx)>1.5||Math.abs(dy)>1.5){pinning=true;btn.style.transform='translate('+dx+'px,'+dy+'px)';}
+      else if(pinning){pinning=false;btn.style.transform='';}
+    }
+    var ticking=false;
+    function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(function(){pin();ticking=false;});}}
+    window.addEventListener('scroll',onScroll,{passive:true});
+    window.addEventListener('resize',onScroll,{passive:true});
+  })();
 
   /* أذكار الصباح والمساء */
   var AD={
