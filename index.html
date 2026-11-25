@@ -49,7 +49,7 @@ h2{color:var(--g);font-size:22px;font-weight:700;margin:18px 0 6px}
 .dhikr .rem{display:inline-block;margin-top:8px;padding:2px 12px;border:1px solid var(--g);border-radius:20px;color:var(--g);font-size:14px;font-family:Georgia,serif}
 .dhikr.done{opacity:.5}
 .dhikr.done .rem{border-color:var(--g3);color:var(--g3)}
-.mode-btn{position:fixed;top:12px;left:12px;z-index:9999;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid #5b4b24;border-radius:50%;background:#14110acc;color:var(--g);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.mode-btn{position:absolute;top:12px;left:12px;z-index:9999;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid #5b4b24;border-radius:50%;background:#14110acc;color:var(--g);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .mode-btn svg{width:24px;height:24px;display:block}
 /* الوضع النهاري */
 body.light{--bg:#f6f0dd;--g2:#4d3f16;--g3:#7d682a;--g:#96791c}
@@ -181,21 +181,6 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
   try{theme=localStorage.getItem(TKEY)||'dark';}catch(e){}
   applyTheme(theme);
   $('modeBtn').onclick=function(){theme=theme==='light'?'dark':'light';try{localStorage.setItem(TKEY,theme)}catch(e){}applyTheme(theme)};
-
-  /* يخلّي الزر ثابت حتى لو المتصفح مش بيثبّت position:fixed */
-  (function(){
-    var btn=$('modeBtn'),pinning=false;
-    function pin(){
-      var r=btn.getBoundingClientRect();
-      var dx=12-r.left,dy=12-r.top;
-      if(Math.abs(dx)>1.5||Math.abs(dy)>1.5){pinning=true;btn.style.transform='translate('+dx+'px,'+dy+'px)';}
-      else if(pinning){pinning=false;btn.style.transform='';}
-    }
-    var ticking=false;
-    function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(function(){pin();ticking=false;});}}
-    window.addEventListener('scroll',onScroll,{passive:true});
-    window.addEventListener('resize',onScroll,{passive:true});
-  })();
 
   /* أذكار الصباح والمساء */
   var AD={
