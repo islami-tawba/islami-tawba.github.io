@@ -164,6 +164,7 @@ body.light .soon .s1{text-shadow:none}
 .abox .it:active{background:#1d1709}
 .abox .it.done{opacity:.5}
 .abox .it.done .rem{border-color:var(--g3);color:var(--g3)}
+.abox.flat{border:0;background:none;margin:0;overflow:visible}.abox.flat>button{display:none}.abox.flat .bd{display:block;padding:2px 0 12px}.abox.flat .it:first-of-type{border-top:0}
 .abox .bprog{text-align:center;color:var(--g3);font-size:15px;padding:4px 0 8px}
 .abox .brs{display:block;margin:12px auto 4px}
 body.light .abox .it:active{background:#f0e6c8}
@@ -878,7 +879,7 @@ var PT=(function(){
     d.appendChild(h);d.appendChild(bd);root.appendChild(d);
   });}
   mk(BOXES,document.getElementById('boxList'),'');
-  mk(DUAS,document.getElementById('duaList'),'d');
+  mk(DUAS,document.getElementById('duaList'),'d');[].forEach.call(document.querySelectorAll('#duaList .abox'),function(a){a.classList.add('flat','open')});
   if(BOXES.length)document.getElementById('boxSoon').style.display='none';
 })();
 </script>
@@ -982,4 +983,4 @@ if('serviceWorker' in navigator){(function(){
 })()}
 </script>
 </body>
-                                                                                                                                                 </html>
+  </html>
