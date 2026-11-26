@@ -69,6 +69,10 @@ body[data-tab=masaa] .anote{color:#9fb0e0}
 body.light[data-tab=masaa] .dhikr{background:#eef0f8;border-color:#b9c2e0}
 body.light[data-tab=masaa] .dhikr .rem{border-color:#4a5a99;color:#33417a}
 body.light[data-tab=masaa] .anote{color:#4a5a99}
+.salat{text-align:center;margin:44px 0 14px;padding:10px 8px 6px;border-top:1px solid var(--g3);border-bottom:1px solid var(--g3)}
+.salat b{display:block;color:var(--g);font-size:34px;line-height:1.7;font-weight:700;text-shadow:0 0 14px rgba(212,175,55,.45)}
+.salat span{display:block;color:var(--g2);font-size:19px;line-height:1.9}
+body.light .salat b{text-shadow:none}
 .mode-btn{position:absolute;top:12px;left:12px;z-index:9999;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid #5b4b24;border-radius:50%;background:#14110acc;color:var(--g);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .mode-btn svg{width:24px;height:24px;display:block}
 /* الوضع النهاري */
@@ -90,6 +94,7 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
 <body>
 <button type="button" class="mode-btn" id="modeBtn" aria-label="الْوَضْعُ النَّهَارِيُّ"></button>
 <main>
+  <div class="salat"><b>صَلُّوا عَلَى النَّبِيِّ ﷺ</b><span>اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَىٰ سَيِّدِنَا مُحَمَّدٍ</span></div>
   <header class="band">
     <svg class="pat" aria-hidden="true"><defs><pattern id="p1" width="56" height="56" patternUnits="userSpaceOnUse"><g fill="none" stroke="#d4af37" stroke-opacity=".28" stroke-width="1"><rect x="14" y="14" width="28" height="28"/><rect x="14" y="14" width="28" height="28" transform="rotate(45 28 28)"/><circle cx="28" cy="28" r="9"/><circle cx="0" cy="0" r="9"/><circle cx="56" cy="0" r="9"/><circle cx="0" cy="56" r="9"/><circle cx="56" cy="56" r="9"/></g></pattern></defs><rect width="100%" height="100%" fill="url(#p1)"/></svg>
     <span class="bism">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
