@@ -79,6 +79,20 @@ body.light[data-tab=masaa] .anote{color:#4a5a99}
 .salat b{display:block;color:var(--g);font-size:34px;line-height:1.7;font-weight:700;text-shadow:0 0 14px rgba(212,175,55,.45)}
 .salat span{display:block;color:var(--g2);font-size:19px;line-height:1.9}
 body.light .salat b{text-shadow:none}
+.menu-btn{position:absolute;top:12px;right:12px;z-index:9999;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid #5b4b24;border-radius:50%;background:#14110acc;color:var(--g);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.menu-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round}
+.menu-pop{position:absolute;top:62px;right:12px;z-index:10000;min-width:210px;background:#14110a;border:1px solid var(--g);border-radius:12px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.5);display:none}
+.menu-pop.open{display:block}
+.menu-pop button{display:block;width:100%;text-align:start;background:none;border:0;border-radius:8px;color:var(--g2);font:inherit;font-size:18px;padding:10px 12px;cursor:pointer}
+.menu-pop button.cur{background:#2a2108;color:var(--g)}
+body.light .menu-btn{background:#fdf8e7dd;border-color:#c0a968}
+body.light .menu-pop{background:#fdf8e7;box-shadow:0 8px 24px rgba(80,60,10,.25)}
+body.light .menu-pop button.cur{background:#f0e6c8}
+.ayah{border:1px solid #3a2f14;border-radius:10px;background:#12100a;margin:10px 0;padding:14px 16px;text-align:center}
+.ayah .at{display:block;font-size:24px;line-height:2.2;color:var(--g2)}
+.ayah .ar{display:inline-block;margin-top:6px;padding:2px 12px;border:1px solid var(--g);border-radius:20px;color:var(--g);font-size:14px}
+body.light .ayah{background:#fdf8e7;border-color:#d9cba0}
+.sec[hidden]{display:none}
 .mode-btn{position:absolute;top:12px;left:12px;z-index:9999;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid #5b4b24;border-radius:50%;background:#14110acc;color:var(--g);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .mode-btn svg{width:24px;height:24px;display:block}
 /* الوضع النهاري */
@@ -99,6 +113,8 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
 </head>
 <body>
 <button type="button" class="mode-btn" id="modeBtn" aria-label="الْوَضْعُ النَّهَارِيُّ"></button>
+<button type="button" class="menu-btn" id="menuBtn" aria-label="الْقَائِمَةُ" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+<div class="menu-pop" id="menuPop" role="menu"><button type="button" class="cur" data-sec="secTasbih" role="menuitem">التَّسْبِيحُ وَالْأَذْكَارُ</button><button type="button" data-sec="secQuran" role="menuitem">آيَاتٌ مِنَ الْقُرْآنِ</button></div>
 <main>
   <div class="salat"><b>صَلُّوا عَلَى النَّبِيِّ ﷺ</b><span>اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَىٰ سَيِّدِنَا مُحَمَّدٍ</span><button type="button" class="salat-btn" id="salatBtn" aria-label="تَشْغِيلُ الصَّوْتِ / إِيقَافُهُ"><svg class="ic-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button></div>
   <header class="band">
@@ -110,6 +126,7 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
 
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="divider"><path d="M0 10H120M180 10H300" stroke="#d4af37" stroke-width=".8"/><g fill="none" stroke="#d4af37" stroke-width="1"><rect x="141" y="1" width="18" height="18" transform="rotate(45 150 10)"/><rect x="144" y="4" width="12" height="12"/></g><circle cx="126" cy="10" r="2" fill="#d4af37"/><circle cx="174" cy="10" r="2" fill="#d4af37"/></g></defs></svg>
 
+  <div class="sec" id="secTasbih">
   <h2>الْعَدَّادُ</h2>
   <div class="zikr" id="zikr" aria-live="polite"></div>
   <button type="button" class="circle" id="circle">
@@ -136,6 +153,17 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
   <div id="adhkarList"></div>
   <div class="row">
     <button type="button" class="btn ghost" id="adhkarReset">أَعِدْ أَذْكَارَ الْيَوْمِ</button>
+  </div>
+  </div>
+  <div class="sec" id="secQuran" hidden>
+  <h2>آيَاتٌ مِنَ الْقُرْآنِ</h2>
+  <div class="ayah"><span class="at">﴿ فَٱذْكُرُونِىٓ أَذْكُرْكُمْ وَٱشْكُرُوا۟ لِى وَلَا تَكْفُرُونِ ﴾</span><span class="ar">سُورَةُ البَقَرَةِ · الآيَةُ ١٥٢</span></div>
+  <div class="ayah"><span class="at">﴿ لَا يُكَلِّفُ ٱللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا ٱكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَآ إِن نَّسِينَآ أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَآ إِصْرًۭا كَمَا حَمَلْتَهُۥ عَلَى ٱلَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِۦ ۖ وَٱعْفُ عَنَّا وَٱغْفِرْ لَنَا وَٱرْحَمْنَآ ۚ أَنتَ مَوْلَىٰنَا فَٱنصُرْنَا عَلَى ٱلْقَوْمِ ٱلْكَٰفِرِينَ ﴾</span><span class="ar">سُورَةُ البَقَرَةِ · الآيَةُ ٢٨٦</span></div>
+  <div class="ayah"><span class="at">﴿ ٱلَّذِينَ ءَامَنُوا۟ وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ ٱللَّهِ ۗ أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ ٱلْقُلُوبُ ﴾</span><span class="ar">سُورَةُ الرَّعۡدِ · الآيَةُ ٢٨</span></div>
+  <div class="ayah"><span class="at">﴿ يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱذْكُرُوا۟ ٱللَّهَ ذِكْرًۭا كَثِيرًۭا ﴾</span><span class="ar">سُورَةُ الأَحۡزَابِ · الآيَةُ ٤١</span></div>
+  <div class="ayah"><span class="at">﴿ قُلْ يَٰعِبَادِىَ ٱلَّذِينَ أَسْرَفُوا۟ عَلَىٰٓ أَنفُسِهِمْ لَا تَقْنَطُوا۟ مِن رَّحْمَةِ ٱللَّهِ ۚ إِنَّ ٱللَّهَ يَغْفِرُ ٱلذُّنُوبَ جَمِيعًا ۚ إِنَّهُۥ هُوَ ٱلْغَفُورُ ٱلرَّحِيمُ ﴾</span><span class="ar">سُورَةُ الزُّمَرِ · الآيَةُ ٥٣</span></div>
+  <div class="ayah"><span class="at">﴿ وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ ۚ وَمَن يَتَوَكَّلْ عَلَى ٱللَّهِ فَهُوَ حَسْبُهُۥٓ ۚ إِنَّ ٱللَّهَ بَٰلِغُ أَمْرِهِۦ ۚ قَدْ جَعَلَ ٱللَّهُ لِكُلِّ شَىْءٍۢ قَدْرًۭا ﴾</span><span class="ar">سُورَةُ الطَّلَاقِ · الآيَةُ ٣</span></div>
+  <div class="ayah"><span class="at">﴿ فَإِنَّ مَعَ ٱلْعُسْرِ يُسْرًا ﴾ ﴿ إِنَّ مَعَ ٱلْعُسْرِ يُسْرًۭا ﴾</span><span class="ar">سُورَةُ الشَّرۡحِ · الآيَتَانِ ٥ – ٦</span></div>
   </div>
   <svg class="div" viewBox="0 0 300 20" aria-hidden="true"><use href="#divider"/></svg>
   <p class="foot">تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ.</p>
@@ -302,6 +330,17 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
     ['pointerdown','touchstart','keydown','click'].forEach(function(t){document.addEventListener(t,f,true)})}
   b.onclick=function(){if(a.paused){userPaused=false;if(a.ended||a.currentTime>=a.duration-0.05)a.currentTime=0;a.play().catch(function(){})}else{userPaused=true;a.pause()}};
   start();
+})();
+
+(function(){
+  var mb=document.getElementById('menuBtn'),mp=document.getElementById('menuPop');
+  function close(){mp.classList.remove('open');mb.setAttribute('aria-expanded','false')}
+  mb.onclick=function(e){e.stopPropagation();var o=!mp.classList.contains('open');mp.classList.toggle('open',o);mb.setAttribute('aria-expanded',o)};
+  document.addEventListener('click',function(e){if(!mp.contains(e.target)&&e.target!==mb)close()});
+  [].forEach.call(mp.querySelectorAll('button'),function(x){x.onclick=function(){
+    [].forEach.call(mp.querySelectorAll('button'),function(y){y.classList.toggle('cur',y===x)});
+    [].forEach.call(document.querySelectorAll('.sec'),function(sc){sc.hidden=sc.id!==x.getAttribute('data-sec')});
+    close();window.scrollTo(0,0)}});
 })();
 </script>
 </body>
