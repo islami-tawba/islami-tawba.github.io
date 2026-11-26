@@ -93,6 +93,26 @@ body.light .menu-pop button.cur{background:#f0e6c8}
 .ayah .ar{display:inline-block;margin-top:6px;padding:2px 12px;border:1px solid var(--g);border-radius:20px;color:var(--g);font-size:14px}
 body.light .ayah{background:#fdf8e7;border-color:#d9cba0}
 .sec[hidden]{display:none}
+.pt-row{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;margin:8px 0}
+.pt-sel{background:#12100a;color:var(--g);border:1px solid var(--g3);border-radius:10px;padding:9px 12px;font:inherit;font-size:18px;min-width:150px}
+.pt-next{text-align:center;border:1px solid var(--g);border-radius:12px;padding:12px;margin:12px 0;box-shadow:0 0 14px rgba(212,175,55,.2)}
+.pt-next .l{display:block;color:var(--g2);font-size:16px}
+.pt-next .n{display:block;color:var(--g);font-size:30px;line-height:1.6;font-weight:700}
+.pt-next .c{display:block;color:var(--g);font-size:30px;font-family:Georgia,serif;letter-spacing:2px;direction:ltr}
+.pt-date{text-align:center;color:var(--g3);font-size:15px;margin:2px 0 6px}
+.pt-list{list-style:none;margin:8px 0;padding:0}
+.pt-list li{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-bottom:1px solid #2a2208;font-size:20px;color:var(--g2)}
+.pt-list li b{color:var(--g);font-weight:400;font-size:20px;direction:ltr}
+.pt-list li.nx{background:#2a2108;border-radius:8px;color:var(--g)}
+.pt-list li.nx b{font-weight:700}
+.pt-note{text-align:center;color:var(--g3);font-size:13px;margin:8px 0}
+body.light .pt-sel{background:#f3ecd6;border-color:#c0a968}
+body.light .pt-list li{border-bottom-color:#d9cba0}
+body.light .pt-list li.nx{background:#f0e6c8}
+body.light .pt-next{box-shadow:none}
+.home-next{display:flex;justify-content:center;align-items:baseline;gap:10px;flex-wrap:wrap;margin:6px 0 2px;padding:8px 10px;border:1px solid var(--g3);border-radius:12px;color:var(--g2);font-size:17px;text-align:center}
+.home-next b{color:var(--g);font-size:18px}
+.home-next .hc{color:var(--g);font-family:Georgia,serif;font-size:22px;letter-spacing:1px;direction:ltr}
 .mode-btn{position:absolute;top:12px;left:12px;z-index:9999;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid #5b4b24;border-radius:50%;background:#14110acc;color:var(--g);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .mode-btn svg{width:24px;height:24px;display:block}
 /* الوضع النهاري */
@@ -114,7 +134,7 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
 <body>
 <button type="button" class="mode-btn" id="modeBtn" aria-label="الْوَضْعُ النَّهَارِيُّ"></button>
 <button type="button" class="menu-btn" id="menuBtn" aria-label="الْقَائِمَةُ" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-<div class="menu-pop" id="menuPop" role="menu"><button type="button" class="cur" data-sec="secTasbih" role="menuitem">التَّسْبِيحُ وَالْأَذْكَارُ</button><button type="button" data-sec="secQuran" role="menuitem">آيَاتٌ مِنَ الْقُرْآنِ</button></div>
+<div class="menu-pop" id="menuPop" role="menu"><button type="button" class="cur" data-sec="secTasbih" role="menuitem">التَّسْبِيحُ وَالْأَذْكَارُ</button><button type="button" data-sec="secQuran" role="menuitem">آيَاتٌ مِنَ الْقُرْآنِ</button><button type="button" data-sec="secPrayer" role="menuitem">مَوَاعِيدُ الصَّلَاةِ</button></div>
 <main>
   <div class="salat"><b>صَلُّوا عَلَى النَّبِيِّ ﷺ</b><span>اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَىٰ سَيِّدِنَا مُحَمَّدٍ</span><button type="button" class="salat-btn" id="salatBtn" aria-label="تَشْغِيلُ الصَّوْتِ / إِيقَافُهُ"><svg class="ic-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button></div>
   <header class="band">
@@ -127,6 +147,7 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="divider"><path d="M0 10H120M180 10H300" stroke="#d4af37" stroke-width=".8"/><g fill="none" stroke="#d4af37" stroke-width="1"><rect x="141" y="1" width="18" height="18" transform="rotate(45 150 10)"/><rect x="144" y="4" width="12" height="12"/></g><circle cx="126" cy="10" r="2" fill="#d4af37"/><circle cx="174" cy="10" r="2" fill="#d4af37"/></g></defs></svg>
 
   <div class="sec" id="secTasbih">
+  <div class="home-next" id="homeNext"><span>الْمُتَبَقِّي عَلَى</span><b id="hnName">…</b><span class="hc" id="hnCount">--:--:--</span></div>
   <h2>الْعَدَّادُ</h2>
   <div class="zikr" id="zikr" aria-live="polite"></div>
   <button type="button" class="circle" id="circle">
@@ -164,6 +185,14 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
   <div class="ayah"><span class="at">﴿ قُلْ يَٰعِبَادِىَ ٱلَّذِينَ أَسْرَفُوا۟ عَلَىٰٓ أَنفُسِهِمْ لَا تَقْنَطُوا۟ مِن رَّحْمَةِ ٱللَّهِ ۚ إِنَّ ٱللَّهَ يَغْفِرُ ٱلذُّنُوبَ جَمِيعًا ۚ إِنَّهُۥ هُوَ ٱلْغَفُورُ ٱلرَّحِيمُ ﴾</span><span class="ar">سُورَةُ الزُّمَرِ · الآيَةُ ٥٣</span></div>
   <div class="ayah"><span class="at">﴿ وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ ۚ وَمَن يَتَوَكَّلْ عَلَى ٱللَّهِ فَهُوَ حَسْبُهُۥٓ ۚ إِنَّ ٱللَّهَ بَٰلِغُ أَمْرِهِۦ ۚ قَدْ جَعَلَ ٱللَّهُ لِكُلِّ شَىْءٍۢ قَدْرًۭا ﴾</span><span class="ar">سُورَةُ الطَّلَاقِ · الآيَةُ ٣</span></div>
   <div class="ayah"><span class="at">﴿ فَإِنَّ مَعَ ٱلْعُسْرِ يُسْرًا ﴾ ﴿ إِنَّ مَعَ ٱلْعُسْرِ يُسْرًۭا ﴾</span><span class="ar">سُورَةُ الشَّرۡحِ · الآيَتَانِ ٥ – ٦</span></div>
+  </div>
+  <div class="sec" id="secPrayer" hidden>
+  <h2>مَوَاعِيدُ الصَّلَاةِ</h2>
+  <div class="pt-row"><select class="pt-sel" id="ptCity" aria-label="الْمَدِينَةُ"></select><button type="button" class="btn" id="ptGeo">اسْتَخْدِمْ مَوْقِعِي</button></div>
+  <div class="pt-date" id="ptDate"></div>
+  <div class="pt-next"><span class="l">الصَّلَاةُ الْقَادِمَةُ</span><span class="n" id="ptNextName">…</span><span class="c" id="ptCount">--:--:--</span></div>
+  <ul class="pt-list" id="ptList"></ul>
+  <p class="pt-note" id="ptNote"></p>
   </div>
   <svg class="div" viewBox="0 0 300 20" aria-hidden="true"><use href="#divider"/></svg>
   <p class="foot">تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ.</p>
@@ -341,6 +370,69 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
     [].forEach.call(mp.querySelectorAll('button'),function(y){y.classList.toggle('cur',y===x)});
     [].forEach.call(document.querySelectorAll('.sec'),function(sc){sc.hidden=sc.id!==x.getAttribute('data-sec')});
     close();window.scrollTo(0,0)}});
+})();
+
+(function(){
+/* مواعيد الصلاة: حساب محلي (الهيئة المصرية العامة للمساحة: الفجر 19.5 والعشاء 17.5، العصر مذهب الجمهور) */
+var PT=(function(){
+  var R=Math.PI/180;
+  function sin(d){return Math.sin(d*R)}function cos(d){return Math.cos(d*R)}function tan(d){return Math.tan(d*R)}
+  function asin(x){return Math.asin(x)/R}function acos(x){return Math.acos(x)/R}function atan2(y,x){return Math.atan2(y,x)/R}
+  function acot(x){return Math.atan(1/x)/R}
+  function fix(a,b){a=a-b*Math.floor(a/b);return a<0?a+b:a}
+  function julian(y,m,d){if(m<=2){y-=1;m+=12}var A=Math.floor(y/100),B=2-A+Math.floor(A/4);return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+B-1524.5}
+  function sunPos(jd){var D=jd-2451545,g=fix(357.529+0.98560028*D,360),q=fix(280.459+0.98564736*D,360),L=fix(q+1.915*sin(g)+0.020*sin(2*g),360),e=23.439-0.00000036*D,RA=atan2(cos(e)*sin(L),cos(L))/15;return{decl:asin(sin(e)*sin(L)),eqt:q/15-fix(RA,24)}}
+  function compute(y,m,d,lat,lng){
+    var jd=julian(y,m,d)-lng/360;
+    function mid(t){return fix(12-sunPos(jd+t).eqt,24)}
+    function ang(a,t,ccw){var dec=sunPos(jd+t).decl,n=mid(t),T=acos((-sin(a)-sin(dec)*sin(lat))/(cos(dec)*cos(lat)))/15;return n+(ccw?-T:T)}
+    function asr(f,t){var dec=sunPos(jd+t).decl;return ang(-acot(f+tan(Math.abs(lat-dec))),t)}
+    var t={fajr:5,sunrise:6,dhuhr:12,asr:13,maghrib:18,isha:18};
+    for(var i=0;i<2;i++){
+      var o={};for(var k in t)o[k]=t[k]/24;
+      t={fajr:ang(19.5,o.fajr,true),sunrise:ang(0.833,o.sunrise,true),dhuhr:mid(o.dhuhr),asr:asr(1,o.asr),maghrib:ang(0.833,o.maghrib),isha:ang(17.5,o.isha)};
+    }
+    var out={};for(var k2 in t){var u=t[k2]-lng/15;out[k2]=Date.UTC(y,m-1,d)+Math.round(u*60)*60000}  /* UTC ms, rounded to minute */
+    return out;
+  }
+  return{compute:compute};
+})();
+
+  var CITIES=[['القَاهِرَةُ',30.0444,31.2357],['الجِيزَةُ',30.0131,31.2089],['الإِسْكَنْدَرِيَّةُ',31.2001,29.9187],['بُورْسَعِيدُ',31.2653,32.3019],['السُّوَيْسُ',29.9668,32.5498],['الإِسْمَاعِيلِيَّةُ',30.5965,32.2715],['الْمَنْصُورَةُ',31.0409,31.3785],['طَنْطَا',30.7865,31.0004],['الْفَيُّومُ',29.3084,30.8428],['الْمِنْيَا',28.1099,30.7503],['أَسْيُوطُ',27.1783,31.1859],['الأَقْصُرُ',25.6872,32.6396],['أَسْوَانُ',24.0889,32.8998],['الْغَرْدَقَةُ',27.2579,33.8116],['شَرْمُ الشَّيْخِ',27.9158,34.3300]];
+  var NAMES=[['fajr','الْفَجْرُ'],['sunrise','الشُّرُوقُ'],['dhuhr','الظُّهْرُ'],['asr','الْعَصْرُ'],['maghrib','الْمَغْرِبُ'],['isha','الْعِشَاءُ']];
+  var KEY='islami-tawba.city';
+  var sel=document.getElementById('ptCity'),list=document.getElementById('ptList');
+  CITIES.forEach(function(c,i){var o=document.createElement('option');o.value=i;o.textContent=c[0];sel.appendChild(o)});
+  var loc={lat:CITIES[0][1],lng:CITIES[0][2],tz:'Africa/Cairo',geo:false};
+  try{var sv=localStorage.getItem(KEY);if(sv!==null&&CITIES[+sv]){sel.value=sv;loc={lat:CITIES[+sv][1],lng:CITIES[+sv][2],tz:'Africa/Cairo',geo:false}}}catch(e){}
+  function ymd(ms,tz){var o={year:'numeric',month:'numeric',day:'numeric'};if(tz)o.timeZone=tz;var p=new Intl.DateTimeFormat('en-US',o).formatToParts(new Date(ms)),r={};p.forEach(function(x){r[x.type]=+x.value});return[r.year,r.month,r.day]}
+  function fmt(ms){var o={hour:'numeric',minute:'2-digit',hour12:true};if(loc.tz)o.timeZone=loc.tz;return new Date(ms).toLocaleTimeString('ar-EG',o)}
+  function day(off){var a=ymd(Date.now()+off*864e5,loc.tz);return PT.compute(a[0],a[1],a[2],loc.lat,loc.lng)}
+  var nextAt=0;
+  function render(){
+    var t=day(0),now=Date.now(),hh='',nx=null,nxName='';
+    var order=['fajr','dhuhr','asr','maghrib','isha'];
+    for(var i=0;i<order.length;i++){if(t[order[i]]>now){nx=order[i];nextAt=t[nx];break}}
+    if(!nx){var t2=day(1);nx='fajr';nextAt=t2.fajr}
+    list.innerHTML='';
+    NAMES.forEach(function(n){var li=document.createElement('li');if(n[0]===nx)li.className='nx';li.innerHTML='<span>'+n[1]+'</span><b>'+fmt(t[n[0]])+'</b>';list.appendChild(li);if(n[0]===nx)nxName=n[1]});
+    document.getElementById('ptNextName').textContent=nxName;document.getElementById('hnName').textContent=nxName;
+    var o={weekday:'long',day:'numeric',month:'long',year:'numeric'};if(loc.tz)o.timeZone=loc.tz;
+    document.getElementById('ptDate').textContent=new Date().toLocaleDateString('ar-EG',o);
+    document.getElementById('ptNote').textContent=(loc.geo?'حَسَبَ مَوْقِعِكَ · ':'')+'حِسَابٌ عَلَى جِهَازِكَ بِطَرِيقَةِ الْهَيْئَةِ الْمِصْرِيَّةِ الْعَامَّةِ لِلْمِسَاحَةِ (الْفَجْرُ ١٩٫٥° · الْعِشَاءُ ١٧٫٥°)، قَدْ يَخْتَلِفُ دَقِيقَةً عَنْ تَطْبِيقِكَ.';
+    tick();
+  }
+  function tick(){var d=Math.max(0,Math.floor((nextAt-Date.now())/1000));if(d===0&&nextAt){render();return}
+    var h=Math.floor(d/3600),m=Math.floor(d%3600/60),s=d%60;function z(n){return(n<10?'0':'')+n}
+    var tx=(h+':'+z(m)+':'+z(s)).replace(/\d/g,function(c){return'٠١٢٣٤٥٦٧٨٩'[c]});document.getElementById('ptCount').textContent=tx;document.getElementById('hnCount').textContent=tx}
+  sel.onchange=function(){var c=CITIES[+sel.value];loc={lat:c[1],lng:c[2],tz:'Africa/Cairo',geo:false};try{localStorage.setItem(KEY,sel.value)}catch(e){}render()};
+  var gb=document.getElementById('ptGeo');
+  gb.onclick=function(){
+    if(!navigator.geolocation){document.getElementById('ptNote').textContent='الْمُتَصَفِّحُ لَا يَدْعَمُ تَحْدِيدَ الْمَوْقِعِ.';return}
+    gb.disabled=true;
+    navigator.geolocation.getCurrentPosition(function(p){gb.disabled=false;loc={lat:p.coords.latitude,lng:p.coords.longitude,tz:null,geo:true};render()},function(){gb.disabled=false;document.getElementById('ptNote').textContent='تَعَذَّرَ تَحْدِيدُ الْمَوْقِعِ، اخْتَرِ الْمَدِينَةَ.'},{timeout:10000,maximumAge:600000});
+  };
+  render();setInterval(tick,1000);
 })();
 </script>
 </body>
