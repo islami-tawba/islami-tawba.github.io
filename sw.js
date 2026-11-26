@@ -1,12 +1,13 @@
 /* إسلامي توبة: عمل دون إنترنت. غيّر رقم النسخة عند كل تحديث. */
 var VERSION='v1';
-var CACHE='islami-tawba-'+VERSION;
+var PREFIX='islami-tawba:'+self.registration.scope+':';
+var CACHE=PREFIX+VERSION;
 var CORE=['./','./index.html','./manifest.webmanifest','./og-image.png'];
 self.addEventListener('install',function(e){
   e.waitUntil(caches.open(CACHE).then(function(c){return Promise.all(CORE.map(function(u){return c.add(new Request(u,{cache:'reload'})).catch(function(){})}))}).then(function(){return self.skipWaiting()}));
 });
 self.addEventListener('activate',function(e){
-  e.waitUntil(caches.keys().then(function(ks){return Promise.all(ks.filter(function(k){return k.indexOf('islami-tawba-')===0&&k!==CACHE}).map(function(k){return caches.delete(k)}))}).then(function(){return self.clients.claim()}));
+  e.waitUntil(caches.keys().then(function(ks){return Promise.all(ks.filter(function(k){return (k.indexOf(PREFIX)===0||k==='islami-tawba-v1')&&k!==CACHE}).map(function(k){return caches.delete(k)}))}).then(function(){return self.clients.claim()}));
 });
 function netFirst(req){
   return new Promise(function(res){
