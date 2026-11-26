@@ -1,5 +1,5 @@
 /* إسلامي توبة: عمل دون إنترنت. غيّر رقم النسخة عند كل تحديث. */
-var VERSION='v5';
+var VERSION='v6';
 var PREFIX='islami-tawba:'+self.registration.scope+':';
 var CACHE=PREFIX+VERSION;
 var CORE=['./','./index.html','./manifest.webmanifest','./og-image.png'];
