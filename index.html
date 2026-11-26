@@ -117,6 +117,16 @@ body.light .pt-next{box-shadow:none}
 .soon .s1{display:block;color:var(--g);font-size:34px;line-height:1.8;text-shadow:0 0 14px rgba(212,175,55,.35)}
 .soon .s2{display:block;color:var(--g3);font-size:16px;margin-top:6px}
 body.light .soon .s1{text-shadow:none}
+.abox{border:1px solid var(--g3);border-radius:12px;margin:10px 0;background:#12100a;overflow:hidden}
+.abox>button{display:flex;width:100%;justify-content:space-between;align-items:center;background:none;border:0;color:var(--g);font:inherit;font-size:22px;padding:14px 16px;cursor:pointer;text-align:start}
+.abox>button .cv{width:12px;height:12px;border-inline-end:2px solid var(--g);border-bottom:2px solid var(--g);transform:rotate(45deg);transition:transform .2s;margin-inline-start:10px}
+.abox.open>button .cv{transform:rotate(-135deg)}
+.abox .bd{display:none;padding:2px 14px 12px}
+.abox.open .bd{display:block}
+.abox .it{border-top:1px solid #2a2208;padding:12px 2px;font-size:19px;line-height:2.1;color:var(--g2);white-space:pre-line}
+.abox .it small{display:block;color:var(--g3);font-size:14px;font-family:Georgia,serif}
+body.light .abox{background:#fdf8e7;border-color:#d9cba0}
+body.light .abox .it{border-top-color:#d9cba0}
 .mode-btn{position:absolute;top:12px;left:12px;z-index:9999;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid #5b4b24;border-radius:50%;background:#14110acc;color:var(--g);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .mode-btn svg{width:24px;height:24px;display:block}
 /* الوضع النهاري */
@@ -200,7 +210,8 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
   </div>
   <div class="sec" id="secAdhkar" hidden>
   <h2>الْأَذْكَارُ الْإِسْلَامِيَّةُ</h2>
-  <div class="soon"><span class="s1">قَرِيبًا</span><span class="s2">إِنْ شَاءَ اللَّهُ</span></div>
+  <div id="boxList"></div>
+  <div class="soon" id="boxSoon"><span class="s1">قَرِيبًا</span><span class="s2">إِنْ شَاءَ اللَّهُ</span></div>
   </div>
   <svg class="div" viewBox="0 0 300 20" aria-hidden="true"><use href="#divider"/></svg>
   <p class="foot">تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ.</p>
@@ -324,6 +335,7 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
       {t:"أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ",g:100}
     ]
   };
+  window.AD=AD;
   var AKEY='islami-tawba.adhkar.v1';
   var todayKey=new Date().toDateString();
   var as={date:todayKey,tab:'sabah',done:{}};
@@ -441,6 +453,25 @@ var PT=(function(){
     navigator.geolocation.getCurrentPosition(function(p){gb.disabled=false;loc={lat:p.coords.latitude,lng:p.coords.longitude,tz:null,geo:true};render()},function(){gb.disabled=false;document.getElementById('ptNote').textContent='تَعَذَّرَ تَحْدِيدُ الْمَوْقِعِ، اخْتَرِ الْمَدِينَةَ.'},{timeout:10000,maximumAge:600000});
   };
   render();setInterval(tick,1000);
+})();
+
+(function(){
+  /* صناديق الأذكار الإسلامية: لإضافة صندوق جديد أضف عنصرا هنا: {name:'اسم الصندوق', items:[{t:'نص الذكر', n:'عدد التكرار (اختياري)'}]} */
+  var BOXES=[
+    {name:'أَذْكَارُ الصَّبَاحِ',items:(window.AD&&AD.sabah)||[]},
+    {name:'أَذْكَارُ الْمَسَاءِ',items:(window.AD&&AD.masaa)||[]}
+  ];
+  var root=document.getElementById('boxList');
+  BOXES.forEach(function(b){
+    var d=document.createElement('div');d.className='abox';
+    var h=document.createElement('button');h.type='button';h.setAttribute('aria-expanded','false');
+    h.innerHTML='<span></span><i class="cv"></i>';h.firstChild.textContent=b.name;
+    var bd=document.createElement('div');bd.className='bd';
+    b.items.forEach(function(x){var it=document.createElement('div');it.className='it';it.textContent=x.t;var c=x.g||x.n;if(c){var sm=document.createElement('small');sm.textContent='التَّكْرَارُ: '+String(c).replace(/\d/g,function(k){return'٠١٢٣٤٥٦٧٨٩'[k]});it.appendChild(sm)}bd.appendChild(it)});
+    h.onclick=function(){var o=!d.classList.contains('open');d.classList.toggle('open',o);h.setAttribute('aria-expanded',o)};
+    d.appendChild(h);d.appendChild(bd);root.appendChild(d);
+  });
+  if(BOXES.length)document.getElementById('boxSoon').style.display='none';
 })();
 </script>
 </body>
