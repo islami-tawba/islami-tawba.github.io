@@ -926,7 +926,15 @@ var PT=(function(){
 })();
 </script>
 <script>
-if('serviceWorker' in navigator){window.addEventListener('load',function(){try{navigator.serviceWorker.register('sw.js').catch(function(){})}catch(e){}})}
+if('serviceWorker' in navigator){(function(){
+  var had=!!navigator.serviceWorker.controller,done=false;
+  navigator.serviceWorker.addEventListener('controllerchange',function(){if(had&&!done){done=true;location.reload()}had=true});
+  window.addEventListener('load',function(){try{
+    navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(function(r){
+      try{r.update()}catch(e){}
+      document.addEventListener('visibilitychange',function(){if(!document.hidden){try{r.update()}catch(e){}}});
+    }).catch(function(){})}catch(e){}});
+})()}
 </script>
 </body>
-                                                                                                                                                                                            </html>
+      </html>
