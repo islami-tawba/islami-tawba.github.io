@@ -125,6 +125,15 @@ body.light .soon .s1{text-shadow:none}
 .abox.open .bd{display:block}
 .abox .it{border-top:1px solid #2a2208;padding:12px 2px;font-size:19px;line-height:2.1;color:var(--g2);white-space:pre-line}
 .abox .it small{display:block;color:var(--g3);font-size:14px;font-family:Georgia,serif}
+.abox .it{display:block;width:100%;background:none;border:0;border-top:1px solid #2a2208;border-radius:0;padding:12px 2px;font:inherit;text-align:start;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.abox .it .itx{display:block;font-size:19px;line-height:2.1;color:var(--g2);white-space:pre-line}
+.abox .it .rem{display:inline-block;margin-top:6px;padding:2px 14px;border:1px solid var(--g);border-radius:20px;color:var(--g);font-size:15px;font-family:Georgia,serif}
+.abox .it:active{background:#1d1709}
+.abox .it.done{opacity:.5}
+.abox .it.done .rem{border-color:var(--g3);color:var(--g3)}
+.abox .bprog{text-align:center;color:var(--g3);font-size:15px;padding:4px 0 8px}
+.abox .brs{display:block;margin:12px auto 4px}
+body.light .abox .it:active{background:#f0e6c8}
 body.light .abox{background:#fdf8e7;border-color:#d9cba0}
 body.light .abox .it{border-top-color:#d9cba0}
 .mode-btn{position:absolute;top:12px;left:12px;z-index:9999;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid #5b4b24;border-radius:50%;background:#14110acc;color:var(--g);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
@@ -456,18 +465,38 @@ var PT=(function(){
 })();
 
 (function(){
-  /* صناديق الأذكار الإسلامية: لإضافة صندوق جديد أضف عنصرا هنا: {name:'اسم الصندوق', items:[{t:'نص الذكر', n:'عدد التكرار (اختياري)'}]} */
+  /* صناديق الأذكار الإسلامية: لإضافة صندوق جديد أضف عنصرا هنا: {name:'اسم الصندوق', items:[{t:'نص الذكر', g:عدد التكرار}]} */
   var BOXES=[
     {name:'أَذْكَارُ الصَّبَاحِ',items:(window.AD&&AD.sabah)||[]},
     {name:'أَذْكَارُ الْمَسَاءِ',items:(window.AD&&AD.masaa)||[]}
   ];
+  var BKEY='islami-tawba.boxes.v1',today=new Date().toDateString(),st={date:today,c:{}};
+  try{var q=JSON.parse(localStorage.getItem(BKEY));if(q&&q.date===today&&q.c)st=q}catch(e){}
+  function save(){try{localStorage.setItem(BKEY,JSON.stringify(st))}catch(e){}}
+  function ad(n){return String(n).replace(/\d/g,function(k){return'٠١٢٣٤٥٦٧٨٩'[k]})}
   var root=document.getElementById('boxList');
-  BOXES.forEach(function(b){
+  BOXES.forEach(function(bx,bi){
     var d=document.createElement('div');d.className='abox';
     var h=document.createElement('button');h.type='button';h.setAttribute('aria-expanded','false');
-    h.innerHTML='<span></span><i class="cv"></i>';h.firstChild.textContent=b.name;
+    h.innerHTML='<span></span><i class="cv"></i>';h.firstChild.textContent=bx.name;
     var bd=document.createElement('div');bd.className='bd';
-    b.items.forEach(function(x){var it=document.createElement('div');it.className='it';it.textContent=x.t;var c=x.g||x.n;if(c){var sm=document.createElement('small');sm.textContent='التَّكْرَارُ: '+String(c).replace(/\d/g,function(k){return'٠١٢٣٤٥٦٧٨٩'[k]});it.appendChild(sm)}bd.appendChild(it)});
+    var prog=document.createElement('div');prog.className='bprog';bd.appendChild(prog);
+    var cards=[];
+    bx.items.forEach(function(x,ii){
+      var key=bi+'-'+ii,g=x.g||x.n||1;
+      var it=document.createElement('button');it.type='button';it.className='it';
+      var tx=document.createElement('span');tx.className='itx';tx.textContent=x.t;
+      var rm=document.createElement('span');rm.className='rem';
+      it.appendChild(tx);it.appendChild(rm);
+      function paint(){var n=st.c[key]||0,fin=n>=g;it.classList.toggle('done',fin);rm.textContent=fin?'تَمَّ، تَقَبَّلَ اللَّهُ':ad(n)+' / '+ad(g)}
+      it.onclick=function(){if((st.c[key]||0)<g){st.c[key]=(st.c[key]||0)+1;save();paint();paintProg();if(navigator.vibrate)try{navigator.vibrate(15)}catch(e){}}};
+      cards.push({paint:paint,key:key,g:g});bd.appendChild(it);
+    });
+    function paintProg(){var done=0;cards.forEach(function(c){if((st.c[c.key]||0)>=c.g)done++});prog.textContent='أُنْجِزَ '+ad(done)+' مِنْ '+ad(cards.length)}
+    var rs=document.createElement('button');rs.type='button';rs.className='btn ghost brs';rs.textContent='أَعِدِ الصُّنْدُوقَ مِنَ الصِّفْرِ';
+    rs.onclick=function(){cards.forEach(function(c){delete st.c[c.key];c.paint()});save();paintProg()};
+    bd.appendChild(rs);
+    cards.forEach(function(c){c.paint()});paintProg();
     h.onclick=function(){var o=!d.classList.contains('open');d.classList.toggle('open',o);h.setAttribute('aria-expanded',o)};
     d.appendChild(h);d.appendChild(bd);root.appendChild(d);
   });
