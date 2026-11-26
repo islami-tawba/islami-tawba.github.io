@@ -134,6 +134,15 @@ body.light .soon .s1{text-shadow:none}
 .abox .bprog{text-align:center;color:var(--g3);font-size:15px;padding:4px 0 8px}
 .abox .brs{display:block;margin:12px auto 4px}
 body.light .abox .it:active{background:#f0e6c8}
+.abox .vf{display:block;margin:6px 0 4px;padding:6px 10px;border-inline-start:3px solid var(--g);background:rgba(212,175,55,.07);border-radius:6px}
+.abox .vf .v1{display:block;color:var(--g);font-size:16px;line-height:1.9}
+.abox .vf .v2{display:block;color:var(--g3);font-size:13.5px;line-height:1.8}
+body.light .abox .vf{background:rgba(150,121,28,.08)}
+.abox .it .ft{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.abox .it .rem{margin-top:0}
+.abox .vi{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--g3);background:none;color:var(--g);font:italic 700 17px Georgia,serif;line-height:1;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.abox .vi.on{background:var(--g);color:#14110a}
+.abox .vf[hidden]{display:none}
 body.light .abox{background:#fdf8e7;border-color:#d9cba0}
 body.light .abox .it{border-top-color:#d9cba0}
 .mode-btn{position:absolute;top:12px;left:12px;z-index:9999;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid #5b4b24;border-radius:50%;background:#14110acc;color:var(--g);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
@@ -466,9 +475,12 @@ var PT=(function(){
 
 (function(){
   /* صناديق الأذكار الإسلامية: لإضافة صندوق جديد أضف عنصرا هنا: {name:'اسم الصندوق', items:[{t:'نص الذكر', g:عدد التكرار}]} */
+  /* الفضل والمصدر: من كتاب حصن المسلم (القحطاني) مع التخريج المذكور فيه */
+  var VS=[["«من قالها حين يصبح أُجير من الجن حتى يمسي»", "الحاكم، وصححه الألباني"], ["«من قالها ثلاث مرات حين يصبح وحين يمسي كفته من كل شيء» (الإخلاص والمعوذتان)", "أبو داود والترمذي، وهو في صحيح الترمذي للألباني"], ["«من قالها ثلاث مرات حين يصبح وحين يمسي كفته من كل شيء» (الإخلاص والمعوذتان)", "أبو داود والترمذي، وهو في صحيح الترمذي للألباني"], ["«من قالها ثلاث مرات حين يصبح وحين يمسي كفته من كل شيء» (الإخلاص والمعوذتان)", "أبو داود والترمذي، وهو في صحيح الترمذي للألباني"], ["", "مسلم"], ["", "الترمذي، وهو في صحيح الترمذي للألباني"], ["", "أحمد وابن السني، وهو في صحيح الجامع للألباني"], ["«من قالها موقنًا بها حين يصبح فمات من يومه دخل الجنة» (سيد الاستغفار)", "البخاري"], ["«من قالها حين يصبح وحين يمسي أربع مرات أعتقه الله من النار»", "أبو داود والنسائي، وحسّن ابن باز إسناده"], ["«من قالها حين يصبح فقد أدّى شكر يومه»", "أبو داود والنسائي، وحسّن ابن باز إسناده"], ["«من قالها ثلاثًا حين يصبح وحين يمسي كان حقًّا على الله أن يرضيه يوم القيامة»", "أحمد وأبو داود والترمذي والنسائي، وحسّنه ابن باز"], ["", "أبو داود وأحمد، وحسّن ابن باز إسناده"], ["", "من الدعاء نفسه الذي قبله: أبو داود وأحمد، وحسّن ابن باز إسناده"], ["", "ابن ماجه وابن السني، وحسّن إسناده شعيب وعبد القادر الأرناؤوط"], ["«من قالها ثلاثًا إذا أصبح وثلاثًا إذا أمسى لم يضره شيء»", "أبو داود والترمذي وابن ماجه وأحمد، وحسّن ابن باز إسناده"], ["«من قالها حين يصبح ويمسي سبع مرات كفاه الله ما أهمه من أمر الدنيا والآخرة»", "ابن السني مرفوعًا، وأبو داود موقوفًا، وصحّح إسناده الأرناؤوط"], ["", "النسائي في عمل اليوم والليلة، وهو في صحيح الترغيب والترهيب للألباني"], ["«من قالها مائة مرة حين يصبح وحين يمسي لم يأت أحد يوم القيامة بأفضل مما جاء به إلا أحد قال مثل ما قال أو زاد»", "مسلم"], ["", "البخاري ومسلم"]],VM=[["«من قالها حين يمسي أُجير من الجن حتى يصبح»", "الحاكم، وصححه الألباني"], ["«من قالها ثلاث مرات حين يصبح وحين يمسي كفته من كل شيء» (الإخلاص والمعوذتان)", "أبو داود والترمذي، وهو في صحيح الترمذي للألباني"], ["«من قالها ثلاث مرات حين يصبح وحين يمسي كفته من كل شيء» (الإخلاص والمعوذتان)", "أبو داود والترمذي، وهو في صحيح الترمذي للألباني"], ["«من قالها ثلاث مرات حين يصبح وحين يمسي كفته من كل شيء» (الإخلاص والمعوذتان)", "أبو داود والترمذي، وهو في صحيح الترمذي للألباني"], ["", "مسلم"], ["", "الترمذي، وهو في صحيح الترمذي للألباني"], ["", "أحمد وابن السني، وهو في صحيح الجامع للألباني"], ["«من قالها موقنًا بها حين يمسي فمات من ليلته دخل الجنة» (سيد الاستغفار)", "البخاري"], ["«من قالها حين يصبح وحين يمسي أربع مرات أعتقه الله من النار»", "أبو داود والنسائي، وحسّن ابن باز إسناده"], ["«من قالها حين يمسي فقد أدّى شكر ليلته»", "أبو داود والنسائي، وحسّن ابن باز إسناده"], ["«من قالها ثلاثًا حين يصبح وحين يمسي كان حقًّا على الله أن يرضيه يوم القيامة»", "أحمد وأبو داود والترمذي والنسائي، وحسّنه ابن باز"], ["", "أبو داود وأحمد، وحسّن ابن باز إسناده"], ["", "من الدعاء نفسه الذي قبله: أبو داود وأحمد، وحسّن ابن باز إسناده"], ["«من قالها حين يمسي ثلاث مرات لم تضرّه حُمَة تلك الليلة»", "أحمد والنسائي، وهو في صحيح الترمذي وصحيح ابن ماجه للألباني"], ["«من قالها ثلاثًا إذا أصبح وثلاثًا إذا أمسى لم يضره شيء»", "أبو داود والترمذي وابن ماجه وأحمد، وحسّن ابن باز إسناده"], ["«من قالها حين يصبح ويمسي سبع مرات كفاه الله ما أهمه من أمر الدنيا والآخرة»", "ابن السني مرفوعًا، وأبو داود موقوفًا، وصحّح إسناده الأرناؤوط"], ["", "النسائي في عمل اليوم والليلة، وهو في صحيح الترغيب والترهيب للألباني"], ["«من قالها مائة مرة حين يصبح وحين يمسي لم يأت أحد يوم القيامة بأفضل مما جاء به إلا أحد قال مثل ما قال أو زاد»", "مسلم"], ["", "البخاري ومسلم"]];
+  function wv(a,v){return(a||[]).map(function(x,i){return{t:x.t,g:x.g,v:v[i]}})}
   var BOXES=[
-    {name:'أَذْكَارُ الصَّبَاحِ',items:(window.AD&&AD.sabah)||[]},
-    {name:'أَذْكَارُ الْمَسَاءِ',items:(window.AD&&AD.masaa)||[]}
+    {name:'أَذْكَارُ الصَّبَاحِ',items:wv(window.AD&&AD.sabah,VS)},
+    {name:'أَذْكَارُ الْمَسَاءِ',items:wv(window.AD&&AD.masaa,VM)}
   ];
   var BKEY='islami-tawba.boxes.v1',today=new Date().toDateString(),st={date:today,c:{}};
   try{var q=JSON.parse(localStorage.getItem(BKEY));if(q&&q.date===today&&q.c)st=q}catch(e){}
@@ -484,10 +496,22 @@ var PT=(function(){
     var cards=[];
     bx.items.forEach(function(x,ii){
       var key=bi+'-'+ii,g=x.g||x.n||1;
-      var it=document.createElement('button');it.type='button';it.className='it';
+      var vf=null;var it=document.createElement('div');it.className='it';it.setAttribute('role','button');it.tabIndex=0;
       var tx=document.createElement('span');tx.className='itx';tx.textContent=x.t;
       var rm=document.createElement('span');rm.className='rem';
-      it.appendChild(tx);it.appendChild(rm);
+      var ft=document.createElement('div');ft.className='ft';
+      it.appendChild(tx);ft.appendChild(rm);
+      if(x.v&&(x.v[0]||x.v[1])){
+        vf=document.createElement('span');vf.className='vf';vf.hidden=true;
+        if(x.v[0]){var a1=document.createElement('span');a1.className='v1';a1.textContent='الْفَضْلُ: '+x.v[0];vf.appendChild(a1)}
+        if(x.v[1]){var a2=document.createElement('span');a2.className='v2';a2.textContent='الْمَصْدَرُ: '+x.v[1];vf.appendChild(a2)}
+        var vi=document.createElement('button');vi.type='button';vi.className='vi';vi.setAttribute('aria-label','الْفَضْلُ وَالْمَصْدَرُ');vi.setAttribute('aria-expanded','false');vi.textContent='i';
+        vi.onclick=function(e){e.stopPropagation();var o=vf.hidden;vf.hidden=!o;vi.classList.toggle('on',o);vi.setAttribute('aria-expanded',o)};
+        ft.appendChild(vi);
+      }
+      it.appendChild(ft);
+      if(vf)it.appendChild(vf);
+      it.onkeydown=function(e){if(e.target===it&&(e.key==='Enter'||e.key===' ')){e.preventDefault();it.click()}};
       function paint(){var n=st.c[key]||0,fin=n>=g;it.classList.toggle('done',fin);rm.textContent=fin?'تَمَّ، تَقَبَّلَ اللَّهُ':ad(n)+' / '+ad(g)}
       it.onclick=function(){if((st.c[key]||0)<g){st.c[key]=(st.c[key]||0)+1;save();paint();paintProg();if(navigator.vibrate)try{navigator.vibrate(15)}catch(e){}}};
       cards.push({paint:paint,key:key,g:g});bd.appendChild(it);
