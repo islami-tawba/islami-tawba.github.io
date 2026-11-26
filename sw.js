@@ -1,5 +1,5 @@
 /* إسلامي توبة: عمل دون إنترنت. غيّر رقم النسخة عند كل تحديث. */
-var VERSION='v3';
+var VERSION='v4';
 var PREFIX='islami-tawba:'+self.registration.scope+':';
 var CACHE=PREFIX+VERSION;
 var CORE=['./','./index.html','./manifest.webmanifest','./og-image.png'];
@@ -12,7 +12,7 @@ self.addEventListener('activate',function(e){
 function netFirst(req){
   return new Promise(function(res){
     var done=false,t=setTimeout(function(){caches.match(req,{ignoreSearch:true}).then(function(m){if(m&&!done){done=true;res(m)}})},4000);
-    fetch(req).then(function(r){
+    fetch(req.url,{cache:'no-cache',credentials:'same-origin'}).then(function(r){
       clearTimeout(t);
       if(r&&r.ok){var cp=r.clone();caches.open(CACHE).then(function(c){c.put(req,cp)})}
       if(!done){done=true;res(r)}
