@@ -113,6 +113,10 @@ body.light .pt-next{box-shadow:none}
 .home-next{display:flex;justify-content:center;align-items:baseline;gap:10px;flex-wrap:wrap;margin:6px 0 2px;padding:8px 10px;border:1px solid var(--g3);border-radius:12px;color:var(--g2);font-size:17px;text-align:center}
 .home-next b{color:var(--g);font-size:18px}
 .home-next .hc{color:var(--g);font-family:Georgia,serif;font-size:22px;letter-spacing:1px;direction:ltr}
+.soon{text-align:center;border:1px dashed var(--g3);border-radius:14px;margin:18px 0;padding:44px 16px}
+.soon .s1{display:block;color:var(--g);font-size:34px;line-height:1.8;text-shadow:0 0 14px rgba(212,175,55,.35)}
+.soon .s2{display:block;color:var(--g3);font-size:16px;margin-top:6px}
+body.light .soon .s1{text-shadow:none}
 .mode-btn{position:absolute;top:12px;left:12px;z-index:9999;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid #5b4b24;border-radius:50%;background:#14110acc;color:var(--g);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .mode-btn svg{width:24px;height:24px;display:block}
 /* الوضع النهاري */
@@ -134,7 +138,7 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
 <body>
 <button type="button" class="mode-btn" id="modeBtn" aria-label="الْوَضْعُ النَّهَارِيُّ"></button>
 <button type="button" class="menu-btn" id="menuBtn" aria-label="الْقَائِمَةُ" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-<div class="menu-pop" id="menuPop" role="menu"><button type="button" class="cur" data-sec="secTasbih" role="menuitem">التَّسْبِيحُ وَالْأَذْكَارُ</button><button type="button" data-sec="secQuran" role="menuitem">آيَاتٌ مِنَ الْقُرْآنِ</button><button type="button" data-sec="secPrayer" role="menuitem">مَوَاعِيدُ الصَّلَاةِ</button></div>
+<div class="menu-pop" id="menuPop" role="menu"><button type="button" class="cur" data-sec="secTasbih" role="menuitem">التَّسْبِيحُ وَالْأَذْكَارُ</button><button type="button" data-sec="secQuran" role="menuitem">آيَاتٌ مِنَ الْقُرْآنِ</button><button type="button" data-sec="secPrayer" role="menuitem">مَوَاعِيدُ الصَّلَاةِ</button><button type="button" data-sec="secAdhkar" role="menuitem">الْأَذْكَارُ الْإِسْلَامِيَّةُ</button></div>
 <main>
   <div class="salat"><b>صَلُّوا عَلَى النَّبِيِّ ﷺ</b><span>اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَىٰ سَيِّدِنَا مُحَمَّدٍ</span><button type="button" class="salat-btn" id="salatBtn" aria-label="تَشْغِيلُ الصَّوْتِ / إِيقَافُهُ"><svg class="ic-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button></div>
   <header class="band">
@@ -193,6 +197,10 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
   <div class="pt-next"><span class="l">الصَّلَاةُ الْقَادِمَةُ</span><span class="n" id="ptNextName">…</span><span class="c" id="ptCount">--:--:--</span></div>
   <ul class="pt-list" id="ptList"></ul>
   <p class="pt-note" id="ptNote"></p>
+  </div>
+  <div class="sec" id="secAdhkar" hidden>
+  <h2>الْأَذْكَارُ الْإِسْلَامِيَّةُ</h2>
+  <div class="soon"><span class="s1">قَرِيبًا</span><span class="s2">إِنْ شَاءَ اللَّهُ</span></div>
   </div>
   <svg class="div" viewBox="0 0 300 20" aria-hidden="true"><use href="#divider"/></svg>
   <p class="foot">تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ.</p>
