@@ -205,7 +205,7 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
 <body>
 <button type="button" class="mode-btn" id="modeBtn" aria-label="الْوَضْعُ النَّهَارِيُّ"></button>
 <button type="button" class="menu-btn" id="menuBtn" aria-label="الْقَائِمَةُ" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-<div class="menu-pop" id="menuPop" role="menu"><button type="button" class="cur" data-sec="secTasbih" role="menuitem">التَّسْبِيحُ وَالْأَذْكَارُ</button><button type="button" data-sec="secQuran" role="menuitem">آيَاتٌ مِنَ الْقُرْآنِ</button><button type="button" data-sec="secPrayer" role="menuitem">مَوَاعِيدُ الصَّلَاةِ</button><button type="button" data-sec="secAdhkar" role="menuitem">الْأَذْكَارُ الْإِسْلَامِيَّةُ</button><button type="button" data-sec="secQibla" role="menuitem">اتِّجَاهُ الْقِبْلَةِ</button></div>
+<div class="menu-pop" id="menuPop" role="menu"><button type="button" class="cur" data-sec="secTasbih" role="menuitem">التَّسْبِيحُ وَالْأَذْكَارُ</button><button type="button" data-sec="secDuas" role="menuitem">أَدْعِيَةٌ قُرْآنِيَّةٌ</button><button type="button" data-sec="secPrayer" role="menuitem">مَوَاعِيدُ الصَّلَاةِ</button><button type="button" data-sec="secAdhkar" role="menuitem">الْأَذْكَارُ الْإِسْلَامِيَّةُ</button><button type="button" data-sec="secQibla" role="menuitem">اتِّجَاهُ الْقِبْلَةِ</button></div>
 <main>
   <div class="salat"><b>صَلُّوا عَلَى النَّبِيِّ ﷺ</b><span>اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَىٰ سَيِّدِنَا مُحَمَّدٍ</span><button type="button" class="salat-btn" id="salatBtn" aria-label="تَشْغِيلُ الصَّوْتِ / إِيقَافُهُ"><svg class="ic-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button></div>
   <header class="band">
@@ -247,15 +247,9 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
     <button type="button" class="btn ghost" id="adhkarReset">أَعِدْ أَذْكَارَ الْيَوْمِ</button>
   </div>
   </div>
-  <div class="sec" id="secQuran" hidden>
-  <h2>آيَاتٌ مِنَ الْقُرْآنِ</h2>
-  <div class="ayah"><span class="at">﴿ فَٱذْكُرُونِىٓ أَذْكُرْكُمْ وَٱشْكُرُوا۟ لِى وَلَا تَكْفُرُونِ ﴾</span><span class="ar">سُورَةُ البَقَرَةِ · الآيَةُ ١٥٢</span></div>
-  <div class="ayah"><span class="at">﴿ لَا يُكَلِّفُ ٱللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا ٱكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَآ إِن نَّسِينَآ أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَآ إِصْرًۭا كَمَا حَمَلْتَهُۥ عَلَى ٱلَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِۦ ۖ وَٱعْفُ عَنَّا وَٱغْفِرْ لَنَا وَٱرْحَمْنَآ ۚ أَنتَ مَوْلَىٰنَا فَٱنصُرْنَا عَلَى ٱلْقَوْمِ ٱلْكَٰفِرِينَ ﴾</span><span class="ar">سُورَةُ البَقَرَةِ · الآيَةُ ٢٨٦</span></div>
-  <div class="ayah"><span class="at">﴿ ٱلَّذِينَ ءَامَنُوا۟ وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ ٱللَّهِ ۗ أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ ٱلْقُلُوبُ ﴾</span><span class="ar">سُورَةُ الرَّعۡدِ · الآيَةُ ٢٨</span></div>
-  <div class="ayah"><span class="at">﴿ يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱذْكُرُوا۟ ٱللَّهَ ذِكْرًۭا كَثِيرًۭا ﴾</span><span class="ar">سُورَةُ الأَحۡزَابِ · الآيَةُ ٤١</span></div>
-  <div class="ayah"><span class="at">﴿ قُلْ يَٰعِبَادِىَ ٱلَّذِينَ أَسْرَفُوا۟ عَلَىٰٓ أَنفُسِهِمْ لَا تَقْنَطُوا۟ مِن رَّحْمَةِ ٱللَّهِ ۚ إِنَّ ٱللَّهَ يَغْفِرُ ٱلذُّنُوبَ جَمِيعًا ۚ إِنَّهُۥ هُوَ ٱلْغَفُورُ ٱلرَّحِيمُ ﴾</span><span class="ar">سُورَةُ الزُّمَرِ · الآيَةُ ٥٣</span></div>
-  <div class="ayah"><span class="at">﴿ وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ ۚ وَمَن يَتَوَكَّلْ عَلَى ٱللَّهِ فَهُوَ حَسْبُهُۥٓ ۚ إِنَّ ٱللَّهَ بَٰلِغُ أَمْرِهِۦ ۚ قَدْ جَعَلَ ٱللَّهُ لِكُلِّ شَىْءٍۢ قَدْرًۭا ﴾</span><span class="ar">سُورَةُ الطَّلَاقِ · الآيَةُ ٣</span></div>
-  <div class="ayah"><span class="at">﴿ فَإِنَّ مَعَ ٱلْعُسْرِ يُسْرًا ﴾ ﴿ إِنَّ مَعَ ٱلْعُسْرِ يُسْرًۭا ﴾</span><span class="ar">سُورَةُ الشَّرۡحِ · الآيَتَانِ ٥ – ٦</span></div>
+  <div class="sec" id="secDuas" hidden>
+  <h2>أَدْعِيَةٌ قُرْآنِيَّةٌ</h2>
+  <div id="duaList"></div>
   </div>
   <div class="sec" id="secPrayer" hidden>
   <h2>مَوَاعِيدُ الصَّلَاةِ</h2>
@@ -844,8 +838,9 @@ var PT=(function(){
   try{var q=JSON.parse(localStorage.getItem(BKEY));if(q&&q.date===today&&q.c)st=q}catch(e){}
   function save(){try{localStorage.setItem(BKEY,JSON.stringify(st))}catch(e){}}
   function ad(n){return String(n).replace(/\d/g,function(k){return'٠١٢٣٤٥٦٧٨٩'[k]})}
-  var root=document.getElementById('boxList');
-  BOXES.forEach(function(bx,bi){
+  var DUAS=[{name:'أَدْعِيَةٌ قُرْآنِيَّةٌ',items:[{"t": "﴿ وَمِنْهُم مَّن يَقُولُ رَبَّنَآ ءَاتِنَا فِى ٱلدُّنْيَا حَسَنَةًۭ وَفِى ٱلْءَاخِرَةِ حَسَنَةًۭ وَقِنَا عَذَابَ ٱلنَّارِ ﴾\nسُورَةُ البقرة · الآيَةُ ٢٠١", "g": 1}, {"t": "﴿ لَا يُكَلِّفُ ٱللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا ٱكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَآ إِن نَّسِينَآ أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَآ إِصْرًۭا كَمَا حَمَلْتَهُۥ عَلَى ٱلَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِۦ ۖ وَٱعْفُ عَنَّا وَٱغْفِرْ لَنَا وَٱرْحَمْنَآ ۚ أَنتَ مَوْلَىٰنَا فَٱنصُرْنَا عَلَى ٱلْقَوْمِ ٱلْكَٰفِرِينَ ﴾\nسُورَةُ البقرة · الآيَةُ ٢٨٦", "g": 1}, {"t": "﴿ وَإِذْ يَرْفَعُ إِبْرَٰهِۦمُ ٱلْقَوَاعِدَ مِنَ ٱلْبَيْتِ وَإِسْمَٰعِيلُ رَبَّنَا تَقَبَّلْ مِنَّآ ۖ إِنَّكَ أَنتَ ٱلسَّمِيعُ ٱلْعَلِيمُ ﴾\nسُورَةُ البقرة · الآيَةُ ١٢٧", "g": 1}, {"t": "﴿ رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِن لَّدُنكَ رَحْمَةً ۚ إِنَّكَ أَنتَ ٱلْوَهَّابُ ﴾\nسُورَةُ آل عمران · الآيَةُ ٨", "g": 1}, {"t": "﴿ رَّبَّنَآ إِنَّنَا سَمِعْنَا مُنَادِيًۭا يُنَادِى لِلْإِيمَٰنِ أَنْ ءَامِنُوا۟ بِرَبِّكُمْ فَـَٔامَنَّا ۚ رَبَّنَا فَٱغْفِرْ لَنَا ذُنُوبَنَا وَكَفِّرْ عَنَّا سَيِّـَٔاتِنَا وَتَوَفَّنَا مَعَ ٱلْأَبْرَارِ ﴾\nسُورَةُ آل عمران · الآيَةُ ١٩٣", "g": 1}, {"t": "﴿ قَالَا رَبَّنَا ظَلَمْنَآ أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ ٱلْخَٰسِرِينَ ﴾\nسُورَةُ الأعراف · الآيَةُ ٢٣", "g": 1}, {"t": "﴿ وَذَا ٱلنُّونِ إِذ ذَّهَبَ مُغَٰضِبًۭا فَظَنَّ أَن لَّن نَّقْدِرَ عَلَيْهِ فَنَادَىٰ فِى ٱلظُّلُمَٰتِ أَن لَّآ إِلَٰهَ إِلَّآ أَنتَ سُبْحَٰنَكَ إِنِّى كُنتُ مِنَ ٱلظَّٰلِمِينَ ﴾\nسُورَةُ الأنبياء · الآيَةُ ٨٧", "g": 1}, {"t": "﴿ وَأَيُّوبَ إِذْ نَادَىٰ رَبَّهُۥٓ أَنِّى مَسَّنِىَ ٱلضُّرُّ وَأَنتَ أَرْحَمُ ٱلرَّٰحِمِينَ ﴾\nسُورَةُ الأنبياء · الآيَةُ ٨٣", "g": 1}, {"t": "﴿ قَالَ رَبِّ ٱشْرَحْ لِى صَدْرِى وَيَسِّرْ لِىٓ أَمْرِى وَٱحْلُلْ عُقْدَةًۭ مِّن لِّسَانِى يَفْقَهُوا۟ قَوْلِى ﴾\nسُورَةُ طه · الآيَاتُ ٢٥ – ٢٨", "g": 1}, {"t": "﴿ فَتَعَٰلَى ٱللَّهُ ٱلْمَلِكُ ٱلْحَقُّ ۗ وَلَا تَعْجَلْ بِٱلْقُرْءَانِ مِن قَبْلِ أَن يُقْضَىٰٓ إِلَيْكَ وَحْيُهُۥ ۖ وَقُل رَّبِّ زِدْنِى عِلْمًۭا ﴾\nسُورَةُ طه · الآيَةُ ١١٤", "g": 1}, {"t": "﴿ قَالَ رَبِّ إِنِّى ظَلَمْتُ نَفْسِى فَٱغْفِرْ لِى فَغَفَرَ لَهُۥٓ ۚ إِنَّهُۥ هُوَ ٱلْغَفُورُ ٱلرَّحِيمُ ﴾\nسُورَةُ القصص · الآيَةُ ١٦", "g": 1}, {"t": "﴿ فَسَقَىٰ لَهُمَا ثُمَّ تَوَلَّىٰٓ إِلَى ٱلظِّلِّ فَقَالَ رَبِّ إِنِّى لِمَآ أَنزَلْتَ إِلَىَّ مِنْ خَيْرٍۢ فَقِيرٌۭ ﴾\nسُورَةُ القصص · الآيَةُ ٢٤", "g": 1}, {"t": "﴿ إِذْ أَوَى ٱلْفِتْيَةُ إِلَى ٱلْكَهْفِ فَقَالُوا۟ رَبَّنَآ ءَاتِنَا مِن لَّدُنكَ رَحْمَةًۭ وَهَيِّئْ لَنَا مِنْ أَمْرِنَا رَشَدًۭا ﴾\nسُورَةُ الكهف · الآيَةُ ١٠", "g": 1}, {"t": "﴿ رَبِّ ٱجْعَلْنِى مُقِيمَ ٱلصَّلَوٰةِ وَمِن ذُرِّيَّتِى ۚ رَبَّنَا وَتَقَبَّلْ دُعَآءِ رَبَّنَا ٱغْفِرْ لِى وَلِوَٰلِدَىَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ ٱلْحِسَابُ ﴾\nسُورَةُ إبراهيم · الآيَاتُ ٤٠ – ٤١", "g": 1}, {"t": "﴿ وَٱخْفِضْ لَهُمَا جَنَاحَ ٱلذُّلِّ مِنَ ٱلرَّحْمَةِ وَقُل رَّبِّ ٱرْحَمْهُمَا كَمَا رَبَّيَانِى صَغِيرًۭا ﴾\nسُورَةُ الإسراء · الآيَةُ ٢٤", "g": 1}, {"t": "﴿ وَقُل رَّبِّ ٱغْفِرْ وَٱرْحَمْ وَأَنتَ خَيْرُ ٱلرَّٰحِمِينَ ﴾\nسُورَةُ المؤمنون · الآيَةُ ١١٨", "g": 1}, {"t": "﴿ وَٱلَّذِينَ يَقُولُونَ رَبَّنَا هَبْ لَنَا مِنْ أَزْوَٰجِنَا وَذُرِّيَّٰتِنَا قُرَّةَ أَعْيُنٍۢ وَٱجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا ﴾\nسُورَةُ الفرقان · الآيَةُ ٧٤", "g": 1}, {"t": "﴿ رَّبِّ ٱغْفِرْ لِى وَلِوَٰلِدَىَّ وَلِمَن دَخَلَ بَيْتِىَ مُؤْمِنًۭا وَلِلْمُؤْمِنِينَ وَٱلْمُؤْمِنَٰتِ وَلَا تَزِدِ ٱلظَّٰلِمِينَ إِلَّا تَبَارًۢا ﴾\nسُورَةُ نوح · الآيَةُ ٢٨", "g": 1}, {"t": "﴿ وَٱلَّذِينَ جَآءُو مِنۢ بَعْدِهِمْ يَقُولُونَ رَبَّنَا ٱغْفِرْ لَنَا وَلِإِخْوَٰنِنَا ٱلَّذِينَ سَبَقُونَا بِٱلْإِيمَٰنِ وَلَا تَجْعَلْ فِى قُلُوبِنَا غِلًّۭا لِّلَّذِينَ ءَامَنُوا۟ رَبَّنَآ إِنَّكَ رَءُوفٌۭ رَّحِيمٌ ﴾\nسُورَةُ الحشر · الآيَةُ ١٠", "g": 1}]}];
+  function mk(BX,root,P){
+  BX.forEach(function(bx,bi){
     var d=document.createElement('div');d.className='abox';
     var h=document.createElement('button');h.type='button';h.setAttribute('aria-expanded','false');
     h.innerHTML='<span></span><i class="cv"></i>';h.firstChild.textContent=bx.name;
@@ -853,7 +848,7 @@ var PT=(function(){
     var prog=document.createElement('div');prog.className='bprog';bd.appendChild(prog);
     var cards=[];
     bx.items.forEach(function(x,ii){
-      var key=bi+'-'+ii,g=x.g||x.n||1;
+      var key=P+bi+'-'+ii,g=x.g||x.n||1;
       var vf=null;var it=document.createElement('div');it.className='it';it.setAttribute('role','button');it.tabIndex=0;
       var tx=document.createElement('span');tx.className='itx';tx.textContent=x.t;
       var rm=document.createElement('span');rm.className='rem';
@@ -881,7 +876,9 @@ var PT=(function(){
     cards.forEach(function(c){c.paint()});paintProg();
     h.onclick=function(){var o=!d.classList.contains('open');d.classList.toggle('open',o);h.setAttribute('aria-expanded',o)};
     d.appendChild(h);d.appendChild(bd);root.appendChild(d);
-  });
+  });}
+  mk(BOXES,document.getElementById('boxList'),'');
+  mk(DUAS,document.getElementById('duaList'),'d');
   if(BOXES.length)document.getElementById('boxSoon').style.display='none';
 })();
 </script>
@@ -985,4 +982,4 @@ if('serviceWorker' in navigator){(function(){
 })()}
 </script>
 </body>
-  </html>
+                                                                                                                                                 </html>
