@@ -92,6 +92,26 @@ body.light .menu-pop button.cur{background:#f0e6c8}
 .ayah .at{display:block;font-size:24px;line-height:2.2;color:var(--g2)}
 .ayah .ar{display:inline-block;margin-top:6px;padding:2px 12px;border:1px solid var(--g);border-radius:20px;color:var(--g);font-size:14px}
 body.light .ayah{background:#fdf8e7;border-color:#d9cba0}
+.qb{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:6px}
+.qb-top{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:14px solid var(--g);margin-bottom:-4px}
+.qb-wrap{width:min(78vw,320px);aspect-ratio:1;position:relative}
+.qb-dial{width:100%;height:100%;display:block;transition:transform .12s linear;overflow:visible}
+.qb-dial .qr{fill:#0f0d08;stroke:var(--g);stroke-width:1.6}
+.qb-dial .qr2{fill:none;stroke:var(--g3);stroke-width:.6}
+.qb-dial .qt line{stroke:var(--g3);stroke-width:1}
+.qb-dial .ql{fill:var(--g);font-size:17px;font-weight:700}
+.qb-dial .ql2{fill:var(--g3);font-size:9px}
+.qb-dial .qa{stroke:var(--g);stroke-width:2.2;stroke-linecap:round}
+.qb-dial .qh{fill:var(--g)}
+.qb-dial .qk{fill:#0a0907;stroke:var(--g);stroke-width:1.6}
+.qb-dial .qkb{stroke:var(--g);stroke-width:2}
+.qb-dial .qc{fill:var(--g)}
+.qb.ok .qr{stroke-width:3;filter:drop-shadow(0 0 7px var(--g))}
+.qb-deg{font-size:26px;color:var(--g);margin-top:6px}
+.qb-sub{font-size:16px;color:var(--g2);min-height:1.8em;text-align:center}
+.qb .btn{margin-top:4px}
+body.light .qb-dial .qr{fill:#fbf6e6}
+body.light .qb-dial .qk{fill:#fbf6e6}
 .sec[hidden]{display:none}
 .pt-row{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;margin:8px 0}
 .pt-sel{background:#12100a;color:var(--g);border:1px solid var(--g3);border-radius:10px;padding:9px 12px;font:inherit;font-size:18px;min-width:150px}
@@ -172,7 +192,7 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
 <body>
 <button type="button" class="mode-btn" id="modeBtn" aria-label="الْوَضْعُ النَّهَارِيُّ"></button>
 <button type="button" class="menu-btn" id="menuBtn" aria-label="الْقَائِمَةُ" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-<div class="menu-pop" id="menuPop" role="menu"><button type="button" class="cur" data-sec="secTasbih" role="menuitem">التَّسْبِيحُ وَالْأَذْكَارُ</button><button type="button" data-sec="secQuran" role="menuitem">آيَاتٌ مِنَ الْقُرْآنِ</button><button type="button" data-sec="secPrayer" role="menuitem">مَوَاعِيدُ الصَّلَاةِ</button><button type="button" data-sec="secAdhkar" role="menuitem">الْأَذْكَارُ الْإِسْلَامِيَّةُ</button></div>
+<div class="menu-pop" id="menuPop" role="menu"><button type="button" class="cur" data-sec="secTasbih" role="menuitem">التَّسْبِيحُ وَالْأَذْكَارُ</button><button type="button" data-sec="secQuran" role="menuitem">آيَاتٌ مِنَ الْقُرْآنِ</button><button type="button" data-sec="secPrayer" role="menuitem">مَوَاعِيدُ الصَّلَاةِ</button><button type="button" data-sec="secAdhkar" role="menuitem">الْأَذْكَارُ الْإِسْلَامِيَّةُ</button><button type="button" data-sec="secQibla" role="menuitem">اتِّجَاهُ الْقِبْلَةِ</button></div>
 <main>
   <div class="salat"><b>صَلُّوا عَلَى النَّبِيِّ ﷺ</b><span>اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَىٰ سَيِّدِنَا مُحَمَّدٍ</span><button type="button" class="salat-btn" id="salatBtn" aria-label="تَشْغِيلُ الصَّوْتِ / إِيقَافُهُ"><svg class="ic-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button></div>
   <header class="band">
@@ -236,6 +256,29 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
   <h2>الْأَذْكَارُ الْإِسْلَامِيَّةُ</h2>
   <div id="boxList"></div>
   <div class="soon" id="boxSoon"><span class="s1">قَرِيبًا</span><span class="s2">إِنْ شَاءَ اللَّهُ</span></div>
+  </div>
+  <div class="sec" id="secQibla" hidden>
+  <h2>اتِّجَاهُ الْقِبْلَةِ</h2>
+  <div class="pt-row"><select class="pt-sel" id="qbCity" aria-label="الْمَدِينَةُ"></select><button type="button" class="btn" id="qbGeo">اسْتَخْدِمْ مَوْقِعِي</button></div>
+  <div class="qb">
+   <div class="qb-top" aria-hidden="true"></div>
+   <div class="qb-wrap" id="qbWrap">
+    <svg class="qb-dial" id="qbDial" viewBox="0 0 200 200" aria-label="بُوصَلَةُ الْقِبْلَةِ">
+     <circle cx="100" cy="100" r="96" class="qr"/><circle cx="100" cy="100" r="88" class="qr2"/>
+     <g class="qt"><line x1="100" y1="12" x2="100" y2="22" transform="rotate(0 100 100)"/><line x1="100" y1="12" x2="100" y2="18" transform="rotate(15 100 100)"/><line x1="100" y1="12" x2="100" y2="18" transform="rotate(30 100 100)"/><line x1="100" y1="12" x2="100" y2="18" transform="rotate(45 100 100)"/><line x1="100" y1="12" x2="100" y2="18" transform="rotate(60 100 100)"/><line x1="100" y1="12" x2="100" y2="18" transform="rotate(75 100 100)"/><line x1="100" y1="12" x2="100" y2="22" transform="rotate(90 100 100)"/><line x1="100" y1="12" x2="100" y2="18" transform="rotate(105 100 100)"/><line x1="100" y1="12" x2="100" y2="18" transform="rotate(120 100 100)"/><line x1="100" y1="12" x2="100" y2="18" transform="rotate(135 100 100)"/><line x1="100" y1="12" x2="100" y2="18" transform="rotate(150 100 100)"/><line x1="100" y1="12" x2="100" y2="18" transform="rotate(165 100 100)"/><line x1="100" y1="12" x2="100" y2="22" transform="rotate(180 100 100)"/><line x1="100" y1="12" x2="100" y2="18" transform="rotate(195 100 100)"/><line x1="100" y1="12" x2="100" y2="18" transform="rotate(210 100 100)"/><line x1="100" y1="12" x2="100" y2="18" transform="rotate(225 100 100)"/><line x1="100" y1="12" x2="100" y2="18" transform="rotate(240 100 100)"/><line x1="100" y1="12" x2="100" y2="18" transform="rotate(255 100 100)"/><line x1="100" y1="12" x2="100" y2="22" transform="rotate(270 100 100)"/><line x1="100" y1="12" x2="100" y2="18" transform="rotate(285 100 100)"/><line x1="100" y1="12" x2="100" y2="18" transform="rotate(300 100 100)"/><line x1="100" y1="12" x2="100" y2="18" transform="rotate(315 100 100)"/><line x1="100" y1="12" x2="100" y2="18" transform="rotate(330 100 100)"/><line x1="100" y1="12" x2="100" y2="18" transform="rotate(345 100 100)"/></g>
+     <text x="100" y="40" class="ql" text-anchor="middle">ش</text>
+     <text x="168" y="106" class="ql2" text-anchor="middle">شَرْق</text>
+     <text x="100" y="172" class="ql2" text-anchor="middle">جَنُوب</text>
+     <text x="32" y="106" class="ql2" text-anchor="middle">غَرْب</text>
+     <g id="qbArrow"><line x1="100" y1="100" x2="100" y2="34" class="qa"/><polygon points="100,20 92,40 108,40" class="qh"/><rect x="90" y="4" width="20" height="20" rx="2" class="qk"/><path d="M90 11h20" class="qkb"/></g>
+     <circle cx="100" cy="100" r="5" class="qc"/>
+    </svg>
+   </div>
+   <div class="qb-deg" id="qbDeg">…</div>
+   <div class="qb-sub" id="qbSub"></div>
+   <button type="button" class="btn" id="qbLive">تَشْغِيلُ الْبُوصَلَةِ</button>
+   <p class="pt-note" id="qbNote">الْحِسَابُ عَلَى جِهَازِكَ دُونَ إِنْتَرْنِت. الْكَعْبَةُ فِي أَعْلَى الدَّائِرَةِ هِيَ جِهَةُ الْقِبْلَةِ. لِبُوصَلَةٍ حَيَّةٍ اضْغَطْ «تَشْغِيلُ الْبُوصَلَةِ» وَأَمْسِكِ الْهَاتِفَ أُفُقِيًّا بَعِيدًا عَنِ الْمَعَادِنِ وَالْمَغَانِطِ، وَقَدْ تَحْتَاجُ لِتَحْرِيكِهِ عَلَى شَكْلِ ٨ لِلْمُعَايَرَةِ. الدِّقَّةُ تَعْتَمِدُ عَلَى مِجَسِّ الْهَاتِفِ.</p>
+  </div>
   </div>
   <svg class="div" viewBox="0 0 300 20" aria-hidden="true"><use href="#divider"/></svg>
   <p class="foot">تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ.</p>
@@ -453,7 +496,9 @@ var PT=(function(){
   function fmt(ms){var o={hour:'numeric',minute:'2-digit',hour12:true};if(loc.tz)o.timeZone=loc.tz;return new Date(ms).toLocaleTimeString('ar-EG',o)}
   function day(off){var a=ymd(Date.now()+off*864e5,loc.tz);return PT.compute(a[0],a[1],a[2],loc.lat,loc.lng)}
   var nextAt=0;
+  window.PTLOC=function(){return loc};window.PTCITIES=CITIES;
   function render(){
+    try{document.dispatchEvent(new Event('ptloc'))}catch(e){}
     var t=day(0),now=Date.now(),hh='',nx=null,nxName='';
     var order=['fajr','dhuhr','asr','maghrib','isha'];
     for(var i=0;i<order.length;i++){if(t[order[i]]>now){nx=order[i];nextAt=t[nx];break}}
@@ -828,7 +873,60 @@ var PT=(function(){
 })();
 </script>
 <script>
+(function(){
+  var K={lat:21.4225,lng:39.8262},R=Math.PI/180;
+  function ad(n){return String(n).replace(/\d/g,function(k){return'٠١٢٣٤٥٦٧٨٩'[k]})}
+  function bearing(la,lo){var p1=la*R,p2=K.lat*R,d=(K.lng-lo)*R;var y=Math.sin(d)*Math.cos(p2),x=Math.cos(p1)*Math.sin(p2)-Math.sin(p1)*Math.cos(p2)*Math.cos(d);return(Math.atan2(y,x)/R+360)%360}
+  function dist(la,lo){var p1=la*R,p2=K.lat*R,dp=p2-p1,dl=(K.lng-lo)*R;var a=Math.sin(dp/2)*Math.sin(dp/2)+Math.cos(p1)*Math.cos(p2)*Math.sin(dl/2)*Math.sin(dl/2);return 6371*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a))}
+  var $=function(i){return document.getElementById(i)};
+  var sel=$('qbCity'),box=document.querySelector('.qb'),dial=$('qbDial'),arrow=$('qbArrow'),live=$('qbLive');
+  var CI=window.PTCITIES||[];
+  CI.forEach(function(c,i){var o=document.createElement('option');o.value=i;o.textContent=c[0];sel.appendChild(o)});
+  var bear=0,heading=null,on=false,shown=0;
+  function update(){
+    var l=window.PTLOC?window.PTLOC():{lat:30.0444,lng:31.2357,geo:false};
+    bear=bearing(l.lat,l.lng);
+    arrow.setAttribute('transform','rotate('+bear.toFixed(1)+' 100 100)');
+    $('qbDeg').textContent=ad(Math.round(bear))+'° مِنَ الشَّمَالِ مَعَ عَقَارِبِ السَّاعَةِ';
+    $('qbSub').textContent=(l.geo?'حَسَبَ مَوْقِعِكَ · ':'')+'الْمَسَافَةُ إِلَى الْكَعْبَةِ نَحْوُ '+ad(Math.round(dist(l.lat,l.lng)).toLocaleString('en-US'))+' كَم';
+    if(!l.geo&&$('ptCity')){sel.value=$('ptCity').value}
+    paint();
+  }
+  function paint(){
+    if(heading===null){dial.style.transform='';box.classList.remove('ok');return}
+    shown=heading;dial.style.transform='rotate('+(-heading).toFixed(1)+'deg)';
+    var d=((bear-heading+540)%360)-180;var ok=Math.abs(d)<4;
+    if(ok&&!box.classList.contains('ok')&&navigator.vibrate)try{navigator.vibrate(40)}catch(e){}
+    box.classList.toggle('ok',ok);
+    if(ok)$('qbNote').dataset.ok='1';
+  }
+  function onO(e){
+    var h=null;
+    if(typeof e.webkitCompassHeading==='number')h=e.webkitCompassHeading;
+    else if(e.alpha!==null&&e.alpha!==undefined&&(e.absolute||e.type==='deviceorientationabsolute'))h=(360-e.alpha)%360;
+    if(h===null)return;
+    if(heading!==null){var d=((h-heading+540)%360)-180;h=(heading+d*0.35+360)%360}
+    heading=h;paint();
+  }
+  function start(){
+    function go(){window.addEventListener('deviceorientationabsolute',onO,true);window.addEventListener('deviceorientation',onO,true);on=true;live.textContent='إِيقَافُ الْبُوصَلَةِ';
+      setTimeout(function(){if(heading===null)$('qbSub').textContent='لَمْ يَصِلْ حِسَاسُ الِاتِّجَاهِ، اسْتَخْدِمِ الدَّائِرَةَ الثَّابِتَةَ (الْكَعْبَةُ فِي الْأَعْلَى هِيَ الْقِبْلَةُ مِنَ الشَّمَالِ) أَوْ جَرِّبْ هَاتِفًا آخَرَ.'},2500)}
+    try{
+      if(window.DeviceOrientationEvent&&typeof DeviceOrientationEvent.requestPermission==='function'){
+        DeviceOrientationEvent.requestPermission().then(function(r){if(r==='granted')go();else $('qbSub').textContent='لَمْ يُسْمَحْ بِاسْتِخْدَامِ حِسَاسِ الِاتِّجَاهِ.'}).catch(function(){$('qbSub').textContent='تَعَذَّرَ تَشْغِيلُ الْبُوصَلَةِ.'})
+      }else go();
+    }catch(e){$('qbSub').textContent='تَعَذَّرَ تَشْغِيلُ الْبُوصَلَةِ.'}
+  }
+  function stop(){window.removeEventListener('deviceorientationabsolute',onO,true);window.removeEventListener('deviceorientation',onO,true);on=false;heading=null;live.textContent='تَشْغِيلُ الْبُوصَلَةِ';paint();update()}
+  live.onclick=function(){on?stop():start()};
+  sel.onchange=function(){var pc=$('ptCity');if(pc){pc.value=sel.value;pc.onchange&&pc.onchange()}};
+  $('qbGeo').onclick=function(){var g=$('ptGeo');if(g)g.click()};
+  document.addEventListener('ptloc',function(){setTimeout(update,0)});
+  update();
+})();
+</script>
+<script>
 if('serviceWorker' in navigator){window.addEventListener('load',function(){try{navigator.serviceWorker.register('sw.js').catch(function(){})}catch(e){}})}
 </script>
 </body>
-</html>
+  </html>
