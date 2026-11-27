@@ -963,6 +963,31 @@ var PT=(function(){
   function save(){try{localStorage.setItem(BKEY,JSON.stringify(st))}catch(e){}}
   function ad(n){return String(n).replace(/\d/g,function(k){return'٠١٢٣٤٥٦٧٨٩'[k]})}
   var DUAS=[{name:'أَدْعِيَةٌ قُرْآنِيَّةٌ',items:[{"t": "﴿ وَمِنْهُم مَّن يَقُولُ رَبَّنَآ ءَاتِنَا فِى ٱلدُّنْيَا حَسَنَةًۭ وَفِى ٱلْءَاخِرَةِ حَسَنَةًۭ وَقِنَا عَذَابَ ٱلنَّارِ ﴾\nسُورَةُ البقرة · الآيَةُ ٢٠١", "g": 1}, {"t": "﴿ لَا يُكَلِّفُ ٱللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا ٱكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَآ إِن نَّسِينَآ أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَآ إِصْرًۭا كَمَا حَمَلْتَهُۥ عَلَى ٱلَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِۦ ۖ وَٱعْفُ عَنَّا وَٱغْفِرْ لَنَا وَٱرْحَمْنَآ ۚ أَنتَ مَوْلَىٰنَا فَٱنصُرْنَا عَلَى ٱلْقَوْمِ ٱلْكَٰفِرِينَ ﴾\nسُورَةُ البقرة · الآيَةُ ٢٨٦", "g": 1}, {"t": "﴿ وَإِذْ يَرْفَعُ إِبْرَٰهِۦمُ ٱلْقَوَاعِدَ مِنَ ٱلْبَيْتِ وَإِسْمَٰعِيلُ رَبَّنَا تَقَبَّلْ مِنَّآ ۖ إِنَّكَ أَنتَ ٱلسَّمِيعُ ٱلْعَلِيمُ ﴾\nسُورَةُ البقرة · الآيَةُ ١٢٧", "g": 1}, {"t": "﴿ رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِن لَّدُنكَ رَحْمَةً ۚ إِنَّكَ أَنتَ ٱلْوَهَّابُ ﴾\nسُورَةُ آل عمران · الآيَةُ ٨", "g": 1}, {"t": "﴿ رَّبَّنَآ إِنَّنَا سَمِعْنَا مُنَادِيًۭا يُنَادِى لِلْإِيمَٰنِ أَنْ ءَامِنُوا۟ بِرَبِّكُمْ فَـَٔامَنَّا ۚ رَبَّنَا فَٱغْفِرْ لَنَا ذُنُوبَنَا وَكَفِّرْ عَنَّا سَيِّـَٔاتِنَا وَتَوَفَّنَا مَعَ ٱلْأَبْرَارِ ﴾\nسُورَةُ آل عمران · الآيَةُ ١٩٣", "g": 1}, {"t": "﴿ قَالَا رَبَّنَا ظَلَمْنَآ أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ ٱلْخَٰسِرِينَ ﴾\nسُورَةُ الأعراف · الآيَةُ ٢٣", "g": 1}, {"t": "﴿ وَذَا ٱلنُّونِ إِذ ذَّهَبَ مُغَٰضِبًۭا فَظَنَّ أَن لَّن نَّقْدِرَ عَلَيْهِ فَنَادَىٰ فِى ٱلظُّلُمَٰتِ أَن لَّآ إِلَٰهَ إِلَّآ أَنتَ سُبْحَٰنَكَ إِنِّى كُنتُ مِنَ ٱلظَّٰلِمِينَ ﴾\nسُورَةُ الأنبياء · الآيَةُ ٨٧", "g": 1}, {"t": "﴿ وَأَيُّوبَ إِذْ نَادَىٰ رَبَّهُۥٓ أَنِّى مَسَّنِىَ ٱلضُّرُّ وَأَنتَ أَرْحَمُ ٱلرَّٰحِمِينَ ﴾\nسُورَةُ الأنبياء · الآيَةُ ٨٣", "g": 1}, {"t": "﴿ قَالَ رَبِّ ٱشْرَحْ لِى صَدْرِى وَيَسِّرْ لِىٓ أَمْرِى وَٱحْلُلْ عُقْدَةًۭ مِّن لِّسَانِى يَفْقَهُوا۟ قَوْلِى ﴾\nسُورَةُ طه · الآيَاتُ ٢٥ – ٢٨", "g": 1}, {"t": "﴿ فَتَعَٰلَى ٱللَّهُ ٱلْمَلِكُ ٱلْحَقُّ ۗ وَلَا تَعْجَلْ بِٱلْقُرْءَانِ مِن قَبْلِ أَن يُقْضَىٰٓ إِلَيْكَ وَحْيُهُۥ ۖ وَقُل رَّبِّ زِدْنِى عِلْمًۭا ﴾\nسُورَةُ طه · الآيَةُ ١١٤", "g": 1}, {"t": "﴿ قَالَ رَبِّ إِنِّى ظَلَمْتُ نَفْسِى فَٱغْفِرْ لِى فَغَفَرَ لَهُۥٓ ۚ إِنَّهُۥ هُوَ ٱلْغَفُورُ ٱلرَّحِيمُ ﴾\nسُورَةُ القصص · الآيَةُ ١٦", "g": 1}, {"t": "﴿ فَسَقَىٰ لَهُمَا ثُمَّ تَوَلَّىٰٓ إِلَى ٱلظِّلِّ فَقَالَ رَبِّ إِنِّى لِمَآ أَنزَلْتَ إِلَىَّ مِنْ خَيْرٍۢ فَقِيرٌۭ ﴾\nسُورَةُ القصص · الآيَةُ ٢٤", "g": 1}, {"t": "﴿ إِذْ أَوَى ٱلْفِتْيَةُ إِلَى ٱلْكَهْفِ فَقَالُوا۟ رَبَّنَآ ءَاتِنَا مِن لَّدُنكَ رَحْمَةًۭ وَهَيِّئْ لَنَا مِنْ أَمْرِنَا رَشَدًۭا ﴾\nسُورَةُ الكهف · الآيَةُ ١٠", "g": 1}, {"t": "﴿ رَبِّ ٱجْعَلْنِى مُقِيمَ ٱلصَّلَوٰةِ وَمِن ذُرِّيَّتِى ۚ رَبَّنَا وَتَقَبَّلْ دُعَآءِ رَبَّنَا ٱغْفِرْ لِى وَلِوَٰلِدَىَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ ٱلْحِسَابُ ﴾\nسُورَةُ إبراهيم · الآيَاتُ ٤٠ – ٤١", "g": 1}, {"t": "﴿ وَٱخْفِضْ لَهُمَا جَنَاحَ ٱلذُّلِّ مِنَ ٱلرَّحْمَةِ وَقُل رَّبِّ ٱرْحَمْهُمَا كَمَا رَبَّيَانِى صَغِيرًۭا ﴾\nسُورَةُ الإسراء · الآيَةُ ٢٤", "g": 1}, {"t": "﴿ وَقُل رَّبِّ ٱغْفِرْ وَٱرْحَمْ وَأَنتَ خَيْرُ ٱلرَّٰحِمِينَ ﴾\nسُورَةُ المؤمنون · الآيَةُ ١١٨", "g": 1}, {"t": "﴿ وَٱلَّذِينَ يَقُولُونَ رَبَّنَا هَبْ لَنَا مِنْ أَزْوَٰجِنَا وَذُرِّيَّٰتِنَا قُرَّةَ أَعْيُنٍۢ وَٱجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا ﴾\nسُورَةُ الفرقان · الآيَةُ ٧٤", "g": 1}, {"t": "﴿ رَّبِّ ٱغْفِرْ لِى وَلِوَٰلِدَىَّ وَلِمَن دَخَلَ بَيْتِىَ مُؤْمِنًۭا وَلِلْمُؤْمِنِينَ وَٱلْمُؤْمِنَٰتِ وَلَا تَزِدِ ٱلظَّٰلِمِينَ إِلَّا تَبَارًۢا ﴾\nسُورَةُ نوح · الآيَةُ ٢٨", "g": 1}, {"t": "﴿ وَٱلَّذِينَ جَآءُو مِنۢ بَعْدِهِمْ يَقُولُونَ رَبَّنَا ٱغْفِرْ لَنَا وَلِإِخْوَٰنِنَا ٱلَّذِينَ سَبَقُونَا بِٱلْإِيمَٰنِ وَلَا تَجْعَلْ فِى قُلُوبِنَا غِلًّۭا لِّلَّذِينَ ءَامَنُوا۟ رَبَّنَآ إِنَّكَ رَءُوفٌۭ رَّحِيمٌ ﴾\nسُورَةُ الحشر · الآيَةُ ١٠", "g": 1}]}];
+  var scr=null;
+  function closeScr(fromPop){
+    if(!scr)return;var o=scr;scr=null;
+    o.ov.remove();o.d.appendChild(o.bd);o.bd.style.display='';document.body.style.overflow='';
+    window.scrollTo(0,o.y);
+    if(!fromPop&&history.state&&history.state.bscr)try{history.back()}catch(e){}
+  }
+  window.addEventListener('popstate',function(){if(scr)closeScr(true)});
+  function openScr(bx,bd,d){
+    if(scr)return;
+    var ov=document.createElement('div');ov.className='bscr';
+    ov.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;z-index:10001;overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--bg,#0a0907);color:var(--g2,#f1e3b5);padding:0 14px 40px';
+    var bar=document.createElement('div');bar.style.cssText='position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:12px;background:var(--bg,#0a0907);padding:12px 0;border-bottom:1px solid var(--g3,#b99a4b);margin-bottom:8px';
+    var bk=document.createElement('button');bk.type='button';bk.className='btn ghost';bk.setAttribute('aria-label','رُجُوع');bk.style.cssText='display:flex;align-items:center;gap:6px;padding:8px 14px;flex:none';
+    bk.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg><span>رُجُوع</span>';
+    var tt=document.createElement('h2');tt.style.cssText='margin:0;font-size:22px;color:var(--g,#d4af37);flex:1;text-align:center';tt.textContent=bx.name;
+    var sp=document.createElement('span');sp.style.cssText='width:88px;flex:none';
+    bar.appendChild(bk);bar.appendChild(tt);bar.appendChild(sp);ov.appendChild(bar);
+    var wrap=document.createElement('div');wrap.className='abox open';wrap.style.cssText='border:0;background:none;margin:0';
+    wrap.appendChild(bd);bd.style.display='block';ov.appendChild(wrap);
+    scr={ov:ov,bd:bd,d:d,y:window.pageYOffset};
+    document.body.appendChild(ov);document.body.style.overflow='hidden';ov.scrollTop=0;
+    try{history.pushState({bscr:1},'')}catch(e){}
+    bk.onclick=function(){closeScr(false)};
+  }
   function mkAudio(bx){
     var w=document.createElement('div');w.className='rq';w.style.cssText='border:1px solid var(--g2,#c9a227);border-radius:14px;padding:12px;margin:6px 0 12px';
     var h=document.createElement('div');h.style.cssText='text-align:center;margin-bottom:8px;font-size:17px';h.textContent='الِاسْتِمَاعُ بِصَوْتِ الشَّيْخِ مِشَارِي الْعَفَاسِيِّ';w.appendChild(h);
@@ -1032,7 +1057,11 @@ var PT=(function(){
     rs.onclick=function(){cards.forEach(function(c){delete st.c[c.key];c.paint()});save();paintProg()};
     bd.appendChild(rs);
     cards.forEach(function(c){c.paint()});paintProg();
-    h.onclick=function(){var o=!d.classList.contains('open');d.classList.toggle('open',o);h.setAttribute('aria-expanded',o)};
+    if(root.id==='boxList'){
+      h.onclick=function(){openScr(bx,bd,d)};
+    }else{
+      h.onclick=function(){var o=!d.classList.contains('open');d.classList.toggle('open',o);h.setAttribute('aria-expanded',o)};
+    }
     d.appendChild(h);d.appendChild(bd);root.appendChild(d);
   });}
   mk(BOXES,document.getElementById('boxList'),'');
