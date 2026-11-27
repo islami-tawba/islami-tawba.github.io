@@ -1017,13 +1017,15 @@ if(false){(function(){
  function ymd(ms,tz){var o={year:'numeric',month:'numeric',day:'numeric'};if(tz)o.timeZone=tz;var p=new Intl.DateTimeFormat('en-US',o).formatToParts(new Date(ms)),r={};p.forEach(function(x){r[x.type]=+x.value});return[r.year,r.month,r.day]}
  var NM=[['fajr','الفجر'],['dhuhr','الظهر'],['asr','العصر'],['maghrib','المغرب'],['isha','العشاء']];
  var lastSig='';
+ var MK='islami-tawba.mute';
+ function gm(){try{var o=JSON.parse(localStorage.getItem(MK)||'{}');return o&&typeof o==='object'?o:{}}catch(x){return{}}}
  function sync(){
   if(!window.PTLOC||!window.__PT)return;
   var l=window.PTLOC(),now=Date.now(),s=get(),a0=ymd(now,l.tz);
-  var sig=JSON.stringify([s,l.lat,l.lng,a0]);if(sig===lastSig)return;lastSig=sig;
+  var mu=gm(),sig=JSON.stringify([s,mu,l.lat,l.lng,a0]);if(sig===lastSig)return;lastSig=sig;
   var ev=[];
   for(var d=0;d<30;d++){var a=ymd(now+d*864e5,l.tz),t=window.__PT(a[0],a[1],a[2],l.lat,l.lng);
-   NM.forEach(function(n){ev.push({t:t[n[0]],k:'p',n:n[1]})});
+   NM.forEach(function(n){if(!mu[n[0]])ev.push({t:t[n[0]],k:'p',n:n[1]})});
    ev.push({t:t.sunrise,k:'m'});ev.push({t:t.asr+30*60000,k:'e'});}
   ev=ev.filter(function(e){return e.t>now-60000});
   try{A.sync(JSON.stringify({s:s,ev:ev}))}catch(x){}
@@ -1044,6 +1046,21 @@ if(false){(function(){
  document.addEventListener('ptloc',function(){setTimeout(sync,0)});
  document.addEventListener('visibilitychange',function(){if(!document.hidden){warn();sync()}});
  setTimeout(function(){sync();warn()},500);
+ 
+ /* جرس كتم لكل صلاة */
+ var BI={'الْفَجْرُ':'fajr','الظُّهْرُ':'dhuhr','الْعَصْرُ':'asr','الْمَغْرِبُ':'maghrib','الْعِشَاءُ':'isha'};
+ var SV='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2H4.5z"/><path d="M10 20.5a2 2 0 0 0 4 0"/>';
+ var ON=SV+'</svg>',OFF=SV+'<path d="M3 3l18 18" stroke-width="2.4"/></svg>';
+ function bells(){var ul=document.getElementById('ptList');if(!ul)return;var mu=gm();
+  Array.prototype.forEach.call(ul.children,function(li){var sp=li.querySelector('span');if(!sp)return;var id=BI[sp.textContent.trim()];if(!id||li.querySelector('.bell'))return;
+   var b=document.createElement('button');b.type='button';b.className='bell';b.setAttribute('data-id',id);
+   function paint(){var m=!!gm()[id];b.innerHTML=m?OFF:ON;b.setAttribute('aria-label',m?'التنبيه متوقف، اضغط للتشغيل':'التنبيه مفعّل، اضغط للإيقاف');b.style.opacity=m?'.55':'1'}
+   b.style.cssText='background:none;border:0;vertical-align:middle;margin-inline-start:10px;padding:2px 4px;cursor:pointer;color:inherit';paint();
+   b.onclick=function(e){e.stopPropagation();var o=gm();if(o[id])delete o[id];else o[id]=1;try{localStorage.setItem(MK,JSON.stringify(o))}catch(x){}paint();
+    var s=get();if(!o[id]&&!s.p){s.p=true;cb.p.checked=true;try{localStorage.setItem(K,JSON.stringify(s))}catch(x){}}
+    if(!o[id]){try{A.askNotif()}catch(x){}}sync();setTimeout(warn,1500)};
+   sp.insertBefore(b,sp.firstChild)})}
+ var pl=document.getElementById('ptList');if(pl){new MutationObserver(bells).observe(pl,{childList:true});bells()}
  /* تحديث المحتوى */
  var ub=document.getElementById('upBtn'),um=document.getElementById('upMsg'),uv=document.getElementById('upVer');
  function ver(){try{uv.textContent='نسخة المحتوى: '+A.contentVersion()+' · نسخة التطبيق: '+A.appVersion()}catch(x){}}
@@ -1053,4 +1070,4 @@ if(false){(function(){
 })();
 </script>
 </body>
-</html>
+      </html>
