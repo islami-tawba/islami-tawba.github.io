@@ -207,7 +207,7 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
 <body>
 <button type="button" class="mode-btn" id="modeBtn" aria-label="الْوَضْعُ النَّهَارِيُّ"></button>
 <button type="button" class="menu-btn" id="menuBtn" aria-label="الْقَائِمَةُ" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-<div class="menu-pop" id="menuPop" role="menu"><button type="button" class="cur" data-sec="secTasbih" role="menuitem">التَّسْبِيحُ وَالْأَذْكَارُ</button><button type="button" data-sec="secDuas" role="menuitem">أَدْعِيَةٌ قُرْآنِيَّةٌ</button><button type="button" data-sec="secPrayer" role="menuitem">مَوَاعِيدُ الصَّلَاةِ</button><button type="button" data-sec="secAdhkar" role="menuitem">الْأَذْكَارُ الْإِسْلَامِيَّةُ</button><button type="button" data-sec="secQibla" role="menuitem">اتِّجَاهُ الْقِبْلَةِ</button></div>
+<div class="menu-pop" id="menuPop" role="menu"><button type="button" class="cur" data-sec="secTasbih" role="menuitem">التَّسْبِيحُ وَالْأَذْكَارُ</button><button type="button" data-sec="secDuas" role="menuitem">أَدْعِيَةٌ قُرْآنِيَّةٌ</button><button type="button" data-sec="secPrayer" role="menuitem">مَوَاعِيدُ الصَّلَاةِ</button><button type="button" data-sec="secAdhkar" role="menuitem">الْأَذْكَارُ الْإِسْلَامِيَّةُ</button><button type="button" data-sec="secQibla" role="menuitem">اتِّجَاهُ الْقِبْلَةِ</button><button type="button" data-sec="secWeb" role="menuitem" id="menuWeb" style="display:none">التنبيهات</button></div>
 <main>
   <div class="salat"><b>صَلُّوا عَلَى النَّبِيِّ ﷺ</b><span>اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَىٰ سَيِّدِنَا مُحَمَّدٍ</span><button type="button" class="salat-btn" id="salatBtn" aria-label="تَشْغِيلُ الصَّوْتِ / إِيقَافُهُ"><svg class="ic-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button></div>
   <header class="band">
@@ -265,6 +265,17 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
   <h2>الْأَذْكَارُ الْإِسْلَامِيَّةُ</h2>
   <div id="boxList"></div>
   <div class="soon" id="boxSoon"><span class="s1">قَرِيبًا</span><span class="s2">إِنْ شَاءَ اللَّهُ</span></div>
+  </div>
+  <div class="sec" id="secWeb" hidden>
+  <h2>التنبيهات</h2>
+  <div style="border:1px solid var(--g2,#c9a227);border-radius:14px;padding:14px">
+  <label style="display:flex;align-items:center;justify-content:space-between;padding:8px 0"><span>تنبيه عند موعد كل صلاة</span><input type="checkbox" id="wP" style="width:22px;height:22px"></label>
+  <label style="display:flex;align-items:center;justify-content:space-between;padding:8px 0"><span>أذكار الصباح (عند الشروق)</span><input type="checkbox" id="wM" style="width:22px;height:22px"></label>
+  <label style="display:flex;align-items:center;justify-content:space-between;padding:8px 0"><span>أذكار المساء (بعد العصر بنصف ساعة)</span><input type="checkbox" id="wE" style="width:22px;height:22px"></label>
+  <p id="wWarn" style="display:none;color:#e0a96d;font-size:14px;margin:8px 0"></p>
+  <div class="row" style="margin-top:8px"><button type="button" class="btn ghost" id="wTest">إشعار تجريبي</button></div>
+  <p style="font-size:13px;opacity:.8;margin:10px 0 0">في الموقع تصلك التنبيهات فقط والموقع مفتوح في المتصفح (حتى لو في تبويب خلفي). لتنبيهات تعمل والمتصفح مغلق حمّل تطبيق الأندرويد. تستطيع كتم صلاة بعينها بالجرس بجانبها في مواعيد الصلاة. المواعيد تُحسب حسب مدينتك أو موقعك.</p>
+  </div>
   </div>
   <div class="sec" id="secQibla" hidden>
   <h2>اتِّجَاهُ الْقِبْلَةِ</h2>
@@ -495,7 +506,7 @@ var PT=(function(){
     var out={};for(var k2 in t){var u=t[k2]-lng/15;out[k2]=Date.UTC(y,m-1,d)+Math.round(u*60)*60000}  /* UTC ms, rounded to minute */
     return out;
   }
-  return{compute:compute};
+  window.__PT=compute;return{compute:compute};
 })();
 
   var CITIES=[['القَاهِرَةُ',30.0444,31.2357],['الجِيزَةُ',30.0131,31.2089],['الإِسْكَنْدَرِيَّةُ',31.2001,29.9187],['بُورْسَعِيدُ',31.2653,32.3019],['السُّوَيْسُ',29.9668,32.5498],['الإِسْمَاعِيلِيَّةُ',30.5965,32.2715],['الدَّقَهْلِيَّةُ (الْمَنْصُورَةُ)',31.0409,31.3785],['الْغَرْبِيَّةُ (طَنْطَا)',30.7865,31.0004],['الْفَيُّومُ',29.3084,30.8428],['الْمِنْيَا',28.1099,30.7503],['أَسْيُوطُ',27.1783,31.1859],['الأَقْصُرُ',25.6872,32.6396],['أَسْوَانُ',24.0889,32.8998],['الْبَحْرُ الْأَحْمَرُ (الْغَرْدَقَةُ)',27.2579,33.8116],['جَنُوبُ سِينَاءَ (شَرْمُ الشَّيْخِ)',27.9158,34.33],['الْقَلْيُوبِيَّةُ (بِنْهَا)',30.466,31.1848],['الشَّرْقِيَّةُ (الزَّقَازِيقُ)',30.5877,31.502],['الْمَنُوفِيَّةُ (شِبِينُ الْكَوْمِ)',30.5594,31.0119],['الْبُحَيْرَةُ (دَمَنْهُورُ)',31.0341,30.4682],['كَفْرُ الشَّيْخِ',31.1107,30.9388],['دِمْيَاطُ',31.4165,31.8133],['شَمَالُ سِينَاءَ (الْعَرِيشُ)',31.1316,33.7984],['بَنِي سُوَيْفٍ',29.0661,31.0994],['سُوهَاجُ',26.5569,31.6948],['قِنَا',26.1551,32.716],['مَطْرُوحُ',31.3543,27.2373],['الْوَادِي الْجَدِيدُ (الْخَارِجَةُ)',25.439,30.5586]];
@@ -987,5 +998,71 @@ if('serviceWorker' in navigator){(function(){
     }).catch(function(){})}catch(e){}});
 })()}
 </script>
+<script>
+(function(){
+ if(window.AndroidApp||!window.__PT)return;
+ var mb=document.getElementById('menuWeb');if(!mb)return;mb.style.display='';
+ var K='islami-tawba.wnotif',MK='islami-tawba.wmute';
+ var cb={p:document.getElementById('wP'),m:document.getElementById('wM'),e:document.getElementById('wE')};
+ var warnEl=document.getElementById('wWarn');
+ var OK=('Notification' in window);
+ function get(){try{var o=JSON.parse(localStorage.getItem(K)||'{}');return{p:!!o.p,m:!!o.m,e:!!o.e}}catch(x){return{p:false,m:false,e:false}}}
+ function gm(){try{var o=JSON.parse(localStorage.getItem(MK)||'{}');return o&&typeof o==='object'?o:{}}catch(x){return{}}}
+ function put(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(x){}}
+ var st=get();for(var k in cb)cb[k].checked=st[k];
+ function ymd(ms,tz){var o={year:'numeric',month:'numeric',day:'numeric'};if(tz)o.timeZone=tz;var p=new Intl.DateTimeFormat('en-US',o).formatToParts(new Date(ms)),r={};p.forEach(function(x){r[x.type]=+x.value});return[r.year,r.month,r.day]}
+ var NM=[['fajr','الفجر'],['dhuhr','الظهر'],['asr','العصر'],['maghrib','المغرب'],['isha','العشاء']];
+ var timers=[];
+ function show(title,body,tag){
+  if(!OK||Notification.permission!=='granted')return;
+  var o={body:body,icon:'5-icon-512.png',tag:tag,lang:'ar',dir:'rtl'};
+  function plain(){try{new Notification(title,o)}catch(x){}}
+  if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration){navigator.serviceWorker.getRegistration().then(function(r){if(r&&r.showNotification)r.showNotification(title,o);else plain()}).catch(plain)}else plain();
+ }
+ function plan(){
+  timers.forEach(clearTimeout);timers=[];
+  if(!OK||Notification.permission!=='granted'||!window.PTLOC)return;
+  var s=get();if(!(s.p||s.m||s.e))return;
+  var l=window.PTLOC(),now=Date.now(),mu=gm(),ev=[];
+  for(var d=0;d<2;d++){var a=ymd(now+d*864e5,l.tz),t=window.__PT(a[0],a[1],a[2],l.lat,l.lng);
+   if(s.p)NM.forEach(function(n){if(!mu[n[0]])ev.push({t:t[n[0]],ti:'حان الآن موعد صلاة '+n[1],b:'حَيَّ عَلَى الصَّلَاةِ',g:'p-'+n[0]})});
+   if(s.m)ev.push({t:t.sunrise,ti:'أذكار الصباح',b:'حان وقت أذكار الصباح',g:'morning'});
+   if(s.e)ev.push({t:t.asr+30*60000,ti:'أذكار المساء',b:'حان وقت أذكار المساء',g:'evening'});}
+  ev.forEach(function(e){var dt=e.t-now;if(dt<-10*60000||dt>40*3600000)return;
+   timers.push(setTimeout(function(){if(Date.now()-e.t<10*60000)show(e.ti,e.b,e.g)},Math.max(dt,0)))});
+ }
+ function warn(){
+  var m='',s=get();
+  if(!OK)m='هذا المتصفح لا يدعم التنبيهات.';
+  else if(s.p||s.m||s.e){if(Notification.permission==='denied')m='التنبيهات محظورة لهذا الموقع. فعّلها من إعدادات المتصفح (رمز القفل بجانب العنوان).';else if(Notification.permission==='default')m='اسمح بالتنبيهات عندما يسألك المتصفح.'}
+  warnEl.textContent=m;warnEl.style.display=m?'block':'none';
+ }
+ function ask(cont){
+  if(!OK){warn();return}
+  if(Notification.permission==='default'){try{var p=Notification.requestPermission(function(){});if(p&&p.then)p.then(function(){warn();plan();if(cont)cont()});else setTimeout(function(){warn();plan()},1500)}catch(x){}}
+  else{warn();plan();if(cont)cont()}
+ }
+ function onchg(){var s={p:cb.p.checked,m:cb.m.checked,e:cb.e.checked};put(K,s);warn();if(s.p||s.m||s.e)ask();else plan()}
+ for(var k2 in cb)cb[k2].onchange=onchg;
+ document.getElementById('wTest').onclick=function(){ask(function(){if(Notification.permission==='granted')show('إسلامي توبة','هذا إشعار تجريبي','test');else warn()})};
+ /* جرس كتم لكل صلاة */
+ var BI={'الْفَجْرُ':'fajr','الظُّهْرُ':'dhuhr','الْعَصْرُ':'asr','الْمَغْرِبُ':'maghrib','الْعِشَاءُ':'isha'};
+ var SV='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2H4.5z"/><path d="M10 20.5a2 2 0 0 0 4 0"/>';
+ var ON=SV+'</svg>',OFF=SV+'<path d="M3 3l18 18" stroke-width="2.4"/></svg>';
+ function bells(){var ul=document.getElementById('ptList');if(!ul)return;
+  Array.prototype.forEach.call(ul.children,function(li){var sp=li.querySelector('span');if(!sp)return;var id=BI[sp.textContent.trim()];if(!id||li.querySelector('.bell'))return;
+   var b=document.createElement('button');b.type='button';b.className='bell';b.setAttribute('data-id',id);
+   function paint(){var m=!!gm()[id];b.innerHTML=m?OFF:ON;b.setAttribute('aria-label',m?'التنبيه متوقف، اضغط للتشغيل':'التنبيه مفعّل، اضغط للإيقاف');b.style.opacity=m?'.55':'1'}
+   b.style.cssText='background:none;border:0;color:inherit;cursor:pointer;vertical-align:middle;margin-inline-start:10px;padding:2px 4px';paint();
+   b.onclick=function(e){e.stopPropagation();var o=gm();if(o[id])delete o[id];else o[id]=1;put(MK,o);paint();
+    if(!o[id]){var s=get();if(!s.p){s.p=true;cb.p.checked=true;put(K,s)}ask()}else plan()};
+   sp.insertBefore(b,sp.firstChild)})}
+ var pl=document.getElementById('ptList');if(pl){new MutationObserver(bells).observe(pl,{childList:true});bells()}
+ document.addEventListener('ptloc',function(){setTimeout(plan,0)});
+ document.addEventListener('visibilitychange',function(){if(!document.hidden)plan()});
+ setInterval(plan,3600000);
+ setTimeout(function(){warn();plan()},500);
+})();
+</script>
 </body>
-  </html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </html>
