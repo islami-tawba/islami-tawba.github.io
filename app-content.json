@@ -1,0 +1,48 @@
+{
+ "version": 2,
+ "minApp": 4,
+ "files": [
+  {
+   "path": "index.html",
+   "url": "app-index.html",
+   "size": 154866,
+   "sha256": "9e87c40c553c7a6775dad9124bdd7a9c2de14aa94a3d19ddd5bfc36b31d296ba"
+  },
+  {
+   "path": "manifest.webmanifest",
+   "url": "manifest.webmanifest",
+   "size": 729,
+   "sha256": "29c6787633b4bfd374101a79e142310e2b8a36dc66ab85ccb11df7ad9b3f56d6"
+  },
+  {
+   "path": "og-image.png",
+   "url": "og-image.png",
+   "size": 120818,
+   "sha256": "4cd7fcd8eea47b319c56275a3ebdf05f7f1efc74eb89cbd51eaaa49b522ccba1"
+  },
+  {
+   "path": "4-icon-192.png",
+   "url": "4-icon-192.png",
+   "size": 57533,
+   "sha256": "a027172f242bc6b55aff0ccede0762e528140ec995cd6323744e16ebdd834c0f"
+  },
+  {
+   "path": "5-icon-512.png",
+   "url": "5-icon-512.png",
+   "size": 227198,
+   "sha256": "f8315faae31ca1b6ab0bdf16eb4cce72bbe5ce00d83e64d9760e871074fbce49"
+  },
+  {
+   "path": "6-icon-maskable-512.png",
+   "url": "6-icon-maskable-512.png",
+   "size": 171858,
+   "sha256": "a8a775313010ffff52e0fbdbb1abbbc0647381f8ae7620d8b801b3c6d7d18af9"
+  },
+  {
+   "path": "7-apple-touch-icon.png",
+   "url": "7-apple-touch-icon.png",
+   "size": 51510,
+   "sha256": "fedf73a66df09ccfd7e100ae2564b61448dd2e5f41ad43ee582fbb83592a182c"
+  }
+ ]
+}
