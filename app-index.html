@@ -297,6 +297,10 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
   <p id="upMsg" style="font-size:14px;margin:10px 0 0"></p>
   <p id="upVer" style="font-size:12px;opacity:.7;margin:6px 0 0"></p>
   </div>
+  <div style="text-align:center;border:1px solid var(--g3);border-radius:14px;padding:16px 12px;margin-top:14px">
+  <div style="color:var(--g3);font-size:14px">الْمَالِكُ وَصَاحِبُ فِكْرَةِ التَّطْبِيقِ وَالْمَوْقِعِ</div>
+  <div style="color:var(--g);font-size:21px;font-weight:700;margin-top:6px"><bdi dir="ltr" style="unicode-bidi:isolate">MU57TAR MUSTAFA</bdi></div>
+  </div>
   </div>
   <div class="sec" id="secQibla" hidden>
   <h2>اتِّجَاهُ الْقِبْلَةِ</h2>
@@ -323,10 +327,11 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
   </div>
   <svg class="div" viewBox="0 0 300 20" aria-hidden="true"><use href="#divider"/></svg>
   <div class="dl-app" id="dlApp" style="text-align:center;margin:18px 0 6px">
-  <a class="btn" href="https://islami-tawba.github.io/1-islami-tawba-1.2.apk" download data-goatcounter-click="android-download" data-goatcounter-title="تحميل للأندرويد" style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none;color:var(--g2)">تحميل للأندرويد</a>
-  <p class="pt-note">الإصدار 1.2: يعمل بدون إنترنت، وفيه تنبيهات الصلاة والأذكار وزر تحديث المحتوى. التحديث يُثبَّت فوق النسخة القديمة. عند التثبيت سيظهر تحذير من أندرويد لأن التطبيق من خارج متجر Google Play. اسمح بالتثبيت من هذا المصدر لإكماله.</p>
+  <a class="btn" href="#" download data-goatcounter-click="android-download" data-goatcounter-title="تحميل للأندرويد" style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none;color:var(--g2)">تحميل للأندرويد</a>
+  <p class="pt-note">الإصدار 1.3: يعمل بدون إنترنت، وفيه تنبيهات الصلاة والأذكار وزر تحديث المحتوى وتكبير الشاشة بإصبعين. التحديث يُثبَّت فوق النسخة القديمة. عند التثبيت سيظهر تحذير من أندرويد لأن التطبيق من خارج متجر Google Play. اسمح بالتثبيت من هذا المصدر لإكماله.</p>
   </div>
   <p class="foot">تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ.</p>
+  <p class="foot" style="font-size:12px;opacity:.8">فِكْرَةُ وَمِلْكِيَّةُ <bdi dir="ltr" style="unicode-bidi:isolate">MU57TAR MUSTAFA</bdi></p>
 </main>
 <script>
 (function(){
@@ -1440,24 +1445,5 @@ if(false){(function(){
  window.__appUpdate=function(st,msg){ub.disabled=false;um.textContent=msg;um.style.color=st==='ok'||st==='same'?'#8fd18f':'#e08a6d';ver();if(st==='ok')setTimeout(function(){location.reload()},1800)};
 })();
 </script>
-<script>
-/* تكبير وتصغير بإصبعين (للتطبيق) */
-(function(){
- var KZ='islami-tawba.zoom',Z=1,d0=0,de=document.documentElement;
- try{Z=Math.min(3,Math.max(1,parseFloat(localStorage.getItem(KZ))||1))}catch(x){}
- function apply(z){Z=Math.min(3,Math.max(1,z));de.style.zoom=Z===1?'':Z;try{localStorage.setItem(KZ,Z)}catch(x){}}
- if(Z!==1)de.style.zoom=Z;
- function dist(t){var dx=t[0].clientX-t[1].clientX,dy=t[0].clientY-t[1].clientY;return Math.sqrt(dx*dx+dy*dy)}
- document.addEventListener('touchstart',function(e){if(e.touches.length===2)d0=dist(e.touches);else d0=0},{passive:true});
- document.addEventListener('touchmove',function(e){
-  if(e.touches.length!==2||!d0)return;
-  var d=dist(e.touches),r=d/d0;if(Math.abs(r-1)<0.01)return;
-  var old=Z,cy=(e.touches[0].clientY+e.touches[1].clientY)/2;
-  e.preventDefault();apply(Z*r);d0=d;
-  var k=Z/old;if(k!==1)window.scrollTo(window.pageXOffset*k,(window.pageYOffset+cy)*k-cy);
- },{passive:false});
- document.addEventListener('touchend',function(e){if(e.touches.length<2)d0=0},{passive:true});
-})();
-</script>
-</body>
+<script>try{localStorage.removeItem('islami-tawba.zoom')}catch(x){}</script></body>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     </html>
