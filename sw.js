@@ -1,8 +1,8 @@
 /* إسلامي توبة: عمل دون إنترنت. غيّر رقم النسخة عند كل تحديث. */
-var VERSION='v9';
+var VERSION='v10';
 var PREFIX='islami-tawba:'+self.registration.scope+':';
 var CACHE=PREFIX+VERSION;
-var CORE=['./','./index.html','./manifest.webmanifest','./og-image.png'];
+var CORE=['./','./index.html','./manifest.webmanifest','./og-image.png','./4-icon-192.png','./5-icon-512.png','./6-icon-maskable-512.png','./7-apple-touch-icon.png'];
 self.addEventListener('install',function(e){
   e.waitUntil(caches.open(CACHE).then(function(c){return Promise.all(CORE.map(function(u){return c.add(new Request(u,{cache:'reload'})).catch(function(){})}))}).then(function(){return self.skipWaiting()}));
 });
