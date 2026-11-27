@@ -1,12 +1,12 @@
 {
- "version": 4,
+ "version": 5,
  "minApp": 4,
  "files": [
   {
    "path": "index.html",
    "url": "app-index.html",
-   "size": 165837,
-   "sha256": "838255bb83a2adb7703445e4a89cd26d637e5f6a6431280079d5a81951041f96"
+   "size": 180340,
+   "sha256": "8d0974381d76a11fe08da1c5a9ab4ff928875f32862dd8a350660681eccbc5c3"
   },
   {
    "path": "manifest.webmanifest",
@@ -43,6 +43,30 @@
    "url": "7-apple-touch-icon.png",
    "size": 51510,
    "sha256": "fedf73a66df09ccfd7e100ae2564b61448dd2e5f41ad43ee582fbb83592a182c"
+  },
+  {
+   "path": "1-ruqyah-fatiha.mp3",
+   "url": "1-ruqyah-fatiha.mp3",
+   "size": 793327,
+   "sha256": "1e82007d1dc37fa879c217db756c379f348e8414a4749b07eddac14b007394d2"
+  },
+  {
+   "path": "2-ruqyah-kursi.mp3",
+   "url": "2-ruqyah-kursi.mp3",
+   "size": 831782,
+   "sha256": "d7060af4799d7cde93de696e6b49925daa3290922f06ec42d9e0a9863e917c0d"
+  },
+  {
+   "path": "3-ruqyah-baqarah-end.mp3",
+   "url": "3-ruqyah-baqarah-end.mp3",
+   "size": 1374711,
+   "sha256": "3f4606d40261662f7a6db7e6ebc83732204a03e79166a54d9536c0c7dc813e47"
+  },
+  {
+   "path": "4-ruqyah-ikhlas-muawwidhat.mp3",
+   "url": "4-ruqyah-ikhlas-muawwidhat.mp3",
+   "size": 1249736,
+   "sha256": "ff3ffed277081050f0f2f0b3700f6f2bccfc719f38e9eb51a0cc15d7b4806baf"
   }
  ]
 }
