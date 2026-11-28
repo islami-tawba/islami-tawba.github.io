@@ -328,6 +328,25 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
   <p id="nfWarn" style="display:none;color:#e0a96d;font-size:14px;margin:8px 0"></p>
   <div class="row" style="margin-top:8px"><button type="button" class="btn ghost" id="nfTest">إشعار تجريبي</button><button type="button" class="btn ghost" id="nfBat">إعدادات البطارية</button></div>
   <p style="font-size:13px;opacity:.8;margin:10px 0 0">المواعيد تُحسب على الجهاز حسب مدينتك أو موقعك، وتعمل بدون إنترنت وبعد إعادة تشغيل الهاتف. افتح التطبيق مرة كل شهر لتحديثها. بعض الهواتف توقف التنبيهات لتوفير البطارية، فاسمح للتطبيق من إعدادات البطارية.</p>
+  <div id="adBlock"><hr style="border:0;border-top:1px solid rgba(201,162,39,.25);margin:14px 0">
+  <h2 style="margin:0 0 10px;font-size:18px">الأذان</h2>
+  <p style="font-size:14px;margin:0 0 10px">يُرفع الأذان من الهاتف عند موعد كل صلاة مفعّلة أعلاه، ويعمل بدون إنترنت حتى والشاشة مقفولة. ولتخصيص الوضع أو المؤذن لصلاة بعينها، اضغط رمز مكبر الصوت بجانبها في مواعيد الصلاة.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:8px 18px;font-size:15px">
+  <label style="display:flex;align-items:center;gap:6px"><input type="radio" name="adMode" value="sound" style="width:20px;height:20px"> أذان صوتي</label>
+  <label style="display:flex;align-items:center;gap:6px"><input type="radio" name="adMode" value="vibrate" style="width:20px;height:20px"> اهتزاز فقط</label>
+  <label style="display:flex;align-items:center;gap:6px"><input type="radio" name="adMode" value="silent" style="width:20px;height:20px"> صامت</label>
+  <label style="display:flex;align-items:center;gap:6px"><input type="radio" name="adMode" value="off" style="width:20px;height:20px"> إيقاف</label>
+  </div>
+  <div class="row" style="margin-top:12px;align-items:center;gap:10px">
+  <span style="font-size:14px">صوت المؤذن:</span>
+  <select id="adMuz" style="background:#171512;color:var(--g,#c9a227);border:1px solid var(--g2,#c9a227);border-radius:10px;padding:8px 10px;font-size:15px;font-family:inherit">
+  <option value="1">الحرم المكي</option>
+  <option value="2">صباح فخري</option>
+  <option value="3">عقيب عزيز</option>
+  </select>
+  </div>
+  <div class="row" style="margin-top:8px"><button type="button" class="btn ghost" id="adTest">تجربة الأذان</button><button type="button" class="btn ghost" id="adStop">إيقاف</button></div>
+  <p style="font-size:11px;opacity:.6;margin:10px 0 0">تسجيلات الأذان: الحرم المكي (Seyfula Islam، CC BY 3.0) · صباح فخري (ملكية عامة) · عقيب عزيز (CC BY-SA 4.0) — من Wikimedia Commons.</p></div>
   </div>
   </div>
   <div class="sec" id="secApp" hidden>
@@ -338,6 +357,11 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
   <div class="row"><button type="button" class="btn" id="upBtn">تحديث</button></div>
   <p id="upMsg" style="font-size:14px;margin:10px 0 0"></p>
   <p id="upVer" style="font-size:12px;opacity:.7;margin:6px 0 0"></p>
+  <hr style="border:0;border-top:1px solid rgba(201,162,39,.25);margin:14px 0">
+  <h2 style="margin:0 0 10px;font-size:18px">تحديث التطبيق</h2>
+  <p style="font-size:14px;margin:0 0 10px">يتحقق من وجود إصدار جديد من التطبيق نفسه ويحمّله من الموقع. سيصلك إشعار تلقائيًا عند صدور إصدار جديد.</p>
+  <div class="row"><button type="button" class="btn" id="apBtn">التحقق من التحديثات</button><button type="button" class="btn" id="apDl" style="display:none">تحميل الإصدار الجديد</button></div>
+  <p id="apMsg" style="font-size:14px;margin:10px 0 0"></p>
   </div>
   <div style="text-align:center;border:1px solid var(--g3);border-radius:14px;padding:16px 12px;margin-top:14px">
   <div style="color:var(--g3);font-size:14px">الْمَالِكُ وَصَاحِبُ فِكْرَةِ التَّطْبِيقِ وَالْمَوْقِعِ</div>
@@ -1622,13 +1646,28 @@ if(false){(function(){
  var lastSig='';
  var MK='islami-tawba.mute';
  function gm(){try{var o=JSON.parse(localStorage.getItem(MK)||'{}');return o&&typeof o==='object'?o:{}}catch(x){return{}}}
+ /* الأذان */
+ var ADHOK=false;try{ADHOK=(typeof A!=='undefined'&&typeof A.testAdhan==='function')}catch(x){}
+ var ADK='islami-tawba.adhan';
+ var adSt=(function(){try{var o=JSON.parse(localStorage.getItem(ADK)||'{}');return{mode:o.mode||'sound',muz:o.muz||1,per:(o.per&&typeof o.per==='object')?o.per:{}}}catch(x){return{mode:'sound',muz:1,per:{}}}})();
+ function adSave(){try{localStorage.setItem(ADK,JSON.stringify(adSt))}catch(x){}sync()}
+ (function(){
+  var rs=document.querySelectorAll('input[name=adMode]');
+  Array.prototype.forEach.call(rs,function(r){r.checked=(r.value===adSt.mode);r.onchange=function(){if(r.checked){adSt.mode=r.value;adSave()}}});
+  var sel=document.getElementById('adMuz');sel.value=String(adSt.muz);
+  sel.onchange=function(){adSt.muz=+sel.value;adSave()};
+  document.getElementById('adTest').onclick=function(){try{A.testAdhan(adSt.muz)}catch(x){}};
+  document.getElementById('adStop').onclick=function(){try{A.stopAdhan()}catch(x){}};
+ })();
+ if(!ADHOK){var adb=document.getElementById('adBlock');if(adb)adb.innerHTML='<hr style="border:0;border-top:1px solid rgba(201,162,39,.25);margin:14px 0"><h2 style="margin:0 0 10px;font-size:18px">الأذان</h2><p style="font-size:14px;margin:0">الأذان الصوتي يحتاج تحديث التطبيق إلى الإصدار 1.5 أو أحدث. حدّث التطبيق من بطاقة «تحديث التطبيق» في إعدادات التطبيق، ثم ستظهر لك هنا إعدادات الأذان والمؤذن.</p>'}
  function sync(){
   if(!window.PTLOC||!window.__PT)return;
   var l=window.PTLOC(),now=Date.now(),s=get(),a0=ymd(now,l.tz);
+  s.adhan=adSt.mode;s.muz=adSt.muz;s.adhanPer=adSt.per;
   var mu=gm(),sig=JSON.stringify([s,mu,l.lat,l.lng,a0]);if(sig===lastSig)return;lastSig=sig;
   var ev=[];
   for(var d=0;d<30;d++){var a=ymd(now+d*864e5,l.tz),t=window.__PT(a[0],a[1],a[2],l.lat,l.lng);
-   NM.forEach(function(n){if(!mu[n[0]])ev.push({t:t[n[0]],k:'p',n:n[1]})});
+   NM.forEach(function(n){if(!mu[n[0]])ev.push({t:t[n[0]],k:'p',n:n[1],p:n[0]})});
    ev.push({t:t.sunrise,k:'m'});ev.push({t:t.asr+30*60000,k:'e'});}
   ev=ev.filter(function(e){return e.t>now-60000});
   try{A.sync(JSON.stringify({s:s,ev:ev}))}catch(x){}
@@ -1654,6 +1693,32 @@ if(false){(function(){
  var BI={'الْفَجْرُ':'fajr','الظُّهْرُ':'dhuhr','الْعَصْرُ':'asr','الْمَغْرِبُ':'maghrib','الْعِشَاءُ':'isha'};
  var SV='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2H4.5z"/><path d="M10 20.5a2 2 0 0 0 4 0"/>';
  var ON=SV+'</svg>',OFF=SV+'<path d="M3 3l18 18" stroke-width="2.4"/></svg>';
+ /* أذان مخصص لكل صلاة */
+ var ADSVG='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18 6a8.5 8.5 0 0 1 0 12"/></svg>';
+ function paintAd(b,id){var o=adSt.per[id];b.style.opacity=(o&&(o.m||o.z))?'1':'.45'}
+ function addAdBtn(li,id){
+  var ab=document.createElement('button');ab.type='button';ab.className='adset';ab.setAttribute('data-id',id);
+  ab.style.cssText='background:none;border:0;vertical-align:middle;margin-inline-start:2px;padding:2px 4px;cursor:pointer;color:inherit';
+  ab.innerHTML=ADSVG;ab.setAttribute('aria-label','إعدادات الأذان لهذه الصلاة');paintAd(ab,id);
+  ab.onclick=function(e){e.stopPropagation();toggleAdPanel(li,id,ab)};
+  li.querySelector('span').appendChild(ab)}
+ function toggleAdPanel(li,id,ab){
+  var nx=li.nextSibling;
+  if(nx&&nx.classList&&nx.classList.contains('adpanel')){nx.remove();return}
+  var p=document.createElement('li');p.className='adpanel';
+  p.style.cssText='list-style:none;margin:2px 0 8px;padding:10px 12px;border:1px solid var(--g,#c9a227);border-radius:10px;background:rgba(201,162,39,.06);font-size:14px;line-height:2.2';
+  var cur=adSt.per[id]||{};
+  p.innerHTML='<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span>الأذان لهذه الصلاة:</span> <select class="pm" style="background:#171512;color:inherit;border:1px solid var(--g2,#c9a227);border-radius:8px;padding:4px 8px;font-size:14px;font-family:inherit"><option value="">اتباع العام</option><option value="sound">أذان صوتي</option><option value="vibrate">اهتزاز فقط</option><option value="silent">صامت</option><option value="off">إيقاف</option></select></div>'+
+  '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:6px"><span>مؤذن هذه الصلاة:</span> <select class="pz" style="background:#171512;color:inherit;border:1px solid var(--g2,#c9a227);border-radius:8px;padding:4px 8px;font-size:14px;font-family:inherit"><option value="">اتباع العام</option><option value="1">الحرم المكي</option><option value="2">صباح فخري</option><option value="3">عقيب عزيز</option></select></div>';
+  li.parentNode.insertBefore(p,li.nextSibling);
+  var sm=p.querySelector('.pm'),sz=p.querySelector('.pz');
+  sm.value=cur.m||'';sz.value=cur.z?String(cur.z):'';
+  function save(){var o=adSt.per[id]||{};
+   if(sm.value)o.m=sm.value;else delete o.m;
+   if(sz.value)o.z=+sz.value;else delete o.z;
+   if(o.m||o.z)adSt.per[id]=o;else delete adSt.per[id];
+   adSave();paintAd(ab,id)}
+  sm.onchange=save;sz.onchange=save}
  function bells(){var ul=document.getElementById('ptList');if(!ul)return;var mu=gm();
   Array.prototype.forEach.call(ul.children,function(li){var sp=li.querySelector('span');if(!sp)return;var id=BI[sp.textContent.trim()];if(!id||li.querySelector('.bell'))return;
    var b=document.createElement('button');b.type='button';b.className='bell';b.setAttribute('data-id',id);
@@ -1662,13 +1727,35 @@ if(false){(function(){
    b.onclick=function(e){e.stopPropagation();var o=gm();if(o[id])delete o[id];else o[id]=1;try{localStorage.setItem(MK,JSON.stringify(o))}catch(x){}paint();
     var s=get();if(!o[id]&&!s.p){s.p=true;cb.p.checked=true;try{localStorage.setItem(K,JSON.stringify(s))}catch(x){}}
     if(!o[id]){try{A.askNotif()}catch(x){}}sync();setTimeout(warn,1500)};
-   sp.insertBefore(b,sp.firstChild)})}
+   sp.insertBefore(b,sp.firstChild);if(ADHOK)addAdBtn(li,id)})}
  var pl=document.getElementById('ptList');if(pl){new MutationObserver(bells).observe(pl,{childList:true});bells()}
  /* تحديث المحتوى */
  var ub=document.getElementById('upBtn'),um=document.getElementById('upMsg'),uv=document.getElementById('upVer');
  function ver(){try{uv.textContent='نسخة المحتوى: '+A.contentVersion()+' · نسخة التطبيق: '+A.appVersion()}catch(x){}}
  ver();
  ub.onclick=function(){ub.disabled=true;um.style.color='';um.textContent='جاري التحديث...';try{A.update()}catch(x){ub.disabled=false;um.textContent='تعذر بدء التحديث.'}};
+ /* تحديث التطبيق */
+ var apB=document.getElementById('apBtn'),apM=document.getElementById('apMsg'),apD=document.getElementById('apDl');
+ var APKJ='https://islami-tawba.github.io/app-version.json';
+ function apNewer(o){
+  try{if(A.appCode)return o.versionCode>A.appCode()}catch(x){}
+  try{return parseFloat(o.versionName)>parseFloat(A.appVersion())}catch(x){}
+  return false}
+ function apCheck(auto){
+  if(!auto){apB.disabled=true;apM.style.color='';apM.textContent='جاري التحقق...'}
+  fetch(APKJ+'?t='+Date.now()).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(o){
+   apB.disabled=false;
+   if(o&&apNewer(o)&&o.url){
+    apM.style.color='#8fd18f';apM.textContent='يتوفر إصدار جديد ('+o.versionName+'). اضغط تحميل ثم ثبّته فوق الحالي.';
+    apD.style.display='';apD.onclick=function(){try{window.open(o.url,'_blank')}catch(x){location.href=o.url}};
+   }else{
+    if(!auto){apM.style.color='';apM.textContent='أنت على أحدث إصدار.'}
+    apD.style.display='none';
+   }
+  }).catch(function(){apB.disabled=false;if(!auto){apM.style.color='#e08a6d';apM.textContent='تعذر التحقق. تأكد من الإنترنت وحاول مرة أخرى.'}});
+ }
+ apB.onclick=function(){apCheck(false)};
+ setTimeout(function(){apCheck(true)},2500);
  window.__appUpdate=function(st,msg){ub.disabled=false;um.textContent=msg;um.style.color=st==='ok'||st==='same'?'#8fd18f':'#e08a6d';ver();if(st==='ok')setTimeout(function(){location.reload()},1800)};
 })();
 </script>
