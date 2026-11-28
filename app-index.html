@@ -236,7 +236,7 @@ body.light .item[aria-pressed="true"]{background:#f0e6c8}
 body.light .dhikr{background:#fdf8e7;border-color:#d9cba0}
 body.light .dhikr:active{background:#f0e6c8}
 body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
-</style>
+.qay{position:relative;border:1px solid rgba(212,175,55,.55);border-radius:14px;padding:12px 18px 10px;margin:0 0 14px;background:linear-gradient(180deg,rgba(212,175,55,.07),rgba(212,175,55,.02));box-shadow:inset 0 0 0 3px var(--bg),inset 0 0 0 4px rgba(212,175,55,.32)}.qay::before,.qay::after{content:'';position:absolute;left:50%;width:9px;height:9px;margin-left:-5px;border:1px solid var(--g);transform:rotate(45deg);background:var(--bg)}.qay::before{top:-5px}.qay::after{bottom:-5px}</style>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="7-apple-touch-icon.png">
 <link rel="icon" type="image/png" href="4-icon-192.png">
@@ -362,6 +362,29 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
   <p style="font-size:14px;margin:0 0 10px">يتحقق من وجود إصدار جديد من التطبيق نفسه ويحمّله من الموقع. سيصلك إشعار تلقائيًا عند صدور إصدار جديد.</p>
   <div class="row"><button type="button" class="btn" id="apBtn">التحقق من التحديثات</button><button type="button" class="btn" id="apDl" style="display:none">تحميل الإصدار الجديد</button></div>
   <p id="apMsg" style="font-size:14px;margin:10px 0 0"></p>
+  </div>
+  <div id="appInfo" style="border:1px solid var(--g2,#c9a227);border-radius:14px;padding:14px;margin-top:14px">
+  <button type="button" id="aiBtn" aria-expanded="false" aria-controls="aiPanel" style="display:flex;width:100%;align-items:center;justify-content:space-between;gap:10px;background:none;border:0;padding:0;cursor:pointer;font:inherit;color:inherit">
+  <span style="font-size:18px;font-weight:700">معلومات التطبيق</span>
+  <span id="aiArrow" aria-hidden="true" style="color:var(--g3);font-size:16px">▾</span>
+  </button>
+  <div id="aiPanel" hidden style="margin-top:12px">
+  <p style="font-size:14px;margin:0 0 10px">نسخة التطبيق: <b id="aiAppVer">—</b> · نسخة المحتوى: <b id="aiContentVer">—</b></p>
+  <h2 style="margin:12px 0 8px;font-size:16px">ما الجديد في الإصدار 1.5.2</h2>
+  <ul style="font-size:14px;margin:0 0 4px;padding-inline-start:20px;line-height:1.9">
+  <li>قسم «معلومات التطبيق» في إعدادات التطبيق يعرض نسخة التطبيق ونسخة المحتوى وطريقة عمل التنبيهات والأذان.</li>
+  <li>إشعار في إشعارات الهاتف عند توفّر إصدار جديد من التطبيق.</li>
+  </ul>
+  <h2 style="margin:12px 0 8px;font-size:16px">كيف تعمل التنبيهات والأذان</h2>
+  <ul style="font-size:14px;margin:0;padding-inline-start:20px;line-height:1.9">
+  <li>مواعيد الصلاة تُحسب على الهاتف حسب مدينتك أو موقعك، وتعمل بدون إنترنت وبعد إعادة تشغيل الهاتف.</li>
+  <li>عند موعد كل صلاة مفعّلة يرفع الهاتف الأذان حسب الوضع المختار: أذان صوتي، أو اهتزاز فقط، أو صامت، حتى والشاشة مقفولة.</li>
+  <li>يمكن تخصيص الوضع والمؤذن لكل صلاة من رمز مكبّر الصوت بجانبها في «مواعيد الصلاة».</li>
+  <li>التنبيهات محلية على الهاتف ولا تحتاج سيرفر. يفحص التطبيق وجود إصدار جديد عند فتحه ثم مرة يوميًا، ولهذا يظهر إشعار الإصدار الجديد بعد فتح التطبيق.</li>
+  <li>بعض الهواتف توقف التنبيهات لتوفير البطارية: اسمح للتطبيق من «إعدادات البطارية»، وافتح التطبيق مرة كل شهر لتحديث المواعيد.</li>
+  </ul>
+  <p style="font-size:13px;opacity:.8;margin:14px 0 0;padding-top:10px;border-top:1px solid rgba(201,162,39,.25);text-align:center">الْمَالِكُ وَصَاحِبُ فِكْرَةِ التَّطْبِيقِ وَالْمَوْقِعِ: <bdi dir="ltr" style="unicode-bidi:isolate">MU57TAR MUSTAFA</bdi></p>
+  </div>
   </div>
   <div style="text-align:center;border:1px solid var(--g3);border-radius:14px;padding:16px 12px;margin-top:14px">
   <div style="color:var(--g3);font-size:14px">الْمَالِكُ وَصَاحِبُ فِكْرَةِ التَّطْبِيقِ وَالْمَوْقِعِ</div>
@@ -665,9 +688,11 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
       if(n!==1&&n!==9){qBism.textContent=BISM;qBism.style.display=''}
       var frag=document.createDocumentFragment();
       s.a.forEach(function(t,i){
-        frag.appendChild(document.createTextNode(t+' '));
+        var w=document.createElement('div');w.className='qay';
+        w.appendChild(document.createTextNode(t));
         var e=document.createElement('span');e.className='qe';e.textContent=ard(i+1);
-        frag.appendChild(e);frag.appendChild(document.createTextNode(' '));
+        w.appendChild(e);
+        frag.appendChild(w);
       });
       qText.innerHTML='';qText.appendChild(frag);
       $('qPrev').disabled=(n<=1);$('qNext').disabled=(n>=114);
@@ -1759,5 +1784,18 @@ if(false){(function(){
  window.__appUpdate=function(st,msg){ub.disabled=false;um.textContent=msg;um.style.color=st==='ok'||st==='same'?'#8fd18f':'#e08a6d';ver();if(st==='ok')setTimeout(function(){location.reload()},1800)};
 })();
 </script>
-<script>try{localStorage.removeItem('islami-tawba.zoom')}catch(x){}</script></body>
+<script>try{localStorage.removeItem('islami-tawba.zoom')}catch(x){}</script><script>
+(function(){
+ try{
+  var btn=document.getElementById('aiBtn'),panel=document.getElementById('aiPanel'),arrow=document.getElementById('aiArrow');
+  if(btn&&panel){btn.addEventListener('click',function(){var open=!!panel.hidden;panel.hidden=!open;btn.setAttribute('aria-expanded',open?'true':'false');if(arrow)arrow.textContent=open?'\u25B4':'\u25BE';});}
+  function sv(f){try{return f()}catch(e){return null}}
+  var A=window.AndroidApp;
+  var av=A?sv(function(){return A.appVersion()}):null, ac=A?sv(function(){return A.appCode()}):null, cv=A?sv(function(){return A.contentVersion()}):null;
+  var e1=document.getElementById('aiAppVer'), e2=document.getElementById('aiContentVer');
+  if(e1){e1.textContent=(av?String(av):'\u2014')+((ac!==null&&ac!==undefined&&ac!=='')?' ('+ac+')':'')}
+  if(e2){var c=parseInt(cv,10);e2.textContent=(c>0?String(c):'\u0627\u0644\u0645\u062f\u0645\u062c\u0629')}
+ }catch(x){}
+})();
+</script></body>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     </html>
