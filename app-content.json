@@ -1,12 +1,12 @@
 {
-  "version": 12,
+  "version": 14,
   "minApp": 5,
   "files": [
     {
       "path": "index.html",
       "url": "app-index.html",
-      "size": 225302,
-      "sha256": "c96bdc279436d25569ca37115a4ba955520f3cdc087d62bc9c6679abf5148231"
+      "size": 228606,
+      "sha256": "3f744a67756cc41ce86ba30be036e421645adedf4154dcd0426b96104e1cf9d3"
     },
     {
       "path": "manifest.webmanifest",
