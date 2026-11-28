@@ -89,6 +89,39 @@ body.light .salat b{text-shadow:none}
 .clockbar .ck-h{color:var(--g)}
 .clockbar .ck-g{color:var(--g3)}
 body.light .clockbar{background:#fdf8e7dd;border-color:#c0a968;box-shadow:0 2px 10px rgba(120,90,20,.18)}
+@font-face{font-family:'Amiri Quran';font-style:normal;font-weight:400;font-display:swap;src:url(/amiri-quran.woff2) format('woff2')}
+.qlist{list-style:none;margin:0;padding:0}
+.qs{display:flex;align-items:center;gap:10px;width:100%;min-height:52px;padding:8px 10px;border:0;border-bottom:1px solid #3a2f14;background:none;text-align:start;cursor:pointer;color:inherit;font:inherit;border-radius:4px}
+.qs:active{background:#1d1709}
+.qs .qn{min-width:1.8em;color:var(--g3);font-family:Georgia,serif;text-align:center}
+.qs .qt{flex:1;color:var(--g2);font-size:19px}
+.qs .qm{color:var(--g3);font-size:13px;white-space:nowrap}
+.qr-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:4px 0 10px;flex-wrap:wrap}
+.qr-nav{display:flex;gap:8px}
+.qr-title{color:var(--g);font-size:26px;font-weight:700;text-align:center}
+.qr-meta{color:var(--g3);font-size:14px;text-align:center;margin-bottom:4px}
+.qbism{text-align:center;color:var(--g);font-size:30px;margin:12px 0 4px;font-family:'Amiri Quran','Amiri',serif}
+.qtext{font-family:'Amiri Quran','Amiri','Scheherazade New','Noto Naskh Arabic',serif;font-size:27px;line-height:2.4;text-align:justify;text-align-last:center;color:var(--g2)}
+.qe{display:inline-flex;align-items:center;justify-content:center;min-width:1.9em;height:1.9em;margin:0 .12em;border:1px solid var(--g3);border-radius:50%;color:var(--g);font-size:.6em;line-height:1;vertical-align:middle}
+.qerr{text-align:center;color:#e0a96d;font-size:15px;padding:14px 6px}
+.aq-bar[hidden]{display:none}
+.aq-bar{display:flex;align-items:center;gap:10px;border:1px solid var(--g);border-radius:12px;padding:10px 12px;margin-bottom:10px;background:#14110a;position:sticky;top:8px;z-index:50}
+.aq-now{flex:1;color:var(--g);font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.aq-pp{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;border:1.5px solid var(--g);background:transparent;color:var(--g);cursor:pointer;padding:0;flex:none}
+.aq-pp svg{width:18px;height:18px;fill:currentColor}
+.qs .ap{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1px solid var(--g3);color:var(--g);flex:none}
+.qs .ap svg{width:14px;height:14px;fill:currentColor}
+#aqList li{display:flex;align-items:center;gap:6px}
+#aqList li .qs{flex:1;width:auto}
+#aqList .ad{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:34px;border-radius:50%;border:1px solid var(--g3);background:transparent;color:var(--g3);cursor:pointer;padding:0 6px;flex:none;font-size:12px;font-family:inherit}
+#aqList .ad svg{width:15px;height:15px;fill:currentColor}
+#aqList .ad.done{border-color:var(--g);color:var(--g)}
+body.light #aqList .ad.done{color:#7a5c00}
+.qs.on{background:#2a2108}
+.qs.on .ap{border-color:var(--g);background:var(--g);color:#0a0907}
+body.light .aq-bar{background:#fdf8e7}
+body.light .qs.on{background:#f0e6c8}
+body.light .qs.on .ap{color:#fdf8e7}
 .menu-pop{position:absolute;top:62px;right:12px;z-index:10000;min-width:210px;background:#14110a;border:1px solid var(--g);border-radius:12px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.5);display:none}
 .menu-pop.open{display:block}
 .menu-pop button{display:block;width:100%;text-align:start;background:none;border:0;border-radius:8px;color:var(--g2);font:inherit;font-size:18px;padding:10px 12px;cursor:pointer}
@@ -215,7 +248,7 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
 <body>
 <button type="button" class="mode-btn" id="modeBtn" aria-label="الْوَضْعُ النَّهَارِيُّ"></button>
 <button type="button" class="menu-btn" id="menuBtn" aria-label="الْقَائِمَةُ" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-<div class="menu-pop" id="menuPop" role="menu"><button type="button" class="cur" data-sec="secTasbih" role="menuitem">التَّسْبِيحُ وَالْأَذْكَارُ</button><button type="button" data-sec="secDuas" role="menuitem">أَدْعِيَةٌ قُرْآنِيَّةٌ</button><button type="button" data-sec="secPrayer" role="menuitem">مَوَاعِيدُ الصَّلَاةِ</button><button type="button" data-sec="secAdhkar" role="menuitem">الْأَذْكَارُ الْإِسْلَامِيَّةُ</button><button type="button" data-sec="secQibla" role="menuitem">اتِّجَاهُ الْقِبْلَةِ</button><button type="button" data-sec="secWeb" role="menuitem" id="menuWeb" style="display:none"><span style="display:inline-flex;align-items:center;gap:8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2H4.5z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg>التنبيهات</span></button></div>
+<div class="menu-pop" id="menuPop" role="menu"><button type="button" data-sec="secQuran" role="menuitem">الْمُصْحَفُ الشَّرِيفُ</button><button type="button" data-sec="secAudio" role="menuitem">الْمُصْحَفُ صَوْتًا</button><button type="button" class="cur" data-sec="secTasbih" role="menuitem">التَّسْبِيحُ وَالْأَذْكَارُ</button><button type="button" data-sec="secDuas" role="menuitem">أَدْعِيَةٌ قُرْآنِيَّةٌ</button><button type="button" data-sec="secPrayer" role="menuitem">مَوَاعِيدُ الصَّلَاةِ</button><button type="button" data-sec="secAdhkar" role="menuitem">الْأَذْكَارُ الْإِسْلَامِيَّةُ</button><button type="button" data-sec="secQibla" role="menuitem">اتِّجَاهُ الْقِبْلَةِ</button><button type="button" data-sec="secWeb" role="menuitem" id="menuWeb" style="display:none"><span style="display:inline-flex;align-items:center;gap:8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2H4.5z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg>التنبيهات</span></button></div>
 <div class="clockbar" id="clockbar" aria-label="السَّاعَةُ وَالتَّارِيخُ"><span class="ck-time" id="ckTime">--:--:--</span><span class="ck-line" aria-hidden="true"></span><span class="ck-dates"><span class="ck-h" id="ckHijri"></span><span class="ck-g" id="ckGreg"></span></span></div>
 <main>
   <div class="salat"><b>صَلُّوا عَلَى النَّبِيِّ ﷺ</b><span>اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَىٰ سَيِّدِنَا مُحَمَّدٍ</span><button type="button" class="salat-btn" id="salatBtn" aria-label="تَشْغِيلُ الصَّوْتِ / إِيقَافُهُ"><svg class="ic-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button></div>
@@ -310,6 +343,36 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
   </div>
   </div>
   <svg class="div" viewBox="0 0 300 20" aria-hidden="true"><use href="#divider"/></svg>
+
+  <div class="sec" id="secQuran" hidden>
+  <h2>الْمُصْحَفُ الشَّرِيفُ</h2>
+  <div class="anote">بِالرَّسْمِ الْعُثْمَانِيِّ — نَصٌّ مُوَثَّقٌ مِنْ مَشْرُوعِ تَنْزِيل، يُحْفَظُ عَلَى جِهَازِكَ وَيَعْمَلُ بِلَا إِنْتَرْنِت</div>
+  <ul class="qlist" id="qIndex"></ul>
+  <div id="qRead" hidden>
+    <div class="qr-head">
+      <button type="button" class="btn ghost" id="qBack">الْفَهْرَسُ</button>
+      <div class="qr-nav">
+        <button type="button" class="btn ghost" id="qPrev">السَّابِقَةُ</button>
+        <button type="button" class="btn ghost" id="qNext">التَّالِيَةُ</button>
+      </div>
+    </div>
+    <div class="qr-title" id="qTitle"></div>
+    <div class="qr-meta" id="qMeta"></div>
+    <div class="qbism" id="qBism"></div>
+    <div class="qerr" id="qErr" hidden>تَعَذَّرَ التَّحْمِيلُ. تَأَكَّدْ مِنَ الْإِنْتَرْنِتِ ثُمَّ أَعِدِ الْمُحَاوَلَةَ.</div>
+    <div class="qtext" id="qText"></div>
+  </div>
+  </div>
+  <div class="sec" id="secAudio" hidden>
+  <h2>الْمُصْحَفُ صَوْتًا</h2>
+  <div class="anote">بِصَوْتِ الشَّيْخِ عَبْدِ الْبَاسِطِ عَبْدِ الصَّمَدِ — تِلَاوَةٌ مُرَتَّلَةٌ — زِرُّ التَّنْزِيلِ ⬇ يَحْفَظُ السُّورَةَ عَلَى جِهَازِكَ لِتَعْمَلَ بِلَا إِنْتَرْنِت</div>
+  <div class="aq-bar" id="aqBar" hidden>
+    <button type="button" class="aq-pp" id="aqPP" aria-label="تَشْغِيلٌ / إِيقَافٌ"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+    <div class="aq-now" id="aqNow"></div>
+    <button type="button" class="btn ghost" id="aqStop">إِيقَافٌ</button>
+  </div>
+  <ul class="qlist" id="aqList"></ul>
+  </div>
   <div class="dl-app" id="dlApp" style="text-align:center;margin:18px 0 6px">
   <a class="btn" href="https://islami-tawba.github.io/2-islami-tawba-1.3.apk" download data-goatcounter-click="android-download" data-goatcounter-title="تحميل للأندرويد" style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none;color:var(--g2)">تحميل للأندرويد</a>
   <p class="pt-note">الإصدار 1.3: يعمل بدون إنترنت، وفيه تنبيهات الصلاة والأذكار وزر تحديث المحتوى وتكبير الشاشة بإصبعين. التحديث يُثبَّت فوق النسخة القديمة. عند التثبيت سيظهر تحذير من أندرويد لأن التطبيق من خارج متجر Google Play. اسمح بالتثبيت من هذا المصدر لإكماله.</p>
@@ -511,6 +574,141 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
     [].forEach.call(mp.querySelectorAll('button'),function(y){y.classList.toggle('cur',y===x)});
     [].forEach.call(document.querySelectorAll('.sec'),function(sc){sc.hidden=sc.id!==x.getAttribute('data-sec')});
     close();window.scrollTo(0,0)}});
+})();
+
+
+;(function(){
+  var QINDEX=[{"n":1,"name":"سُورَةُ ٱلْفَاتِحَةِ","type":"مكية","c":7},{"n":2,"name":"سُورَةُ البَقَرَةِ","type":"مدنية","c":286},{"n":3,"name":"سُورَةُ آلِ عِمۡرَانَ","type":"مدنية","c":200},{"n":4,"name":"سُورَةُ النِّسَاءِ","type":"مدنية","c":176},{"n":5,"name":"سُورَةُ المَائـِدَةِ","type":"مدنية","c":120},{"n":6,"name":"سُورَةُ الأَنۡعَامِ","type":"مكية","c":165},{"n":7,"name":"سُورَةُ الأَعۡرَافِ","type":"مكية","c":206},{"n":8,"name":"سُورَةُ الأَنفَالِ","type":"مدنية","c":75},{"n":9,"name":"سُورَةُ التَّوۡبَةِ","type":"مدنية","c":129},{"n":10,"name":"سُورَةُ يُونُسَ","type":"مكية","c":109},{"n":11,"name":"سُورَةُ هُودٍ","type":"مكية","c":123},{"n":12,"name":"سُورَةُ يُوسُفَ","type":"مكية","c":111},{"n":13,"name":"سُورَةُ الرَّعۡدِ","type":"مدنية","c":43},{"n":14,"name":"سُورَةُ إِبۡرَاهِيمَ","type":"مكية","c":52},{"n":15,"name":"سُورَةُ الحِجۡرِ","type":"مكية","c":99},{"n":16,"name":"سُورَةُ النَّحۡلِ","type":"مكية","c":128},{"n":17,"name":"سُورَةُ الإِسۡرَاءِ","type":"مكية","c":111},{"n":18,"name":"سُورَةُ الكَهۡفِ","type":"مكية","c":110},{"n":19,"name":"سُورَةُ مَرۡيَمَ","type":"مكية","c":98},{"n":20,"name":"سُورَةُ طه","type":"مكية","c":135},{"n":21,"name":"سُورَةُ الأَنبِيَاءِ","type":"مكية","c":112},{"n":22,"name":"سُورَةُ الحَجِّ","type":"مدنية","c":78},{"n":23,"name":"سُورَةُ المُؤۡمِنُونَ","type":"مكية","c":118},{"n":24,"name":"سُورَةُ النُّورِ","type":"مدنية","c":64},{"n":25,"name":"سُورَةُ الفُرۡقَانِ","type":"مكية","c":77},{"n":26,"name":"سُورَةُ الشُّعَرَاءِ","type":"مكية","c":227},{"n":27,"name":"سُورَةُ النَّمۡلِ","type":"مكية","c":93},{"n":28,"name":"سُورَةُ القَصَصِ","type":"مكية","c":88},{"n":29,"name":"سُورَةُ العَنكَبُوتِ","type":"مكية","c":69},{"n":30,"name":"سُورَةُ الرُّومِ","type":"مكية","c":60},{"n":31,"name":"سُورَةُ لُقۡمَانَ","type":"مكية","c":34},{"n":32,"name":"سُورَةُ السَّجۡدَةِ","type":"مكية","c":30},{"n":33,"name":"سُورَةُ الأَحۡزَابِ","type":"مدنية","c":73},{"n":34,"name":"سُورَةُ سَبَإٍ","type":"مكية","c":54},{"n":35,"name":"سُورَةُ فَاطِرٍ","type":"مكية","c":45},{"n":36,"name":"سُورَةُ يسٓ","type":"مكية","c":83},{"n":37,"name":"سُورَةُ الصَّافَّاتِ","type":"مكية","c":182},{"n":38,"name":"سُورَةُ صٓ","type":"مكية","c":88},{"n":39,"name":"سُورَةُ الزُّمَرِ","type":"مكية","c":75},{"n":40,"name":"سُورَةُ غَافِرٍ","type":"مكية","c":85},{"n":41,"name":"سُورَةُ فُصِّلَتۡ","type":"مكية","c":54},{"n":42,"name":"سُورَةُ الشُّورَىٰ","type":"مكية","c":53},{"n":43,"name":"سُورَةُ الزُّخۡرُفِ","type":"مكية","c":89},{"n":44,"name":"سُورَةُ الدُّخَانِ","type":"مكية","c":59},{"n":45,"name":"سُورَةُ الجَاثِيَةِ","type":"مكية","c":37},{"n":46,"name":"سُورَةُ الأَحۡقَافِ","type":"مكية","c":35},{"n":47,"name":"سُورَةُ مُحَمَّدٍ","type":"مدنية","c":38},{"n":48,"name":"سُورَةُ الفَتۡحِ","type":"مدنية","c":29},{"n":49,"name":"سُورَةُ الحُجُرَاتِ","type":"مدنية","c":18},{"n":50,"name":"سُورَةُ قٓ","type":"مكية","c":45},{"n":51,"name":"سُورَةُ الذَّارِيَاتِ","type":"مكية","c":60},{"n":52,"name":"سُورَةُ الطُّورِ","type":"مكية","c":49},{"n":53,"name":"سُورَةُ النَّجۡمِ","type":"مكية","c":62},{"n":54,"name":"سُورَةُ القَمَرِ","type":"مكية","c":55},{"n":55,"name":"سُورَةُ الرَّحۡمَٰن","type":"مدنية","c":78},{"n":56,"name":"سُورَةُ الوَاقِعَةِ","type":"مكية","c":96},{"n":57,"name":"سُورَةُ الحَدِيدِ","type":"مدنية","c":29},{"n":58,"name":"سُورَةُ المُجَادلَةِ","type":"مدنية","c":22},{"n":59,"name":"سُورَةُ الحَشۡرِ","type":"مدنية","c":24},{"n":60,"name":"سُورَةُ المُمۡتَحنَةِ","type":"مدنية","c":13},{"n":61,"name":"سُورَةُ الصَّفِّ","type":"مدنية","c":14},{"n":62,"name":"سُورَةُ الجُمُعَةِ","type":"مدنية","c":11},{"n":63,"name":"سُورَةُ المُنَافِقُونَ","type":"مدنية","c":11},{"n":64,"name":"سُورَةُ التَّغَابُنِ","type":"مدنية","c":18},{"n":65,"name":"سُورَةُ الطَّلَاقِ","type":"مدنية","c":12},{"n":66,"name":"سُورَةُ التَّحۡرِيمِ","type":"مدنية","c":12},{"n":67,"name":"سُورَةُ المُلۡكِ","type":"مكية","c":30},{"n":68,"name":"سُورَةُ القَلَمِ","type":"مكية","c":52},{"n":69,"name":"سُورَةُ الحَاقَّةِ","type":"مكية","c":52},{"n":70,"name":"سُورَةُ المَعَارِجِ","type":"مكية","c":44},{"n":71,"name":"سُورَةُ نُوحٍ","type":"مكية","c":28},{"n":72,"name":"سُورَةُ الجِنِّ","type":"مكية","c":28},{"n":73,"name":"سُورَةُ المُزَّمِّلِ","type":"مكية","c":20},{"n":74,"name":"سُورَةُ المُدَّثِّرِ","type":"مكية","c":56},{"n":75,"name":"سُورَةُ القِيَامَةِ","type":"مكية","c":40},{"n":76,"name":"سُورَةُ الإِنسَانِ","type":"مدنية","c":31},{"n":77,"name":"سُورَةُ المُرۡسَلَاتِ","type":"مكية","c":50},{"n":78,"name":"سُورَةُ النَّبَإِ","type":"مكية","c":40},{"n":79,"name":"سُورَةُ النَّازِعَاتِ","type":"مكية","c":46},{"n":80,"name":"سُورَةُ عَبَسَ","type":"مكية","c":42},{"n":81,"name":"سُورَةُ التَّكۡوِيرِ","type":"مكية","c":29},{"n":82,"name":"سُورَةُ الانفِطَارِ","type":"مكية","c":19},{"n":83,"name":"سُورَةُ المُطَفِّفِينَ","type":"مكية","c":36},{"n":84,"name":"سُورَةُ الانشِقَاقِ","type":"مكية","c":25},{"n":85,"name":"سُورَةُ البُرُوجِ","type":"مكية","c":22},{"n":86,"name":"سُورَةُ الطَّارِقِ","type":"مكية","c":17},{"n":87,"name":"سُورَةُ الأَعۡلَىٰ","type":"مكية","c":19},{"n":88,"name":"سُورَةُ الغَاشِيَةِ","type":"مكية","c":26},{"n":89,"name":"سُورَةُ الفَجۡرِ","type":"مكية","c":30},{"n":90,"name":"سُورَةُ البَلَدِ","type":"مكية","c":20},{"n":91,"name":"سُورَةُ الشَّمۡسِ","type":"مكية","c":15},{"n":92,"name":"سُورَةُ اللَّيۡلِ","type":"مكية","c":21},{"n":93,"name":"سُورَةُ الضُّحَىٰ","type":"مكية","c":11},{"n":94,"name":"سُورَةُ الشَّرۡحِ","type":"مكية","c":8},{"n":95,"name":"سُورَةُ التِّينِ","type":"مكية","c":8},{"n":96,"name":"سُورَةُ العَلَقِ","type":"مكية","c":19},{"n":97,"name":"سُورَةُ القَدۡرِ","type":"مكية","c":5},{"n":98,"name":"سُورَةُ البَيِّنَةِ","type":"مدنية","c":8},{"n":99,"name":"سُورَةُ الزَّلۡزَلَةِ","type":"مدنية","c":8},{"n":100,"name":"سُورَةُ العَادِيَاتِ","type":"مكية","c":11},{"n":101,"name":"سُورَةُ القَارِعَةِ","type":"مكية","c":11},{"n":102,"name":"سُورَةُ التَّكَاثُرِ","type":"مكية","c":8},{"n":103,"name":"سُورَةُ العَصۡرِ","type":"مكية","c":3},{"n":104,"name":"سُورَةُ الهُمَزَةِ","type":"مكية","c":9},{"n":105,"name":"سُورَةُ الفِيلِ","type":"مكية","c":5},{"n":106,"name":"سُورَةُ قُرَيۡشٍ","type":"مكية","c":4},{"n":107,"name":"سُورَةُ المَاعُونِ","type":"مكية","c":7},{"n":108,"name":"سُورَةُ الكَوۡثَرِ","type":"مكية","c":3},{"n":109,"name":"سُورَةُ الكَافِرُونَ","type":"مكية","c":6},{"n":110,"name":"سُورَةُ النَّصۡرِ","type":"مدنية","c":3},{"n":111,"name":"سُورَةُ المَسَدِ","type":"مكية","c":5},{"n":112,"name":"سُورَةُ الإِخۡلَاصِ","type":"مكية","c":4},{"n":113,"name":"سُورَةُ الفَلَقِ","type":"مكية","c":5},{"n":114,"name":"سُورَةُ النَّاسِ","type":"مكية","c":6}];
+  var QPARTS=[[1,3],[4,6],[7,11],[12,19],[20,28],[29,40],[41,65],[66,114]];
+  var QB=window.AndroidApp?'':'/';
+  var BISM="بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ";
+  var AHOST='https://cdn.mp3quran.net/audio/abdulbasit-abdulsamad/r3/';
+  function pad(n){return (n<10?'00':n<100?'0':'')+n}
+  function ard(n){try{return Number(n).toLocaleString('ar-EG')}catch(e){return ''+n}}
+  var $=function(id){return document.getElementById(id)};
+  var qIndex=$('qIndex'),qRead=$('qRead'),qTitle=$('qTitle'),qMeta=$('qMeta'),qBism=$('qBism'),qText=$('qText'),qErr=$('qErr');
+  if(qIndex){
+    var cache={},cur=0;
+    function partOf(n){for(var i=0;i<QPARTS.length;i++)if(n>=QPARTS[i][0]&&n<=QPARTS[i][1])return i+1;return 1}
+    QINDEX.forEach(function(s){
+      var li=document.createElement('li');
+      var b=document.createElement('button');b.type='button';b.className='qs';
+      var n1=document.createElement('span');n1.className='qn';n1.textContent=ard(s.n);
+      var t1=document.createElement('span');t1.className='qt';t1.textContent=s.name;
+      var m1=document.createElement('span');m1.className='qm';m1.textContent=s.type+' · '+ard(s.c)+' آية';
+      b.appendChild(n1);b.appendChild(t1);b.appendChild(m1);
+      b.onclick=function(){openSurah(s.n)};
+      li.appendChild(b);qIndex.appendChild(li);
+    });
+    function openSurah(n){
+      cur=n;
+      qIndex.hidden=true;qRead.hidden=false;qErr.hidden=true;qText.innerHTML='';qTitle.textContent='…';qMeta.textContent='';qBism.style.display='none';
+      var k=partOf(n);
+      var p=cache[k]?Promise.resolve(cache[k]):fetch(QB+'q'+k+'.json').then(function(r){if(!r.ok)throw new Error('net');return r.json()}).then(function(j){cache[k]=j;return j});
+      p.then(function(j){renderSurah(j,n)}).catch(function(){qErr.hidden=false;qTitle.textContent=''});
+      window.scrollTo(0,0);
+    }
+    function renderSurah(j,n){
+      var s=null;j.surahs.forEach(function(x){if(x.n===n)s=x});
+      if(!s){qErr.hidden=false;return}
+      qTitle.textContent=s.name;
+      qMeta.textContent=s.type+' · '+ard(s.a.length)+' آية';
+      if(n!==1&&n!==9){qBism.textContent=BISM;qBism.style.display=''}
+      var frag=document.createDocumentFragment();
+      s.a.forEach(function(t,i){
+        frag.appendChild(document.createTextNode(t+' '));
+        var e=document.createElement('span');e.className='qe';e.textContent=ard(i+1);
+        frag.appendChild(e);frag.appendChild(document.createTextNode(' '));
+      });
+      qText.innerHTML='';qText.appendChild(frag);
+      $('qPrev').disabled=(n<=1);$('qNext').disabled=(n>=114);
+    }
+    $('qBack').onclick=function(){qRead.hidden=true;qIndex.hidden=false;window.scrollTo(0,0)};
+    $('qPrev').onclick=function(){if(cur>1)openSurah(cur-1)};
+    $('qNext').onclick=function(){if(cur<114)openSurah(cur+1)};
+  }
+  var aqList=$('aqList');
+  if(aqList){
+    var aqBar=$('aqBar'),aqNow=$('aqNow'),aqPP=$('aqPP'),aqStop=$('aqStop');
+    var audio=null,aCur=0,rows={},dlb={},objUrl=null,dlState={},dlAbort={};
+    var SVG_PLAY='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+    var SVG_PAUSE='<svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14H6z"/></svg>';
+    var SVG_DL='<svg viewBox="0 0 24 24"><path d="M11 3h2v9l3.5-3.5 1.4 1.4L12 15.8 6.1 9.9l1.4-1.4L11 12V3zM5 19h14v2H5z"/></svg>';
+    var SVG_DEL='<svg viewBox="0 0 24 24"><path d="M9 3h6l1 2h4v2H4V5h4l1-2zM6 9h12l-1 12H7L6 9z"/></svg>';
+    var idb=null;
+    try{
+      var rq=indexedDB.open('tawba-audio',1);
+      rq.onupgradeneeded=function(e){e.target.result.createObjectStore('mp3')};
+      rq.onsuccess=function(e){idb=e.target.result;QINDEX.forEach(function(x){idbGet(x.n).then(function(b){if(b)setDl(x.n,'done')})})};
+    }catch(e){}
+    function idbGet(n){return new Promise(function(res){if(!idb){res(null);return}var g=idb.transaction('mp3').objectStore('mp3').get(+n);g.onsuccess=function(){res(g.result||null)};g.onerror=function(){res(null)}})}
+    function idbPut(n,b){return new Promise(function(res,rej){var t=idb.transaction('mp3','readwrite');t.objectStore('mp3').put(b,+n);t.oncomplete=res;t.onerror=function(){rej(t.error)}})}
+    function idbDel(n){return new Promise(function(res){var t=idb.transaction('mp3','readwrite');t.objectStore('mp3').delete(+n);t.oncomplete=res;t.onerror=res})}
+    function setDl(n,st){
+      dlState[n]=st;var b=dlb[n];if(!b)return;
+      if(st==='done'){b.className='ad done';b.innerHTML=SVG_DEL;b.title='مَحْفُوظَةٌ — اضْغَطْ لِلْإِزَالَةِ'}
+      else{b.className='ad';b.innerHTML=(st==='dl'?'…':SVG_DL);b.title='تَنْزِيلٌ لِلِاسْتِمْعَانِ بِلَا إِنْتَرْنِت'}
+    }
+    function dlSurah(n){
+      if(!idb){return}
+      if(dlState[n]==='done'){
+        idbDel(n).then(function(){setDl(n,'idle');if(aCur===n&&audio){audio.pause();aqBar.hidden=true;aCur=0;setPP(false);mark()}});
+        return;
+      }
+      if(dlState[n]==='dl'){if(dlAbort[n])dlAbort[n]();return}
+      setDl(n,'dl');
+      var ctl=new AbortController();dlAbort[n]=function(){ctl.abort()};
+      fetch(AHOST+pad(n)+'.mp3',{signal:ctl.signal}).then(function(r){
+        if(!r.ok)throw new Error('net');
+        var total=+r.headers.get('Content-Length')||0,rd=r.body.getReader(),chunks=[],got=0;
+        function pump(){return rd.read().then(function(x){
+          if(x.done)return;
+          chunks.push(x.value);got+=x.value.length;
+          if(total&&dlb[n])dlb[n].textContent=ard(Math.round(got*100/total))+'٪';
+          return pump();
+        })}
+        return pump().then(function(){return new Blob(chunks,{type:'audio/mpeg'})});
+      }).then(function(bl){return idbPut(n,bl)}).then(function(){delete dlAbort[n];setDl(n,'done')})
+      .catch(function(){delete dlAbort[n];setDl(n,'idle')});
+    }
+    QINDEX.forEach(function(s){
+      var li=document.createElement('li');
+      var b=document.createElement('button');b.type='button';b.className='qs';
+      var pl=document.createElement('span');pl.className='ap';pl.innerHTML=SVG_PLAY;
+      var t1=document.createElement('span');t1.className='qt';t1.textContent=s.name;
+      var m1=document.createElement('span');m1.className='qm';m1.textContent=ard(s.c)+' آية';
+      b.appendChild(pl);b.appendChild(t1);b.appendChild(m1);
+      b.onclick=function(){playSurah(s.n)};
+      rows[s.n]=b;
+      var db=document.createElement('button');db.type='button';db.className='ad';db.innerHTML=SVG_DL;db.title='تَنْزِيلٌ لِلِاسْتِمْعَانِ بِلَا إِنْتَرْنِت';
+      db.onclick=function(){dlSurah(s.n)};
+      dlb[s.n]=db;
+      li.appendChild(b);li.appendChild(db);aqList.appendChild(li);
+    });
+    function mark(){for(var k in rows)rows[k].classList.toggle('on',+k===aCur&&aqBar.hidden===false)}
+    function setPP(pause){aqPP.innerHTML=pause?SVG_PAUSE:SVG_PLAY}
+    function playSurah(n){
+      aCur=n;
+      if(!audio){
+        audio=new Audio();
+        audio.onended=function(){if(aCur<114)playSurah(aCur+1);else{aqBar.hidden=true;setPP(false);mark()}};
+        audio.onplay=function(){setPP(true)};
+        audio.onpause=function(){setPP(false)};
+        audio.onerror=function(){aqNow.textContent='تَعَذَّرَ التَّشْغِيلُ — تَأَكَّدْ مِنَ الْإِنْتَرْنِت'};
+      }
+      if(objUrl){URL.revokeObjectURL(objUrl);objUrl=null}
+      aqBar.hidden=false;
+      aqNow.textContent=QINDEX[n-1].name;
+      mark();
+      idbGet(n).then(function(bl){
+        if(aCur!==n)return;
+        if(bl){objUrl=URL.createObjectURL(bl);audio.src=objUrl}else{audio.src=AHOST+pad(n)+'.mp3'}
+        audio.play().catch(function(){aqNow.textContent='تَعَذَّرَ التَّشْغِيلُ — تَأَكَّدْ مِنَ الْإِنْتَرْنِت'});
+      });
+    }
+    aqPP.onclick=function(){if(audio&&audio.src){if(audio.paused)audio.play();else audio.pause()}};
+    aqStop.onclick=function(){if(audio){audio.pause();audio.removeAttribute('src');audio.load()}if(objUrl){URL.revokeObjectURL(objUrl);objUrl=null}aqBar.hidden=true;aCur=0;setPP(false);mark()};
+  }
 })();
 
 (function(){
@@ -1337,7 +1535,7 @@ if('serviceWorker' in navigator){(function(){
  var timers=[];
  function show(title,body,tag){
   if(!OK||Notification.permission!=='granted')return;
-  var o={body:body,icon:'5-icon-512.png',tag:tag,lang:'ar',dir:'rtl'};
+  var o={body:body,icon:'/notif-icon.png',badge:'/notif-icon.png',tag:tag,lang:'ar',dir:'rtl'};
   function plain(){try{new Notification(title,o)}catch(x){}}
   if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration){navigator.serviceWorker.getRegistration().then(function(r){if(r&&r.showNotification)r.showNotification(title,o);else plain()}).catch(plain)}else plain();
  }
