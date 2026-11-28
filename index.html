@@ -236,7 +236,15 @@ body.light .item[aria-pressed="true"]{background:#f0e6c8}
 body.light .dhikr{background:#fdf8e7;border-color:#d9cba0}
 body.light .dhikr:active{background:#f0e6c8}
 body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
-.qay{position:relative;border:1px solid rgba(212,175,55,.55);border-radius:14px;padding:12px 18px 10px;margin:0 0 14px;background:linear-gradient(180deg,rgba(212,175,55,.07),rgba(212,175,55,.02));box-shadow:inset 0 0 0 3px var(--bg),inset 0 0 0 4px rgba(212,175,55,.32)}.qay::before,.qay::after{content:'';position:absolute;left:50%;width:9px;height:9px;margin-left:-5px;border:1px solid var(--g);transform:rotate(45deg);background:var(--bg)}.qay::before{top:-5px}.qay::after{bottom:-5px}</style>
+.qay{position:relative;border:1px solid rgba(212,175,55,.55);border-radius:14px;padding:12px 18px 10px;margin:0 0 14px;background:linear-gradient(180deg,rgba(212,175,55,.07),rgba(212,175,55,.02));box-shadow:inset 0 0 0 3px var(--bg),inset 0 0 0 4px rgba(212,175,55,.32)}.qay::before,.qay::after{content:'';position:absolute;left:50%;width:9px;height:9px;margin-left:-5px;border:1px solid var(--g);transform:rotate(45deg);background:var(--bg)}.qay::before{top:-5px}.qay::after{bottom:-5px}
+#upT{position:fixed;left:12px;right:12px;margin:0 auto;top:calc(70px + env(safe-area-inset-top,0px));transform:translateY(-200%);z-index:10050;display:flex;align-items:center;gap:10px;width:auto;background:#15110a;border:1px solid var(--g,#d4af37);border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.55);color:var(--g2,#f1e3b5);padding:12px 16px;font-size:14px;line-height:1.7;text-align:right;cursor:pointer;opacity:0;pointer-events:none;transition:transform .35s ease,opacity .35s ease}
+#upT.on{transform:translateY(0);opacity:1;pointer-events:auto}
+#upT .upI{flex:0 0 auto;width:26px;height:26px;border:1px solid var(--g,#d4af37);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--g,#d4af37)}
+#upT b{color:var(--g,#d4af37);font-weight:700}
+body.light #upT{background:#fffdf4;border-color:var(--g3,#b99a4b);color:#3a2f16}
+#pushBtn{display:none;margin-top:10px}
+#pushMsg{font-size:13px;margin:8px 0 0;opacity:.9}
+</style>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="7-apple-touch-icon.png">
 <link rel="icon" type="image/png" href="4-icon-192.png">
@@ -244,7 +252,28 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="إسلامي توبة">
-<script>if(!window.AndroidApp){var gc=document.createElement('script');gc.async=true;gc.src='https://gc.zgo.at/count.js';gc.setAttribute('data-goatcounter','https://islami-tawba.goatcounter.com/count');document.head.appendChild(gc)}</script></head>
+<script>if(!window.AndroidApp){var gc=document.createElement('script');gc.async=true;gc.src='https://gc.zgo.at/count.js';gc.setAttribute('data-goatcounter','https://islami-tawba.goatcounter.com/count');document.head.appendChild(gc)}</script><script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+window.OneSignalDeferred = window.OneSignalDeferred || [];
+OneSignalDeferred.push(function(OneSignal){
+  return OneSignal.init({
+    appId: "805179fd-bd7a-4ac9-ac67-ce952e910ddc",
+    serviceWorkerPath: "/push/onesignal/OneSignalSDKWorker.js",
+    serviceWorkerUpdaterPath: "/push/onesignal/OneSignalSDKUpdaterWorker.js",
+    serviceWorkerParam: { scope: "/push/onesignal/" },
+    allowLocalhostAsSecureOrigin: false,
+    notifyButton: { enable: false },
+    promptOptions: { slidedown: { enabled: false, autoPrompt: false } }
+  });
+});
+</script>
+<style>
+/* إطار المصحف العثماني للموقع */
+.qtext{position:relative;border:2px solid var(--g,#d4af37);border-radius:8px;padding:34px 20px 24px;margin:8px 0 6px;box-shadow:inset 0 0 0 3px var(--bg),inset 0 0 0 4.5px rgba(212,175,55,.85),inset 0 0 0 13px var(--bg),inset 0 0 0 14px rgba(212,175,55,.30);background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNkNGFmMzciIHN0cm9rZS13aWR0aD0iMS42Ij48cGF0aCBkPSJNMiA0NiBWMTcgUTIgMiAxNyAyIEg0NiIvPjxwYXRoIGQ9Ik04IDQ2IFYyMSBROCA4IDIxIDggSDQ2IiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuOCIvPjwvZz48ZyBmaWxsPSIjZDRhZjM3Ij48cGF0aCBkPSJNNiA0NiBDNiAzNCAxMCAyNiAxOCAyMSBDMTQgMjkgMTIgMzcgMTIgNDYgWiIgb3BhY2l0eT0iMC45Ii8+PHBhdGggZD0iTTQ2IDYgQzM0IDYgMjYgMTAgMjEgMTggQzI5IDE0IDM3IDEyIDQ2IDEyIFoiIG9wYWNpdHk9IjAuOSIvPjxwYXRoIGQ9Ik0xNCAzNCBDMjAgMjggMjggMjQgMzYgMjMgQzMwIDI5IDIyIDMzIDE0IDM0IFoiIG9wYWNpdHk9IjAuODUiLz48Y2lyY2xlIGN4PSIxOC41IiBjeT0iMTguNSIgcj0iMi42Ii8+PGNpcmNsZSBjeD0iMjQiIGN5PSIxMyIgcj0iMS41IiBvcGFjaXR5PSIwLjg1Ii8+PGNpcmNsZSBjeD0iMTMiIGN5PSIyNCIgcj0iMS41IiBvcGFjaXR5PSIwLjg1Ii8+PGNpcmNsZSBjeD0iMzAiIGN5PSIxMC41IiByPSIxLjIiIG9wYWNpdHk9IjAuNyIvPjxjaXJjbGUgY3g9IjEwLjUiIGN5PSIzMCIgcj0iMS4yIiBvcGFjaXR5PSIwLjciLz48L2c+PGcgZmlsbD0iI2YxZTNiNSIgb3BhY2l0eT0iMC45Ij48Y2lyY2xlIGN4PSIxOC41IiBjeT0iMTguNSIgcj0iMC45Ii8+PC9nPjwvc3ZnPgo=),url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0OCAwKSBzY2FsZSgtMSAxKSI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDRhZjM3IiBzdHJva2Utd2lkdGg9IjEuNiI+PHBhdGggZD0iTTIgNDYgVjE3IFEyIDIgMTcgMiBINDYiLz48cGF0aCBkPSJNOCA0NiBWMjEgUTggOCAyMSA4IEg0NiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjgiLz48L2c+PGcgZmlsbD0iI2Q0YWYzNyI+PHBhdGggZD0iTTYgNDYgQzYgMzQgMTAgMjYgMTggMjEgQzE0IDI5IDEyIDM3IDEyIDQ2IFoiIG9wYWNpdHk9IjAuOSIvPjxwYXRoIGQ9Ik00NiA2IEMzNCA2IDI2IDEwIDIxIDE4IEMyOSAxNCAzNyAxMiA0NiAxMiBaIiBvcGFjaXR5PSIwLjkiLz48cGF0aCBkPSJNMTQgMzQgQzIwIDI4IDI4IDI0IDM2IDIzIEMzMCAyOSAyMiAzMyAxNCAzNCBaIiBvcGFjaXR5PSIwLjg1Ii8+PGNpcmNsZSBjeD0iMTguNSIgY3k9IjE4LjUiIHI9IjIuNiIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMTMiIHI9IjEuNSIgb3BhY2l0eT0iMC44NSIvPjxjaXJjbGUgY3g9IjEzIiBjeT0iMjQiIHI9IjEuNSIgb3BhY2l0eT0iMC44NSIvPjxjaXJjbGUgY3g9IjMwIiBjeT0iMTAuNSIgcj0iMS4yIiBvcGFjaXR5PSIwLjciLz48Y2lyY2xlIGN4PSIxMC41IiBjeT0iMzAiIHI9IjEuMiIgb3BhY2l0eT0iMC43Ii8+PC9nPjxnIGZpbGw9IiNmMWUzYjUiIG9wYWNpdHk9IjAuOSI+PGNpcmNsZSBjeD0iMTguNSIgY3k9IjE4LjUiIHI9IjAuOSIvPjwvZz48L2c+PC9zdmc+),url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDQ4KSBzY2FsZSgxIC0xKSI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDRhZjM3IiBzdHJva2Utd2lkdGg9IjEuNiI+PHBhdGggZD0iTTIgNDYgVjE3IFEyIDIgMTcgMiBINDYiLz48cGF0aCBkPSJNOCA0NiBWMjEgUTggOCAyMSA4IEg0NiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjgiLz48L2c+PGcgZmlsbD0iI2Q0YWYzNyI+PHBhdGggZD0iTTYgNDYgQzYgMzQgMTAgMjYgMTggMjEgQzE0IDI5IDEyIDM3IDEyIDQ2IFoiIG9wYWNpdHk9IjAuOSIvPjxwYXRoIGQ9Ik00NiA2IEMzNCA2IDI2IDEwIDIxIDE4IEMyOSAxNCAzNyAxMiA0NiAxMiBaIiBvcGFjaXR5PSIwLjkiLz48cGF0aCBkPSJNMTQgMzQgQzIwIDI4IDI4IDI0IDM2IDIzIEMzMCAyOSAyMiAzMyAxNCAzNCBaIiBvcGFjaXR5PSIwLjg1Ii8+PGNpcmNsZSBjeD0iMTguNSIgY3k9IjE4LjUiIHI9IjIuNiIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMTMiIHI9IjEuNSIgb3BhY2l0eT0iMC44NSIvPjxjaXJjbGUgY3g9IjEzIiBjeT0iMjQiIHI9IjEuNSIgb3BhY2l0eT0iMC44NSIvPjxjaXJjbGUgY3g9IjMwIiBjeT0iMTAuNSIgcj0iMS4yIiBvcGFjaXR5PSIwLjciLz48Y2lyY2xlIGN4PSIxMC41IiBjeT0iMzAiIHI9IjEuMiIgb3BhY2l0eT0iMC43Ii8+PC9nPjxnIGZpbGw9IiNmMWUzYjUiIG9wYWNpdHk9IjAuOSI+PGNpcmNsZSBjeD0iMTguNSIgY3k9IjE4LjUiIHI9IjAuOSIvPjwvZz48L2c+PC9zdmc+),url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0OCA0OCkgc2NhbGUoLTEgLTEpIj48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNkNGFmMzciIHN0cm9rZS13aWR0aD0iMS42Ij48cGF0aCBkPSJNMiA0NiBWMTcgUTIgMiAxNyAyIEg0NiIvPjxwYXRoIGQ9Ik04IDQ2IFYyMSBROCA4IDIxIDggSDQ2IiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuOCIvPjwvZz48ZyBmaWxsPSIjZDRhZjM3Ij48cGF0aCBkPSJNNiA0NiBDNiAzNCAxMCAyNiAxOCAyMSBDMTQgMjkgMTIgMzcgMTIgNDYgWiIgb3BhY2l0eT0iMC45Ii8+PHBhdGggZD0iTTQ2IDYgQzM0IDYgMjYgMTAgMjEgMTggQzI5IDE0IDM3IDEyIDQ2IDEyIFoiIG9wYWNpdHk9IjAuOSIvPjxwYXRoIGQ9Ik0xNCAzNCBDMjAgMjggMjggMjQgMzYgMjMgQzMwIDI5IDIyIDMzIDE0IDM0IFoiIG9wYWNpdHk9IjAuODUiLz48Y2lyY2xlIGN4PSIxOC41IiBjeT0iMTguNSIgcj0iMi42Ii8+PGNpcmNsZSBjeD0iMjQiIGN5PSIxMyIgcj0iMS41IiBvcGFjaXR5PSIwLjg1Ii8+PGNpcmNsZSBjeD0iMTMiIGN5PSIyNCIgcj0iMS41IiBvcGFjaXR5PSIwLjg1Ii8+PGNpcmNsZSBjeD0iMzAiIGN5PSIxMC41IiByPSIxLjIiIG9wYWNpdHk9IjAuNyIvPjxjaXJjbGUgY3g9IjEwLjUiIGN5PSIzMCIgcj0iMS4yIiBvcGFjaXR5PSIwLjciLz48L2c+PGcgZmlsbD0iI2YxZTNiNSIgb3BhY2l0eT0iMC45Ij48Y2lyY2xlIGN4PSIxOC41IiBjeT0iMTguNSIgcj0iMC45Ii8+PC9nPjwvZz48L3N2Zz4=),linear-gradient(180deg,rgba(212,175,55,.055),rgba(212,175,55,.015));background-repeat:no-repeat;background-position:left -4px top -4px,right -4px top -4px,left -4px bottom -4px,right -4px bottom -4px,center;background-size:48px 48px}
+.qtext::before{content:'';position:absolute;inset:6px;border-radius:4px;pointer-events:none;opacity:.16;z-index:0;background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiIgdmlld0JveD0iMCAwIDI2IDI2Ij48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNkNGFmMzciIHN0cm9rZS13aWR0aD0iMC45IiBvcGFjaXR5PSIwLjU1Ij48cGF0aCBkPSJNMTMgMyBMMTYgMTAgTDIzIDEzIEwxNiAxNiBMMTMgMjMgTDEwIDE2IEwzIDEzIEwxMCAxMCBaIi8+PGNpcmNsZSBjeD0iMTMiIGN5PSIxMyIgcj0iMi4yIi8+PC9nPjxjaXJjbGUgY3g9IjEzIiBjeT0iMTMiIHI9IjAuOSIgZmlsbD0iI2Q0YWYzNyIgb3BhY2l0eT0iMC44Ii8+PGNpcmNsZSBjeD0iMCIgY3k9IjAiIHI9IjEuMSIgZmlsbD0iI2Q0YWYzNyIgb3BhY2l0eT0iMC41Ii8+PGNpcmNsZSBjeD0iMjYiIGN5PSIwIiByPSIxLjEiIGZpbGw9IiNkNGFmMzciIG9wYWNpdHk9IjAuNSIvPjxjaXJjbGUgY3g9IjAiIGN5PSIyNiIgcj0iMS4xIiBmaWxsPSIjZDRhZjM3IiBvcGFjaXR5PSIwLjUiLz48Y2lyY2xlIGN4PSIyNiIgY3k9IjI2IiByPSIxLjEiIGZpbGw9IiNkNGFmMzciIG9wYWNpdHk9IjAuNSIvPjwvc3ZnPgo=);background-size:26px 26px}
+.qtext>*{position:relative;z-index:1}
+body.light .qtext{box-shadow:inset 0 0 0 3px var(--bg),inset 0 0 0 4.5px rgba(185,154,75,.9),inset 0 0 0 13px var(--bg),inset 0 0 0 14px rgba(185,154,75,.35)}
+</style></head>
 <body>
 <button type="button" class="mode-btn" id="modeBtn" aria-label="الْوَضْعُ النَّهَارِيُّ"></button>
 <button type="button" class="menu-btn" id="menuBtn" aria-label="الْقَائِمَةُ" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
@@ -373,18 +402,22 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
   </div>
   <ul class="qlist" id="aqList"></ul>
   </div>
-  <div style="max-width:640px;margin:14px auto 0;padding:12px 16px;border:1.5px solid var(--g,#c9a227);border-radius:14px;background:rgba(201,162,39,.1);text-align:center;color:var(--g,#c9a227);font-size:16px;line-height:1.9">الإصدار 1.5.4 متاح الآن: صفحة المصحف داخل إطار مزخرف كصفحة مصحف، والآيات متصلة، وعلامات نهاية الآيات مزخرفة.</div>
+  <div style="max-width:640px;margin:14px auto 0;padding:12px 16px;border:1.5px solid var(--g,#c9a227);border-radius:14px;background:rgba(201,162,39,.1);text-align:center;color:var(--g,#c9a227);font-size:16px;line-height:1.9">الإصدار 1.5.5 متاح الآن: شريط تنبيه داخل الصفحة يظهر عند توفّر تحديث ويختفي بعد 30 ثانية، والضغط عليه يبدأ التحديث فورًا.</div>
   <div class="dl-app" id="dlApp" style="text-align:center;margin:18px 0 6px">
-  <a class="btn" href="https://islami-tawba.github.io/7-islami-tawba-1.5.4.apk" download data-goatcounter-click="android-download" data-goatcounter-title="تحميل للأندرويد" style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none;color:var(--g2)">تحميل للأندرويد</a>
-  <p class="pt-note">الإصدار 1.5.4: يعمل بدون إنترنت، وفيه صفحة المصحف داخل إطار مزخرف (اسم السورة في شريط مزخرف، والآيات متصلة داخل إطار بزوايا مزخرفة، وعلامات نهاية الآيات مزخرفة)، وقسم «معلومات التطبيق» يعرض نسخة التطبيق والمحتوى وطريقة عمل التنبيهات، وإشعار عند توفّر تحديث، والأذان بثلاثة أصوات مع تخصيص الوضع والمؤذن لكل صلاة، وتنبيهات الصلاة والأذكار وزر تحديث المحتوى وتكبير الشاشة بإصبعين. التحديث يُثبَّت فوق النسخة القديمة. عند التثبيت سيظهر تحذير من أندرويد لأن التطبيق من خارج متجر Google Play. اسمح بالتثبيت من هذا المصدر لإكماله.</p>
+  <a class="btn" href="https://islami-tawba.github.io/8-islami-tawba-1.5.5.apk" download data-goatcounter-click="android-download" data-goatcounter-title="تحميل للأندرويد" style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none;color:var(--g2)">تحميل للأندرويد</a>
+  <p class="pt-note">الإصدار 1.5.5: يعمل بدون إنترنت، وفيه شريط تنبيه أسفل الشاشة يظهر عند توفّر تحديث للمحتوى أو للتطبيق ويبقى 30 ثانية ثم يختفي، والضغط عليه يبدأ التحديث فورًا، مع فحص دوري للتحديثات كل 5 دقائق أثناء الاستخدام وعند العودة إلى الصفحة. وفيه صفحة المصحف داخل إطار مزخرف (اسم السورة في شريط مزخرف، والآيات متصلة داخل إطار بزوايا مزخرفة، وعلامات نهاية الآيات مزخرفة)، وقسم «معلومات التطبيق» يعرض نسخة التطبيق والمحتوى وطريقة عمل التنبيهات، والأذان بثلاثة أصوات مع تخصيص الوضع والمؤذن لكل صلاة، وتنبيهات الصلاة والأذكار وزر تحديث المحتوى وتكبير الشاشة بإصبعين. التحديث يُثبَّت فوق النسخة القديمة. عند التثبيت سيظهر تحذير من أندرويد لأن التطبيق من خارج متجر Google Play. اسمح بالتثبيت من هذا المصدر لإكماله.</p>
+  <p style="margin:12px 0 0"><button type="button" class="btn ghost" id="pushBtn">تشغيل إشعارات الموقع</button></p>
+  <p id="pushMsg"></p>
   </div>
   <style>details>summary{list-style:none}details>summary::-webkit-details-marker{display:none}</style>
   <details style="max-width:640px;margin:6px auto 18px;border:1px solid var(--g3,#b99a3f);border-radius:14px;padding:14px 16px;text-align:right">
   <summary style="cursor:pointer;font-size:17px;font-weight:700;color:var(--g,#c9a227)">معلومات التطبيق ▾</summary>
   <div style="margin-top:12px;font-size:14px;line-height:1.9">
-  <p style="margin:0 0 8px">الإصدار الحالي: <b>1.5.4</b> · نسخة المحتوى: <b>14</b></p>
-  <h3 style="margin:12px 0 6px;font-size:15px">ما الجديد في الإصدار 1.5.4</h3>
+  <p style="margin:0 0 8px">الإصدار الحالي: <b>1.5.5</b> · نسخة المحتوى: <b>15</b></p>
+  <h3 style="margin:12px 0 6px;font-size:15px">ما الجديد في الإصدار 1.5.5</h3>
   <ul style="margin:0 0 4px;padding-inline-start:20px">
+  <li>شريط تنبيه أسفل الشاشة عند توفّر تحديث (محتوى أو تطبيق) يبقى 30 ثانية ثم يختفي، والضغط عليه يبدأ التحديث فورًا.</li>
+  <li>فحص دوري للتحديثات كل 5 دقائق أثناء الاستخدام وعند العودة إلى الصفحة، وليس عند الفتح فقط.</li>
   <li>صفحة المصحف داخل إطار مزخرف كصفحة مصحف: إطار ذهبي مزدوج بزوايا مزخرفة، والآيات متصلة، وعلامة مزخرفة عند نهاية كل آية.</li>
   <li>قسم «معلومات التطبيق» في إعدادات التطبيق، وإشعار عند توفّر تحديث.</li>
   </ul>
@@ -396,11 +429,11 @@ body.light .mode-btn{background:#fdf8e7dd;border-color:#c0a968;color:var(--g)}
   <li>لا يوجد سيرفر: التنبيهات محلية على الهاتف، وفحص وجود إصدار جديد يحدث عند فتح التطبيق ثم مرة يوميًا، ولهذا يظهر إشعار الإصدار الجديد بعد فتح التطبيق.</li>
   <li>بعض الهواتف توقف التنبيهات لتوفير البطارية: اسمح للتطبيق من «إعدادات البطارية»، وافتح التطبيق مرة كل شهر لتحديث المواعيد.</li>
   </ul>
-  <p style="margin:12px 0 0;padding-top:10px;border-top:1px solid rgba(201,162,39,.25);opacity:.85;font-size:13px;text-align:center">الْمَالِكُ وَصَاحِبُ فِكْرَةِ التَّطْبِيقِ وَالْمَوْقِعِ: <bdi dir="ltr" style="unicode-bidi:isolate">MU57TAR MUSTAFA</bdi></p>
+  <p style="margin:12px 0 0;padding-top:10px;border-top:1px solid rgba(201,162,39,.25);opacity:.85;font-size:13px;text-align:center">الْمَالِكُ وَصَاحِبُ فِكْرَةِ التَّطْبِيقِ وَالْمَوْقِعِ: <bdi dir="ltr" style="unicode-bidi:isolate">MUKHTAR MUSTAFA</bdi></p>
   </div>
   </details>
   <p class="foot">تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ.</p>
-  <p class="foot" style="font-size:12px;opacity:.8">فِكْرَةُ وَمِلْكِيَّةُ <bdi dir="ltr" style="unicode-bidi:isolate">MU57TAR MUSTAFA</bdi></p>
+  <p class="foot" style="font-size:12px;opacity:.8">فِكْرَةُ وَمِلْكِيَّةُ <bdi dir="ltr" style="unicode-bidi:isolate">MUKHTAR MUSTAFA</bdi></p>
 </main>
 <script>
 (function(){
@@ -1606,6 +1639,65 @@ if('serviceWorker' in navigator){(function(){
  document.addEventListener('visibilitychange',function(){if(!document.hidden)plan()});
  setInterval(plan,3600000);
  setTimeout(function(){warn();plan()},500);
+})();
+</script>
+<div id="upT" role="button" tabindex="0" aria-live="polite" aria-hidden="true"><span class="upI" aria-hidden="true">↑</span><span id="upTM"></span></div>
+<script>
+/* تنبيه تحديث الموقع: يظهر 30 ثانية، والضغط عليه يفتح ملف التحديث */
+(function(){
+ var T=document.getElementById('upT'),TM=document.getElementById('upTM');
+ if(!T||!TM)return;
+ var hideTimer=null,pending=null,shownFor='',KEY='islami-tawba.lastVer',AV='https://islami-tawba.github.io/app-version.json';
+ function last(){try{return localStorage.getItem(KEY)||''}catch(e){return ''}}
+ function setLast(v){try{localStorage.setItem(KEY,v)}catch(e){}}
+ function hide(){T.classList.remove('on');T.setAttribute('aria-hidden','true');clearTimeout(hideTimer)}
+ function show(v){
+  if(v.versionName===shownFor)return;
+  shownFor=v.versionName;
+  TM.innerHTML='<b>يتوفر تحديث جديد للتطبيق ('+v.versionName+')</b><br>اضغط هنا لتحميله وتثبيته الآن';
+  pending=function(){try{window.open(v.url,'_blank')}catch(e){location.href=v.url}};
+  T.classList.add('on');T.setAttribute('aria-hidden','false');
+  clearTimeout(hideTimer);hideTimer=setTimeout(hide,30000);
+ }
+ function check(){
+  fetch(AV+'?t='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(o){
+   if(!o||!o.url||!o.versionName)return;
+   var L=last();
+   if(!L){setLast(o.versionName);return}
+   if(L!==o.versionName)show(o);
+  }).catch(function(){});
+ }
+ T.addEventListener('click',function(){var f=pending;hide();if(f)setTimeout(f,180)});
+ T.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();var f=pending;hide();if(f)setTimeout(f,180)}});
+ setTimeout(check,4000);setInterval(check,300000);
+ document.addEventListener('visibilitychange',function(){if(!document.hidden)check()});
+})();
+</script>
+<script>
+/* زر إشعارات الموقع (OneSignal) */
+(function(){
+ var b=document.getElementById('pushBtn'),m=document.getElementById('pushMsg');
+ if(!b)return;
+ if(!('Notification' in window)||!('serviceWorker' in navigator)){return}
+ b.style.display='';
+ function setMsg(t){if(m)m.textContent=t}
+ function refresh(OS){
+  if(!OS)return;
+  var perm=Notification.permission;
+  if(perm==='granted'){b.textContent='الإشعارات مفعّلة ✓';b.disabled=true;setMsg('ستصلك تنبيهات التحديثات هنا.')}
+  else if(perm==='denied'){b.disabled=true;b.textContent='الإشعارات مرفوضة';setMsg('الإشعارات مرفوضة من إعدادات المتصفح. يمكنك تفعيلها من إعدادات الموقع في المتصفح.')}
+ }
+ b.addEventListener('click',function(){
+  b.disabled=true;setMsg('جارٍ الطلب...');
+  OneSignalDeferred.push(function(OS){
+   return OS.Notifications.requestPermission().then(function(ok){
+    if(ok){try{OS.User.PushSubscription.optIn()}catch(e){} setMsg('ستصلك تنبيهات التحديثات هنا.');b.textContent='الإشعارات مفعّلة ✓'}
+    else{b.disabled=false;setMsg('لم يتم منح الإذن. جرّب مرة أخرى من إعدادات المتصفح.')}
+    refresh(OS);
+   }).catch(function(){b.disabled=false;setMsg('تعذر تشغيل الإشعارات على هذا المتصفح.')});
+  });
+ });
+ OneSignalDeferred.push(function(OS){refresh(OS);return Promise.resolve()});
 })();
 </script>
 </body>
